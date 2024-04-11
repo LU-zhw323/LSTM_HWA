@@ -6,7 +6,7 @@ The Penn Tree Bank dataset are placed in the ```/data/ptb```
 
 ### Pretrained LSTM-FP model
 
-The Pretrained Floating point LSTM model is placed in the ```/model/lstm_fp.pt```. It has test Perplexity at 85. It can be directly used as a starting point for HWA training and inference. If you prefer to retrain a new LSTM-FP model, please see the note below
+The Pretrained Floating point LSTM model is uploaded to [Hugging Face](https://huggingface.co/MarvinZhw/LSTM-FP-PTB/tree/main). Please download it and place it in the ```/model``` to run the HWA training on it. It had test Perplexity at 85. It can be directly used as a starting point for HWA training and inference. If you prefer to train a new LSTM-FP model, please see the note below.
 
 ### Best Condition for LSTM-FP
 
