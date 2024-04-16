@@ -20,7 +20,7 @@ from torch.utils.data.sampler import Sampler
 from torch.nn.functional import one_hot
 
 import numpy as np
-
+import h5py
 from aihwkit.nn import AnalogSequential, AnalogRNN, AnalogLinear, AnalogLSTMCellCombinedWeight
 from aihwkit.optim import AnalogSGD
 from aihwkit.simulator.configs import (
@@ -41,19 +41,6 @@ import csv
 ###############################################################################
 # Prepare file
 ###############################################################################
-TRAIN_RESULT = './result/train_condition.csv'
-file_exists = os.path.isfile(TRAIN_RESULT)
-with open(TRAIN_RESULT, 'a', newline='') as file:
-    writer = csv.writer(file)
-    if not file_exists:
-        writer.writerow(['Learning Rate','LR Decay' , 'Dropout Rate', 'Noise', 'Gradient Clipping','Weight Drop', 'Weight Decay','Momentum','Epochs', 'Test Loss', 'Test PPL'])
-
-INFERENCE_RESULT = './result/inference_condition.csv'
-file_exists = os.path.isfile(INFERENCE_RESULT)
-with open(INFERENCE_RESULT, 'a', newline='') as file:
-    writer = csv.writer(file)
-    if not file_exists:
-        writer.writerow(['Noise', 'Time' , 'Test Loss', 'Test PPL'])
 
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -94,7 +81,7 @@ def set_param():
     args.dropout = 0.5
     print(f"Dropout Rate: {args.dropout}")
 
-    args.noise = 5
+    args.noise = 3
     print(f"Noise: {args.noise}")
 
     args.clip = 10
@@ -298,10 +285,10 @@ print('| End of training | test loss {:5.2f} | test ppl {:8.2f}'.format(
     test_loss, math.exp(test_loss)))
 print('=' * 89)
 
-# Write to csv
-with open(TRAIN_RESULT, 'a', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow([initial_lr, args.lr_decay, args.dropout,args.noise,args.clip, args.w_drop,args.w_decay,args.mom,args.epochs, test_loss, math.exp(test_loss)])
+# Write to file
+with h5py.File('./result/best_accuracy.h5', 'a') as f:
+    task_group = f.require_group(f"task_noise_{args.noise}")
+    task_group.create_dataset('train_results', data=test_loss)
 
 print()
 print('=' * 89)
@@ -312,16 +299,27 @@ max_inference_time = 31536000
 n_times = 9
 t_inference_list = [
         0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
+dtype = np.dtype([
+    ('noise', np.float32),
+    ('time', np.float32), 
+    ('loss', np.float32), 
+    ('ppl', np.float32)
+])
+inference_data = np.empty(len(t_inference_list), dtype=dtype)
 try:
-    with open(INFERENCE_RESULT, 'a', newline='') as file:
-        writer = csv.writer(file)
+    with h5py.File('./result/best_accuracy.h5', 'a') as f:
+        task_group = f.require_group(f"task_noise_{args.noise}")
         #t_inference in second
-        for t_inference in t_inference_list:
+        for i, t_inference in enumerate(t_inference_list):
             model.drift_analog_weights(t_inference)
             inference_loss = evaluate(test_data)
             print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
             t_inference,inference_loss, math.exp(inference_loss)))
-            writer.writerow([args.noise, t_inference, inference_loss, math.exp(inference_loss)])
+            inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
+            
+        if 'inference_results' in task_group:
+            del task_group['inference_results']
+        task_group.create_dataset('inference_results', data=inference_data)
         print('=' * 89)
         print()
 except KeyboardInterrupt:

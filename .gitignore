@@ -1,2 +1,3 @@
 /model/lstm_fp.pt
 __pycache__/
+result/
