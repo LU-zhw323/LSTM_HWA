@@ -81,7 +81,7 @@ def set_param():
     args.dropout = 0.5
     print(f"Dropout Rate: {args.dropout}")
 
-    args.noise = 3
+    args.noise = 3.4
     print(f"Noise: {args.noise}")
 
     args.clip = 10
@@ -189,7 +189,7 @@ optimizer = create_sgd_optimizer(model)
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=args.lr_decay, patience=0, verbose=True)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=args.lr_decay, patience=0, verbose=False)
 
 
 def evaluate(data_source):
@@ -225,7 +225,6 @@ def train():
         # Starting each batch, we detach the hidden state from how it was previously produced.
         # If we didn't, the model would try backpropagating all the way to start of the dataset.
         optimizer.zero_grad()
-        #没问题
         if args.model == 'Transformer':
             output = model(data)
             output = output.view(-1, ntokens)
@@ -289,6 +288,9 @@ print('=' * 89)
 with h5py.File('./result/best_accuracy.h5', 'a') as f:
     task_group = f.require_group(f"task_noise_{args.noise}")
     task_group.create_dataset('train_results', data=test_loss)
+
+with open('./model/lstm_hwa.pt', 'wb') as f:
+    torch.save(model, f)
 
 print()
 print('=' * 89)
