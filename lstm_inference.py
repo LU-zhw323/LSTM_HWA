@@ -1,3 +1,5 @@
+import utils
+import model
 import json
 from math import log10
 import math
@@ -38,14 +40,9 @@ from aihwkit.simulator.rpu_base import cuda
 
 import data
 import csv
-import utils
-###############################################################################
-# Prepare file
-###############################################################################
 
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-initial_lr = 0
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Model training script.')
@@ -61,7 +58,6 @@ def parse_args():
 class Params:
     def __init__(self):
         pass
-    
 
 def set_param():
     param = parse_args()
@@ -117,6 +113,7 @@ def set_param():
     print()
     return args
 
+
 ###############################################################################
 # Set Parameter
 ###############################################################################
@@ -132,10 +129,6 @@ def batchify(data, bsz):
     data = data.view(bsz, -1).t().contiguous()
     return data.to(DEVICE)
 
-
-###############################################################################
-# Load Data
-###############################################################################
 corpus = data.Corpus(args.data)
 eval_batch_size = 10
 train_data = batchify(corpus.train, args.batch_size)
@@ -171,129 +164,73 @@ def gen_rpu_config():
     return rpu_config
 
 
-def create_sgd_optimizer(model):
-    
-    optimizer = AnalogSGD(model.parameters(), lr=args.lr, momentum=args.mom, weight_decay=args.w_decay)
-    optimizer.regroup_param_groups(model)
-
-    return optimizer
-
 ###############################################################################
 # Build the model
 ###############################################################################
-model_save_path = './model/lstm_fp.pt'
-pre_model = torch.load(model_save_path).to(DEVICE)
-pre_model.rnn.flatten_parameters()
-model = convert_to_analog(pre_model, gen_rpu_config())
-model.rnn.flatten_parameters()
-optimizer = create_sgd_optimizer(model)
+model_save_path = './model/lstm_hwa.th'
+hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
+analog_model = convert_to_analog(hwa_model,gen_rpu_config())
+analog_model.load_state_dict(
+        torch.load(model_save_path, map_location=DEVICE)
+    )
+analog_model.rnn.flatten_parameters()
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=args.lr_decay, patience=0, verbose=False)
-
 
 def evaluate(data_source):
     # Turn on evaluation mode which disables dropout.
-    model.eval()
+    analog_model.eval()
     total_loss = 0.
     ntokens = len(corpus.dictionary)
     if args.model != 'Transformer':
-        hidden = model.init_hidden(eval_batch_size)
+        hidden = analog_model.init_hidden(eval_batch_size)
     with torch.no_grad():
         for i in range(0, data_source.size(0) - 1, args.seq_len):
             data, targets = get_batch(data_source, i)
             if args.model == 'Transformer':
-                output = model(data)
+                output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
-                output, hidden = model(data, hidden)
+                output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
-
-def train():
-    # Turn on training mode which enables dropout.
-    model.train()
-    total_loss = 0.
-    start_time = time.time()
-    ntokens = len(corpus.dictionary)
-    if args.model != 'Transformer':
-        hidden = model.init_hidden(args.batch_size)
-    for batch, i in enumerate(range(0, train_data.size(0) - 1, args.seq_len)): 
-        data, targets = get_batch(train_data, i)
-        # Starting each batch, we detach the hidden state from how it was previously produced.
-        # If we didn't, the model would try backpropagating all the way to start of the dataset.
-        optimizer.zero_grad()
-        if args.model == 'Transformer':
-            output = model(data)
-            output = output.view(-1, ntokens)
-        else:
-            hidden = repackage_hidden(hidden)
-            output, hidden = model(data, hidden)
-        loss = criterion(output, targets)
-        loss.backward()
-        
-        # `clip_grad_norm` helps prevent the exploding gradient problem in RNNs / LSTMs.
-        torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)
-        optimizer.step()
-
-        total_loss += loss.item()
-        
-        if batch % args.log_interval == 0 and batch > 0:
-            cur_loss = total_loss / args.log_interval
-            elapsed = time.time() - start_time
-            print('| epoch {:3d} | {:5d}/{:5d} batches | lr {:.2g} | ms/batch {:5.2f} | '
-                    'loss {:5.2f} | ppl {:8.2f}'.format(
-                epoch, batch, len(train_data) // args.seq_len, optimizer.param_groups[0]['lr'],
-                elapsed * 1000 / args.log_interval, cur_loss, math.exp(cur_loss)))
-            total_loss = 0
-            start_time = time.time()
-
-    
-# Loop over epochs.
-#lr = args.lr
-best_val_loss = None
-
 print()
-print('=' * 89)
-print("Training")
+utils.inference(analog_model, evaluate, test_data, args, './result/lstm_inf.h5', f"task_noise_{args.noise}")
+"""print('=' * 89)
+print("Inference")
 print('-' * 89)
-# At any point you can hit Ctrl + C to break out of training early.
+start_time = 60
+max_inference_time = 31536000
+n_times = 9
+t_inference_list = [
+        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
+dtype = np.dtype([
+    ('noise', np.float32),
+    ('time', np.float32), 
+    ('loss', np.float32), 
+    ('ppl', np.float32)
+])
+inference_data = np.empty(len(t_inference_list), dtype=dtype)
 try:
-    for epoch in range(1, args.epochs+1):
-        epoch_start_time = time.time()
-        train()
-        val_loss = evaluate(val_data)
-        scheduler.step(val_loss)
-        print('-' * 89)
-        print('| end of epoch {:3d} | time: {:5.2f}s | valid loss {:5.2f} | '
-                'valid ppl {:8.2f}'.format(epoch, (time.time() - epoch_start_time),
-                                           val_loss, math.exp(val_loss)))
-        print('-' * 89)
-        
+    with h5py.File('./result/best_accuracy.h5', 'a') as f:
+        task_group = f.require_group(f"task_noise_{args.noise}")
+        #t_inference in second
+        for i, t_inference in enumerate(t_inference_list):
+            analog_model.drift_analog_weights(t_inference)
+            inference_loss = evaluate(test_data)
+            print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+            t_inference,inference_loss, math.exp(inference_loss)))
+            inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
+            
+        if 'inference_results' in task_group:
+            del task_group['inference_results']
+        task_group.create_dataset('inference_results', data=inference_data)
+        print('=' * 89)
+        print()
 except KeyboardInterrupt:
-    print('-' * 89)
-    print('Exiting from training early')
-
-
-# Run on test data.
-test_loss = evaluate(test_data)
-print('=' * 89)
-print('| End of training | test loss {:5.2f} | test ppl {:8.2f}'.format(
-    test_loss, math.exp(test_loss)))
-print('=' * 89)
-
-# Write to file
-with h5py.File('./result/lstm_hwa.h5', 'a') as f:
-    task_group = f.require_group(f"task_noise_{args.noise}")
-    if 'train_results' in task_group:
-            del task_group['train_results']
-    task_group.create_dataset('train_results', data=test_loss)
-
-
-torch.save(model.state_dict(), "./model/lstm_hwa.th")
-
-print()
-utils.inference(model, evaluate, test_data, args, './result/lstm_hwa.h5', f"task_noise_{args.noise}")
+    print('=' * 89)
+    print('Exiting from Inference early')
+"""
