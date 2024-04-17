@@ -17,7 +17,9 @@
 echo "This is job ${SLURM_ARRAY_TASK_ID} of ${SLURM_ARRAY_TASK_COUNT}" >> output-${SLURM_ARRAY_TASK_ID}.txt
 
 
-ml anaconda3 cuda/11.6.0
+ml anaconda3 cuda/11.6.0 mvapich2/2.3.4 py-mpi4py/3.0.3 hdf5/1.10.7
+
+
 
 conda activate /share/ceph/hawk/nil422_proj/zhw323/aihwkitgpu/cenv
 

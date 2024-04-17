@@ -137,7 +137,7 @@ def batchify(data, bsz):
 # Load Data
 ###############################################################################
 corpus = data.Corpus(args.data)
-eval_batch_size = 10
+eval_batch_size = 20
 train_data = batchify(corpus.train, args.batch_size)
 val_data = batchify(corpus.valid, eval_batch_size)
 test_data = batchify(corpus.test, eval_batch_size)
@@ -272,11 +272,16 @@ try:
                 'valid ppl {:8.2f}'.format(epoch, (time.time() - epoch_start_time),
                                            val_loss, math.exp(val_loss)))
         print('-' * 89)
+        if not best_val_loss or val_loss < best_val_loss:
+            torch.save(model.state_dict(), f"./model/lstm_hwa_{args.noise}.th")
+            best_val_loss = val_loss
         
 except KeyboardInterrupt:
     print('-' * 89)
     print('Exiting from training early')
 
+model.load_state_dict(torch.load(f"./model/lstm_hwa_{args.noise}.th", map_location=DEVICE))
+model.rnn.flatten_parameters()
 
 # Run on test data.
 test_loss = evaluate(test_data)
@@ -292,8 +297,6 @@ with h5py.File('./result/lstm_hwa.h5', 'a') as f:
             del task_group['train_results']
     task_group.create_dataset('train_results', data=test_loss)
 
-
-torch.save(model.state_dict(), "./model/lstm_hwa.th")
 
 print()
 utils.inference(model, evaluate, test_data, args, './result/lstm_hwa.h5', f"task_noise_{args.noise}")
