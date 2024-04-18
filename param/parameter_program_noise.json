@@ -1,0 +1,122 @@
+{
+    "1": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0
+    },
+    "2": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.1
+    },
+    "3": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.2
+    },
+    "4": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.3
+    },
+    "5": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.4
+    } ,
+    "6": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.5
+    },
+    "7": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.6
+    },
+    "8": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.7
+    },
+    "9": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.8
+    },
+    "10": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 0.9
+    },
+    "11": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.0
+    },
+    "12": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.1
+    },
+    "13": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.2
+    },
+    "14": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.3
+    },
+    "15": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.4
+    } ,
+    "16": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.5
+    },
+    "17": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.6
+    },
+    "18": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.7
+    },
+    "19": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.8
+    },
+    "20": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 1.9
+    },
+    "21": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.0
+    },
+    "22": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.1
+    },
+    "23": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.2
+    },
+    "24": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.3
+    },
+    "25": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.4
+    } ,
+    "26": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.5
+    },
+    "27": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.6
+    },
+    "28": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.7
+    },
+    "29": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.8
+    },
+    "30": {
+        "task_type": "inference_program_noise",
+        "inference_program_noise": 2.9
+    }
+}
