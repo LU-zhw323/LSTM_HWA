@@ -55,11 +55,11 @@ def parse_args():
     if task_type == 'inference_program_noise':
         param_file = './param/parameter_program_noise.json'
     elif task_type == 'inference_read_noise':
-        param_file = "/param/parameter_read_noise.json"
+        param_file = "./param/parameter_read_noise.json"
     elif task_type == 'drift':
-        param_file = "/param/parameter_drift.json"
+        param_file = "./param/parameter_drift.json"
     elif task_type == 'gmax':
-        param_file = '/param/parameter_gmax.json'
+        param_file = './param/parameter_gmax.json'
     with open(param_file, 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
