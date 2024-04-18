@@ -92,7 +92,7 @@ def set_param():
     args.w_drop = 0.01
     
 
-    args.drit = 1.0
+    args.drift = 1.0
     
 
     args.inference_progm_noise = 1.0
@@ -128,8 +128,8 @@ def set_param():
 
     print(f"Task Type: {args.task_type}")
     print(f"Drift: {args.drift}")
-    print(f"Inference Program Noise: {args.inference_noise}")
-    print(f"Inference Read Noise: {args.inference_noise}")
+    print(f"Inference Program Noise: {args.inference_progm_noise}")
+    print(f"Inference Read Noise: {args.inference_read_noise}")
     print(f"g_min: {args.gmin}")
     print(f"g_max: {args.gmax}")
 

@@ -1,0 +1,28 @@
+
+Lmod is automatically replacing "python/3.8.6" with "anaconda3/2020.07".
+
+Traceback (most recent call last):
+  File "/share/ceph/hawk/nil422_proj/shared/shared-aihwkitgpu/conda-env-aihwkit/lib/python3.9/site-packages/h5py/_hl/files.py", line 247, in make_fid
+    fid = h5f.open(name, h5f.ACC_RDWR, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+OSError: Unable to open file (File does not exist, error stack:
+ADIOI_NFS_OPEN(69): File ./result/lstm_inf_inference_program_noise.h5 does not exist)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/share/ceph/hawk/nil422_proj/zhw323/LSTM_HWA/lstm_inference.py", line 241, in <module>
+    utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf_{args.task_type}.h5', f"task_{args.task_type}_{args.task_param}", comm)
+  File "/share/ceph/hawk/nil422_proj/zhw323/LSTM_HWA/utils.py", line 105, in inference_noise_model
+    with h5py.File(file_name, 'a', driver='mpio', comm=com) as f:
+  File "/share/ceph/hawk/nil422_proj/shared/shared-aihwkitgpu/conda-env-aihwkit/lib/python3.9/site-packages/h5py/_hl/files.py", line 562, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/share/ceph/hawk/nil422_proj/shared/shared-aihwkitgpu/conda-env-aihwkit/lib/python3.9/site-packages/h5py/_hl/files.py", line 261, in make_fid
+    fid = h5f.create(name, h5f.ACC_EXCL, fapl=fapl, fcpl=fcpl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 122, in h5py.h5f.create
+OSError: Unable to create file (File exists, error stack:
+ADIOI_NFS_OPEN(93): File exists)
