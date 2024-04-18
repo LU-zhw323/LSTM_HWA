@@ -7,12 +7,12 @@
 #SBATCH -t 2880
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhw323@lehigh.edu
-#SBATCH --array=1-30
+#SBATCH --array=1-10
 
 # UASGE: sbatch test.sh
 # Queue Status: squeue -u zhw323
 # Remeber to change the number of job in the array 
-TASK_TYPES=("inference_program_noise" "inference_read_noise" "drift" "gmax")
+TASK_TYPES=("inference_noise" "drift" "gmax")
 TASK_TYPE=${TASK_TYPES[0]}
 
 OUTPUT_FILE="output-${TASK_TYPE}-${SLURM_ARRAY_TASK_ID}.txt"

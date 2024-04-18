@@ -44,9 +44,6 @@ import csv
 
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
 def parse_args():
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
@@ -55,10 +52,8 @@ def parse_args():
     task_id = args.task_id
     task_type = args.task_type
     param_file = None
-    if task_type == 'inference_program_noise':
-        param_file = './param/parameter_program_noise.json'
-    elif task_type == 'inference_read_noise':
-        param_file = "./param/parameter_read_noise.json"
+    if task_type == 'inference_noise':
+        param_file = './param/parameter_inference_noise.json'
     elif task_type == 'drift':
         param_file = "./param/parameter_drift.json"
     elif task_type == 'gmax':
@@ -110,13 +105,10 @@ def set_param():
     # Default = 25
     args.gmax = 25
 
-    if args.task_type == 'inference_program_noise':
-        args.inference_progm_noise = param['inference_program_noise']
+    if args.task_type == 'inference_noise':
+        args.inference_progm_noise = param['inference_noise']
+        args.inference_read_noise = param['inference_noise']
         args.task_param = args.inference_progm_noise
-
-    elif args.task_type == 'inference_read_noise':
-        args.inference_read_noise = param['inference_read_noise']
-        args.task_param = args.inference_read_noise
 
     elif args.task_type == 'drift':
         args.drift = param['drift']
@@ -237,40 +229,4 @@ def evaluate(data_source):
     return total_loss / (len(data_source) - 1)
 
 print()
-comm.Barrier()
-utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf_{args.task_type}.h5', f"task_{args.task_type}_{args.task_param}", comm)
-"""print('=' * 89)
-print("Inference")
-print('-' * 89)
-start_time = 60
-max_inference_time = 31536000
-n_times = 9
-t_inference_list = [
-        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
-dtype = np.dtype([
-    ('noise', np.float32),
-    ('time', np.float32), 
-    ('loss', np.float32), 
-    ('ppl', np.float32)
-])
-inference_data = np.empty(len(t_inference_list), dtype=dtype)
-try:
-    with h5py.File('./result/best_accuracy.h5', 'a') as f:
-        task_group = f.require_group(f"task_noise_{args.noise}")
-        #t_inference in second
-        for i, t_inference in enumerate(t_inference_list):
-            analog_model.drift_analog_weights(t_inference)
-            inference_loss = evaluate(test_data)
-            print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
-            t_inference,inference_loss, math.exp(inference_loss)))
-            inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
-            
-        if 'inference_results' in task_group:
-            del task_group['inference_results']
-        task_group.create_dataset('inference_results', data=inference_data)
-        print('=' * 89)
-        print()
-except KeyboardInterrupt:
-    print('=' * 89)
-    print('Exiting from Inference early')
-"""
+utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf_{args.task_type}.h5', f"task_{args.task_type}_{args.task_param}")

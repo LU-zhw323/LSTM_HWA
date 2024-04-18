@@ -44,9 +44,6 @@ from mpi4py import MPI
 # Prepare file
 ###############################################################################
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 initial_lr = 0
@@ -295,12 +292,26 @@ print('| End of training | test loss {:5.2f} | test ppl {:8.2f}'.format(
 print('=' * 89)
 
 # Write to file
-with h5py.File('./result/lstm_hwa.h5', 'a', driver='mpio', comm=comm) as f:
-    task_group = f.require_group(f"task_noise_{args.noise}")
-    if 'train_results' in task_group:
-            del task_group['train_results']
-    task_group.create_dataset('train_results', data=math.exp(test_loss))
-comm.Barrier()
+attempt = 0
+release = 10
+while attempt < release:
+    try:
+        with h5py.File('./result/lstm_hwa.h5', 'a') as f:
+            task_group = f.require_group(f"task_noise_{args.noise}")
+            if 'train_results' in task_group:
+                    del task_group['train_results']
+            task_group.create_dataset('train_results', data=math.exp(test_loss))
+    except OSError as e:
+        attempt += 1
+        if attempt < release:
+            print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
+            time.sleep(10)
+            continue
+        else:
+            print('=' * 89)
+            print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
+            break
+
 
 print()
-utils.inference(model, evaluate, test_data, args, './result/lstm_hwa.h5', f"task_noise_{args.noise}", comm)
+utils.inference(model, evaluate, test_data, args, './result/lstm_hwa.h5', f"task_noise_{args.noise}")

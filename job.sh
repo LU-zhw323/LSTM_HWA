@@ -13,7 +13,7 @@
 
 # UASGE: sbatch job.sh
 # Queue Status: squeue -u zhw323
-TASK_TYPES=("inference_program_noise" "inference_read_noise" "drift" "gmax")
+TASK_TYPES=("inference_noise" "drift" "gmax")
 
 TYPE_INDEX=$(( (SLURM_ARRAY_TASK_ID - 1) / 30 ))
 TASK_TYPE=${TASK_TYPES[$TYPE_INDEX]}

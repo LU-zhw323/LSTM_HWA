@@ -19,7 +19,6 @@ from torch.nn.utils.clip_grad import clip_grad_norm_
 from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.sampler import Sampler
 from torch.nn.functional import one_hot
-
 import numpy as np
 import h5py
 from aihwkit.nn import AnalogSequential, AnalogRNN, AnalogLinear, AnalogLSTMCellCombinedWeight
@@ -39,9 +38,10 @@ from aihwkit.simulator.rpu_base import cuda
 
 import data
 import csv
+import portalocker
 
 
-def inference(analog_model, evaluate, test_data, args, file_name, group_name, com):
+def inference(analog_model, evaluate, test_data, args, file_name, group_name):
     print('=' * 89)
     print("Inference")
     print('-' * 89)
@@ -59,28 +59,50 @@ def inference(analog_model, evaluate, test_data, args, file_name, group_name, co
     inference_data = np.empty(len(t_inference_list), dtype=dtype)
     try:
         analog_model.eval()
-        with h5py.File(file_name, 'a', driver='mpio', comm=com) as f:
-            task_group = f.require_group(group_name)
-            #t_inference in second
-            for i, t_inference in enumerate(t_inference_list):
-                analog_model.drift_analog_weights(t_inference)
-                inference_loss = evaluate(test_data)
-                print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
-                t_inference,inference_loss, math.exp(inference_loss)))
-                inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
-                
-            if 'inference_results' in task_group:
-                del task_group['inference_results']
-            task_group.create_dataset('inference_results', data=inference_data)
-            print('=' * 89)
-            print()
-        com.Barrier()
+        #t_inference in second
+        for i, t_inference in enumerate(t_inference_list):
+            analog_model.drift_analog_weights(t_inference)
+            inference_loss = evaluate(test_data)
+            print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+            t_inference,inference_loss, math.exp(inference_loss)))
+            inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
     except KeyboardInterrupt:
         print('=' * 89)
         print('Exiting from Inference early')
+    attempt = 0
+    release = 10
+    while attempt < release:
+        try:
+            with h5py.File(file_name, 'a') as f:
+                task_group = None
+                if not group_name in f:
+                    task_group = f.create_group(group_name)
+                else:
+                    task_group = f[group_name]
+                print(task_group)
+                if 'inference_results' in task_group:
+                    del task_group['inference_results']
+                task_group.create_dataset('inference_results', data=inference_data)
+
+                group_names = list(f.keys())
+                print(f"Groups in '{file_name}': {group_names}")
+                print('=' * 89)
+                print()
+                break
+    except OSError as e:
+        attempt += 1
+        if attempt < release:
+            print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
+            time.sleep(10)
+            continue
+        else:
+            print('=' * 89)
+            print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
+            break
 
 
-def inference_noise_model(analog_model, evaluate, test_data, args, file_name, group_name, com):
+
+def inference_noise_model(analog_model, evaluate, test_data, args, file_name, group_name):
     print('=' * 89)
     print("Inference")
     print(f'File: {file_name}, Group: {group_name}')
@@ -101,43 +123,55 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
         ('ppl', np.float32)
     ])
     inference_data = np.empty(len(t_inference_list), dtype=dtype)
-    f = None
+    analog_model.eval()
+    #t_inference in second
     try:
-        analog_model.eval()
-        with h5py.File(file_name, 'a', driver='mpio', comm=com) as f:
-            task_group = None
-            if not group_name in f:
-                task_group = f.create_group(group_name)
-            else:
-                task_group = f[group_name]
-            #t_inference in second
-            for i, t_inference in enumerate(t_inference_list):
-                analog_model.drift_analog_weights(t_inference)
-                inference_loss = evaluate(test_data)
-                print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
-                t_inference,inference_loss, math.exp(inference_loss)))
-                inference_data[i] = (
-                    args.inference_progm_noise, 
-                    args.inference_read_noise, 
-                    args.drift,
-                    args.gmin,
-                    args.gmax, 
-                    t_inference, 
-                    inference_loss, 
-                    math.exp(inference_loss))
-                print(inference_data[i])
-            if 'inference_results' in task_group:
-                del task_group['inference_results']
-            task_group.create_dataset('inference_results', data=inference_data)
-            print('=' * 89)
-            print()
-        com.Barrier()
+        for i, t_inference in enumerate(t_inference_list):
+                    analog_model.drift_analog_weights(t_inference)
+                    inference_loss = evaluate(test_data)
+                    print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+                    t_inference,inference_loss, math.exp(inference_loss)))
+                    inference_data[i] = (
+                        args.inference_progm_noise, 
+                        args.inference_read_noise, 
+                        args.drift,
+                        args.gmin,
+                        args.gmax, 
+                        t_inference, 
+                        inference_loss, 
+                        math.exp(inference_loss))
     except KeyboardInterrupt:
-        print('=' * 89)
-        print('Exiting from Inference early')
-    except OSError as e:
-        print('=' * 89)
-        print(f"File error: {e}")
-    finally:
-        if f:
-            f.close()
+            print('=' * 89)
+            print('Exiting from Inference early')
+            return
+
+    attempt = 0
+    release = 10
+    while attempt < release:
+        try:
+            with h5py.File(file_name, 'a') as f:
+                task_group = None
+                if not group_name in f:
+                    task_group = f.create_group(group_name)
+                else:
+                    task_group = f[group_name]
+                print(task_group)
+                if 'inference_results' in task_group:
+                    del task_group['inference_results']
+                task_group.create_dataset('inference_results', data=inference_data)
+
+                group_names = list(f.keys())
+                print(f"Groups in '{file_name}': {group_names}")
+                print('=' * 89)
+                print()
+                break
+        except OSError as e:
+            attempt += 1
+            if attempt < release:
+                print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
+                time.sleep(10)
+                continue
+            else:
+                print('=' * 89)
+                print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
+                break
