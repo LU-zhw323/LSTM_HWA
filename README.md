@@ -18,7 +18,7 @@ Once you have it, please put it into the ```/model``` and make sure its name is 
 
 Please check the ```parameters.json``` file and modify it to input the desired parameter for the hwa training. Since the script should be run on HPC through the ```hpc.sh``` script, I created a simple copy of it called ```test.sh``` to simulate the condition of one task on HPC. If you prepare to run the simulation on HPC, please use the ```hpc.sh``` and modify its content, which will create an array of task to run multiple simuations at the same time with different setting, which you can customize your own setting in ```parameters.json```. If you just run it locally or on the server of our lab, please just use the cmd ```test.sh``` with the cmd ```sh test.sh```, which will just simulate one task of hpc. Also Please check the ```set_param()``` at line 60 of the ```lstm_hwa.py``` file for more detail about how to set up parameters.  
 
-The HWA re-trained LSTM, called ```lstm_hwa.th```, is uploaded to [Hugging Face](https://huggingface.co/MarvinZhw/LSTM-FP-PTB/tree/main). Please download it and place it in the ```/model``` to run the inference on it.  
+The HWA re-trained LSTM, called ```lstm_hwa.th```, is uploaded to [Hugging Face](https://huggingface.co/MarvinZhw/LSTM-HWA-PTB/tree/main). Please download it and place it in the ```/model``` to run the inference on it.  
 
 This script will save the state dictionary of the hwa trained model as ```./model/lstm_hwa.th```. The best condition for the hwa training is saved in the ```./log/lstm_hwa_output.txt```. Notice: For the training noise scale, we run 3 trials which indicated the best noise scale would range from 3.2 to 3.4. We used 3.4 for this experiment.  
 

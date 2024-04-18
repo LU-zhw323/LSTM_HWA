@@ -14,38 +14,6 @@ Epochs: 60
 
 
 =========================================================================================
-Inference
------------------------------------------------------------------------------------------
-| Inference | time 0.0 | test loss  4.38 | test ppl    79.73
-| Inference | time 1.0 | test loss  4.38 | test ppl    79.78
-| Inference | time 8.656669277000772 | test loss  4.38 | test ppl    79.73
-| Inference | time 74.93792297136906 | test loss  4.38 | test ppl    79.89
-| Inference | time 648.7128154685008 | test loss  4.38 | test ppl    79.89
-| Inference | time 5615.692299262842 | test loss  4.38 | test ppl    80.09
-| Inference | time 48613.190996118465 | test loss  4.39 | test ppl    80.51
-| Inference | time 420828.31695306924 | test loss  4.40 | test ppl    81.26
-| Inference | time 3642971.5622595777 | test loss  4.41 | test ppl    82.35
-| Inference | time 31535999.99999999 | test loss  4.43 | test ppl    83.79
-=========================================================================================
-
-(aihwkit09_2) (base) seedlab@seedlab-System-Product-Name:~/workspace/zhw323/LSTM_HWA$ sh test.sh
-
-=========================================================================================
-Parameters
------------------------------------------------------------------------------------------
-Learning Rate: 0.01
-Dropout Rate: 0.5
-Noise: 3.4
-Gradient Clipping: 10
-Weight Drop: 0.01
-Learning Rate Decay: 0.9
-Weight Decay: 1e-05
-Momentum: 0.9
-Epochs: 60
-=========================================================================================
-
-
-=========================================================================================
 Training
 -----------------------------------------------------------------------------------------
 | epoch   1 |   200/ 1327 batches | lr 0.01 | ms/batch 44.58 | loss  4.12 | ppl    61.52
