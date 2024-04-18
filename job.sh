@@ -35,11 +35,11 @@ export PATH="/share/ceph/hawk/nil422_proj/shared/shared-aihwkitgpu/conda-env-aih
 python lstm_inference.py --task_id ${LOCAL_TASK_ID} --task_type ${TASK_TYPE} >> ${OUTPUT_FILE}
 STATUS=$?
 
-mv "./output/std_log/myjob-${SLURM_JOB_ID}-${SLURM_ARRAY_TASK_ID}.out" "./output/std_log/myjob-${TASK_TYPE}-${LOCAL_TASK_ID}.out"
-mv "./output/err_log/myjob-${SLURM_JOB_ID}-${SLURM_ARRAY_TASK_ID}.err" "./output/err_log/myjob-${TASK_TYPE}-${LOCAL_TASK_ID}.err"
-
 
 if [ $STATUS -eq 0 ]; then
-    rm "./output/std_log/myjob-${TASK_TYPE}-${LOCAL_TASK_ID}.out"
-    rm "./output/err_log/myjob-${TASK_TYPE}-${LOCAL_TASK_ID}.err"
+    rm "./output/std_log/myjob-${SLURM_JOB_ID}-${SLURM_ARRAY_TASK_ID}.out"
+    rm "./output/err_log/myjob-${SLURM_JOB_ID}-${SLURM_ARRAY_TASK_ID}.err"
+else
+    mv "./output/std_log/myjob-${SLURM_JOB_ID}-${SLURM_ARRAY_TASK_ID}.out" "./output/std_log/myjob-${TASK_TYPE}-${LOCAL_TASK_ID}.out"
+    mv "./output/err_log/myjob-${SLURM_JOB_ID}-${SLURM_ARRAY_TASK_ID}.err" "./output/err_log/myjob-${TASK_TYPE}-${LOCAL_TASK_ID}.err
 fi

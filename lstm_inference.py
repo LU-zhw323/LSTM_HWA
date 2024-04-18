@@ -194,9 +194,9 @@ def gen_rpu_config():
 
     rpu_config.forward = IOParameters()
     rpu_config.noise_model = PCMLikeNoiseModel(
-        prog_noise_scale = args.inference_progm_noise
-        read_noise_scale = args.inference_read_noise
-        drift_scale = args.drift
+        prog_noise_scale = args.inference_progm_noise,
+        read_noise_scale = args.inference_read_noise,
+        drift_scale = args.drift,
         g_max=args.gmax
         )
     rpu_config.drift_compensation = GlobalDriftCompensation()
@@ -206,7 +206,7 @@ def gen_rpu_config():
 ###############################################################################
 # Build the model
 ###############################################################################
-model_save_path = './model/lstm_hwa.th'
+model_save_path = './model/lstm_hwa_3.4.th'
 hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
 analog_model = convert_to_analog(hwa_model,gen_rpu_config())
 analog_model.load_state_dict(
