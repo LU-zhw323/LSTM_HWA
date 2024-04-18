@@ -229,4 +229,4 @@ def evaluate(data_source):
     return total_loss / (len(data_source) - 1)
 
 print()
-utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf_{args.task_type}.h5', f"task_{args.task_type}_{args.task_param}")
+utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf.h5', f"{args.task_type}")

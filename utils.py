@@ -89,23 +89,23 @@ def inference(analog_model, evaluate, test_data, args, file_name, group_name):
                 print('=' * 89)
                 print()
                 break
-    except OSError as e:
-        attempt += 1
-        if attempt < release:
-            print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
-            time.sleep(10)
-            continue
-        else:
-            print('=' * 89)
-            print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
-            break
+        except OSError as e:
+            attempt += 1
+            if attempt < release:
+                print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
+                time.sleep(10)
+                continue
+            else:
+                print('=' * 89)
+                print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
+                break
 
 
 
 def inference_noise_model(analog_model, evaluate, test_data, args, file_name, group_name):
     print('=' * 89)
     print("Inference")
-    print(f'File: {file_name}, Group: {group_name}')
+    print(f'File: {file_name}, Group: {group_name}, Data: {args.task_param}')
     print('-' * 89)
     start_time = 60
     max_inference_time = 31536000
@@ -156,12 +156,9 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
                 else:
                     task_group = f[group_name]
                 print(task_group)
-                if 'inference_results' in task_group:
-                    del task_group['inference_results']
-                task_group.create_dataset('inference_results', data=inference_data)
-
-                group_names = list(f.keys())
-                print(f"Groups in '{file_name}': {group_names}")
+                if str(args.task_param) in task_group:
+                    del task_group[str(args.task_param)]
+                task_group.create_dataset(str(args.task_param), data=inference_data)
                 print('=' * 89)
                 print()
                 break
