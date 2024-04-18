@@ -295,8 +295,7 @@ with h5py.File('./result/lstm_hwa.h5', 'a') as f:
     task_group = f.require_group(f"task_noise_{args.noise}")
     if 'train_results' in task_group:
             del task_group['train_results']
-    task_group.create_dataset('train_results', data=test_loss)
-
+    task_group.create_dataset('train_results', data=math.exp(test_loss))
 
 print()
 utils.inference(model, evaluate, test_data, args, './result/lstm_hwa.h5', f"task_noise_{args.noise}")
