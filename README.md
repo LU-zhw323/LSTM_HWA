@@ -1,4 +1,10 @@
-## Description
+## LSTM HWA Training & Inference
+
+### Branch
+
+* Main: This branch stored the script for single process task.
+* HPC: This branch stored the script for multiple process tasks that run in parallel on HPC.
+
 
 ### Data
 
