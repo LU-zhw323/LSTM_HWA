@@ -83,6 +83,7 @@ def inference(analog_model, evaluate, test_data, args, file_name, group_name, co
 def inference_noise_model(analog_model, evaluate, test_data, args, file_name, group_name, com):
     print('=' * 89)
     print("Inference")
+    print(f'File: {file_name}, Group: {group_name}')
     print('-' * 89)
     start_time = 60
     max_inference_time = 31536000
@@ -100,10 +101,15 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
         ('ppl', np.float32)
     ])
     inference_data = np.empty(len(t_inference_list), dtype=dtype)
+    f = None
     try:
         analog_model.eval()
         with h5py.File(file_name, 'a', driver='mpio', comm=com) as f:
-            task_group = f.require_group(group_name)
+            task_group = None
+            if not group_name in f:
+                task_group = f.create_group(group_name)
+            else:
+                task_group = f[group_name]
             #t_inference in second
             for i, t_inference in enumerate(t_inference_list):
                 analog_model.drift_analog_weights(t_inference)
@@ -119,7 +125,7 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
                     t_inference, 
                     inference_loss, 
                     math.exp(inference_loss))
-                
+                print(inference_data[i])
             if 'inference_results' in task_group:
                 del task_group['inference_results']
             task_group.create_dataset('inference_results', data=inference_data)
@@ -129,3 +135,9 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
     except KeyboardInterrupt:
         print('=' * 89)
         print('Exiting from Inference early')
+    except OSError as e:
+        print('=' * 89)
+        print(f"File error: {e}")
+    finally:
+        if f:
+            f.close()
