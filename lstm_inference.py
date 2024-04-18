@@ -75,30 +75,21 @@ def set_param():
     initial_lr = args.lr
     print(f"Learning Rate: {args.lr}")
 
-    args.dropout = 0.5
-    print(f"Dropout Rate: {args.dropout}")
-
     args.noise = 3.4
-    print(f"Noise: {args.noise}")
-
-    args.clip = 10
-    print(f"Gradient Clipping: {args.clip}")
+    print(f"HWA Training Noise: {args.noise}")
 
     args.w_drop = 0.01
     print(f"Weight Drop: {args.w_drop}")
 
-    args.lr_decay = 0.9
-    print(f"Learning Rate Decay: {args.lr_decay}")
+    args.drift = 1
+    print(f"Drift: {args.drift}")
 
-    args.w_decay = 1e-5
-    print(f"Weight Decay: {args.w_decay}")
+    args.inference_noise = 1
+    print(f"Inference Noise: {args.inference_noise}")
 
-    args.mom = 0.9
-    print(f"Momentum: {args.mom}")
-
-    args.epochs = 60
-    print(f"Epochs: {args.epochs}")
-
+    args.mwindow = 1
+    print(f"Memory Window: {args.mwindow}")
+    
     args.model = 'LSTM'
     args.data = './data/ptb'
     args.emsize = 650
