@@ -1,3 +1,10 @@
-model/
+model/*
+!model/.gitkeep
+
 __pycache__/
-result/
+
+result/*
+!result/.gitkeep
+
+output/*
+!output/.gitkeep

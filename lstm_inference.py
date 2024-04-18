@@ -50,9 +50,20 @@ size = comm.Get_size()
 def parse_args():
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
+    parser.add_argument('--task_type', type=str, help='Task Type from SLURM array job')
     args = parser.parse_args()
     task_id = args.task_id
-    with open('parameters.json', 'r') as f:
+    task_type = args.task_type
+    param_file = None
+    if task_type == 'inference_program_noise':
+        param_file = './param/parameter_program_noise.json'
+    elif task_type == 'inference_read_noise':
+        param_file = "/param/parameter_read_noise.json"
+    elif task_type == 'drift':
+        param_file = "/param/parameter_drift.json"
+    elif task_type == 'gmax':
+        param_file = '/param/parameter_gmax.json'
+    with open(param_file, 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
 
@@ -74,21 +85,53 @@ def set_param():
     # Then you need to replace args.lr as args.lr = params['lr']
     args = Params()
 
+    args.task_type = param['task_type']
+
     args.noise = 3.4
-    print(f"HWA Training Noise: {args.noise}")
 
     args.w_drop = 0.01
-    print(f"Weight Drop: {args.w_drop}")
+    
 
-    args.drift = 1
+    args.drit = 1.0
+    
+
+    args.inference_progm_noise = 1.0
+
+
+
+    # Long term Read fluctuations (short term read noise in IO Parameter)
+    args.inference_read_noise = 1.0
+
+
+    # Default = 0
+    args.gmin = 0
+
+
+    # Default = 25
+    args.gmax = 25
+
+    if args.task_type == 'inference_program_noise':
+        args.inference_progm_noise = param['inference_program_noise']
+        args.task_param = args.inference_progm_noise
+
+    elif args.task_type == 'inference_read_noise':
+        args.inference_read_noise = param['inference_read_noise']
+        args.task_param = args.inference_read_noise
+
+    elif args.task_type == 'drift':
+        args.drift = param['drift']
+        args.task_param = args.drift
+
+    elif args.task_type == 'gmax':
+        args.gmax = param['gmax']
+        args.task_param = args.gmax
+
+    print(f"Task Type: {args.task_type}")
     print(f"Drift: {args.drift}")
-
-    args.inference_noise = 1
-    print(f"Inference Noise: {args.inference_noise}")
-
-    args.mwindow = 1
-    print(f"Memory Window: {args.mwindow}")
-
+    print(f"Inference Program Noise: {args.inference_noise}")
+    print(f"Inference Read Noise: {args.inference_noise}")
+    print(f"g_min: {args.gmin}")
+    print(f"g_max: {args.gmax}")
 
     args.model = 'LSTM'
     args.data = './data/ptb'
@@ -150,7 +193,12 @@ def gen_rpu_config():
     rpu_config.modifier.std_dev = args.noise
 
     rpu_config.forward = IOParameters()
-    rpu_config.noise_model = PCMLikeNoiseModel(g_max=25.0)
+    rpu_config.noise_model = PCMLikeNoiseModel(
+        prog_noise_scale = args.inference_progm_noise
+        read_noise_scale = args.inference_read_noise
+        drift_scale = args.drift
+        g_max=args.gmax
+        )
     rpu_config.drift_compensation = GlobalDriftCompensation()
     return rpu_config
 
@@ -190,7 +238,7 @@ def evaluate(data_source):
 
 print()
 comm.Barrier()
-utils.inference(analog_model, evaluate, test_data, args, './result/lstm_inf.h5', f"task_noise_{args.noise}", comm)
+utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf_{args.task_type}.h5', f"task_{args.task_type}_{args.task_param}", comm)
 """print('=' * 89)
 print("Inference")
 print('-' * 89)
