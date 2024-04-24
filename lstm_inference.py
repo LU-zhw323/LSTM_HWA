@@ -44,13 +44,17 @@ import csv
 
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model_type = None
 def parse_args():
+    global model_type
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
     parser.add_argument('--task_type', type=str, help='Task Type from SLURM array job')
+    parser.add_argument('--model_type', type=str, help='Model Type (HWA or FP)')
     args = parser.parse_args()
     task_id = args.task_id
     task_type = args.task_type
+    model_type = args.model_type
     param_file = None
     if task_type == 'inference_noise':
         param_file = './param/parameter_inference_noise.json'
@@ -198,13 +202,26 @@ def gen_rpu_config():
 ###############################################################################
 # Build the model
 ###############################################################################
-model_save_path = './model/lstm_hwa_3.4.th'
-hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
-analog_model = convert_to_analog(hwa_model,gen_rpu_config())
-analog_model.load_state_dict(
-        torch.load(model_save_path, map_location=DEVICE)
-    )
-analog_model.rnn.flatten_parameters()
+analog_model = None
+h5_file = None
+if(model_type == 'FP'):
+    model_save_path = './model/lstm_fp.pt'
+    pre_model = torch.load(model_save_path).to(DEVICE)
+    pre_model.rnn.flatten_parameters()
+    analog_model = convert_to_analog(pre_model, gen_rpu_config())
+    analog_model.rnn.flatten_parameters()
+    h5_file = f'./result/lstm_inf_fp.h5'
+elif(model_type == 'HWA'):
+    model_save_path = './model/lstm_hwa_3.4.th'
+    hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
+    analog_model = convert_to_analog(hwa_model,gen_rpu_config())
+    analog_model.load_state_dict(
+            torch.load(model_save_path, map_location=DEVICE)
+        )
+    analog_model.rnn.flatten_parameters()
+    h5_file = f'./result/lstm_inf_hwa.h5'
+else:
+    print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
@@ -229,4 +246,5 @@ def evaluate(data_source):
     return total_loss / (len(data_source) - 1)
 
 print()
-utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf.h5', f"{args.task_type}")
+if analog_model != None:
+    utils.inference_noise_model(analog_model, evaluate, test_data, args, h5_file, f"{args.task_type}")
