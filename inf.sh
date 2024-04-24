@@ -17,7 +17,7 @@
 FIXED_JOB_ID=$SLURM_JOB_ID
 TASK_TYPES=("inference_noise" "drift" "gmax")
 MODEL_TYPES=("FP" "HWA")
-TASK_TYPE=${TASK_TYPES[1]}
+TASK_TYPE=${TASK_TYPES[2]}
 MODEL_TYPE=${MODEL_TYPES[0]}
 
 mkdir -p ./output/${MODEL_TYPE}/${TASK_TYPE}
