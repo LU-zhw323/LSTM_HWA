@@ -45,16 +45,21 @@ import csv
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model_type = None
+use_compensation = False
 def parse_args():
     global model_type
+    global use_compensation
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
     parser.add_argument('--task_type', type=str, help='Task Type from SLURM array job')
     parser.add_argument('--model_type', type=str, help='Model Type (HWA or FP)')
+    parser.add_argument('--drift_compensate', type=str, help='Use Drift Compensation or not')
     args = parser.parse_args()
     task_id = args.task_id
     task_type = args.task_type
     model_type = args.model_type
+    if(args.drift_compensate == '1'):
+        use_compensation = True
     param_file = None
     if task_type == 'inference_noise':
         param_file = './param/parameter_inference_noise.json'
@@ -62,6 +67,8 @@ def parse_args():
         param_file = "./param/parameter_drift.json"
     elif task_type == 'gmax':
         param_file = './param/parameter_gmax.json'
+    elif task_type == 'gmin':
+        param_file = './param/parameter_gmin.json'
     with open(param_file, 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
@@ -121,6 +128,10 @@ def set_param():
     elif args.task_type == 'gmax':
         args.gmax = param['gmax']
         args.task_param = args.gmax
+    
+    elif args.task_type == 'gmin':
+        args.gmin = param['gmin']
+        args.task_param = args.gmin
 
     print(f"Task Type: {args.task_type}")
     print(f"Drift: {args.drift}")
@@ -195,7 +206,9 @@ def gen_rpu_config():
         drift_scale = args.drift,
         g_max=args.gmax
         )
-    rpu_config.drift_compensation = GlobalDriftCompensation()
+    if(use_compensation):
+        print("Use Global Drift Compensation")
+        rpu_config.drift_compensation = GlobalDriftCompensation()
     return rpu_config
 
 
@@ -247,4 +260,5 @@ def evaluate(data_source):
 
 print()
 if analog_model != None:
-    utils.inference_noise_model(analog_model, evaluate, test_data, args, h5_file, f"{args.task_type}")
+    group_name = f"{args.task_type}_noDC" if not use_compensation else f"{args.task_type}"
+    utils.inference_noise_model(analog_model, evaluate, test_data, args, h5_file, group_name)

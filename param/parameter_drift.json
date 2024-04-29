@@ -1,7 +1,7 @@
 {
     "1": {
         "task_type": "drift",
-        "drift": 0
+        "drift": 0.0
     },
     "2": {
         "task_type": "drift",
@@ -18,7 +18,7 @@
     "5": {
         "task_type": "drift",
         "drift": 0.4
-    } ,
+    },
     "6": {
         "task_type": "drift",
         "drift": 0.5
@@ -58,7 +58,7 @@
     "15": {
         "task_type": "drift",
         "drift": 1.4
-    } ,
+    },
     "16": {
         "task_type": "drift",
         "drift": 1.5
@@ -98,7 +98,7 @@
     "25": {
         "task_type": "drift",
         "drift": 2.4
-    } ,
+    },
     "26": {
         "task_type": "drift",
         "drift": 2.5
@@ -118,5 +118,285 @@
     "30": {
         "task_type": "drift",
         "drift": 2.9
+    },
+    "31": {
+        "task_type": "drift",
+        "drift": 3.0
+    },
+    "32": {
+        "task_type": "drift",
+        "drift": 3.1
+    },
+    "33": {
+        "task_type": "drift",
+        "drift": 3.2
+    },
+    "34": {
+        "task_type": "drift",
+        "drift": 3.3
+    },
+    "35": {
+        "task_type": "drift",
+        "drift": 3.4
+    },
+    "36": {
+        "task_type": "drift",
+        "drift": 3.5
+    },
+    "37": {
+        "task_type": "drift",
+        "drift": 3.6
+    },
+    "38": {
+        "task_type": "drift",
+        "drift": 3.7
+    },
+    "39": {
+        "task_type": "drift",
+        "drift": 3.8
+    },
+    "40": {
+        "task_type": "drift",
+        "drift": 3.9
+    },
+    "41": {
+        "task_type": "drift",
+        "drift": 4.0
+    },
+    "42": {
+        "task_type": "drift",
+        "drift": 4.1
+    },
+    "43": {
+        "task_type": "drift",
+        "drift": 4.2
+    },
+    "44": {
+        "task_type": "drift",
+        "drift": 4.3
+    },
+    "45": {
+        "task_type": "drift",
+        "drift": 4.4
+    },
+    "46": {
+        "task_type": "drift",
+        "drift": 4.5
+    },
+    "47": {
+        "task_type": "drift",
+        "drift": 4.6
+    },
+    "48": {
+        "task_type": "drift",
+        "drift": 4.7
+    },
+    "49": {
+        "task_type": "drift",
+        "drift": 4.8
+    },
+    "50": {
+        "task_type": "drift",
+        "drift": 4.9
+    },
+    "51": {
+        "task_type": "drift",
+        "drift": 5.0
+    },
+    "52": {
+        "task_type": "drift",
+        "drift": 5.1
+    },
+    "53": {
+        "task_type": "drift",
+        "drift": 5.2
+    },
+    "54": {
+        "task_type": "drift",
+        "drift": 5.3
+    },
+    "55": {
+        "task_type": "drift",
+        "drift": 5.4
+    },
+    "56": {
+        "task_type": "drift",
+        "drift": 5.5
+    },
+    "57": {
+        "task_type": "drift",
+        "drift": 5.6
+    },
+    "58": {
+        "task_type": "drift",
+        "drift": 5.7
+    },
+    "59": {
+        "task_type": "drift",
+        "drift": 5.8
+    },
+    "60": {
+        "task_type": "drift",
+        "drift": 5.9
+    },
+    "61": {
+        "task_type": "drift",
+        "drift": 6.0
+    },
+    "62": {
+        "task_type": "drift",
+        "drift": 6.1
+    },
+    "63": {
+        "task_type": "drift",
+        "drift": 6.2
+    },
+    "64": {
+        "task_type": "drift",
+        "drift": 6.3
+    },
+    "65": {
+        "task_type": "drift",
+        "drift": 6.4
+    },
+    "66": {
+        "task_type": "drift",
+        "drift": 6.5
+    },
+    "67": {
+        "task_type": "drift",
+        "drift": 6.6
+    },
+    "68": {
+        "task_type": "drift",
+        "drift": 6.7
+    },
+    "69": {
+        "task_type": "drift",
+        "drift": 6.8
+    },
+    "70": {
+        "task_type": "drift",
+        "drift": 6.9
+    },
+    "71": {
+        "task_type": "drift",
+        "drift": 7.0
+    },
+    "72": {
+        "task_type": "drift",
+        "drift": 7.1
+    },
+    "73": {
+        "task_type": "drift",
+        "drift": 7.2
+    },
+    "74": {
+        "task_type": "drift",
+        "drift": 7.3
+    },
+    "75": {
+        "task_type": "drift",
+        "drift": 7.4
+    },
+    "76": {
+        "task_type": "drift",
+        "drift": 7.5
+    },
+    "77": {
+        "task_type": "drift",
+        "drift": 7.6
+    },
+    "78": {
+        "task_type": "drift",
+        "drift": 7.7
+    },
+    "79": {
+        "task_type": "drift",
+        "drift": 7.8
+    },
+    "80": {
+        "task_type": "drift",
+        "drift": 7.9
+    },
+    "81": {
+        "task_type": "drift",
+        "drift": 8.0
+    },
+    "82": {
+        "task_type": "drift",
+        "drift": 8.1
+    },
+    "83": {
+        "task_type": "drift",
+        "drift": 8.2
+    },
+    "84": {
+        "task_type": "drift",
+        "drift": 8.3
+    },
+    "85": {
+        "task_type": "drift",
+        "drift": 8.4
+    },
+    "86": {
+        "task_type": "drift",
+        "drift": 8.5
+    },
+    "87": {
+        "task_type": "drift",
+        "drift": 8.6
+    },
+    "88": {
+        "task_type": "drift",
+        "drift": 8.7
+    },
+    "89": {
+        "task_type": "drift",
+        "drift": 8.8
+    },
+    "90": {
+        "task_type": "drift",
+        "drift": 8.9
+    },
+    "91": {
+        "task_type": "drift",
+        "drift": 9.0
+    },
+    "92": {
+        "task_type": "drift",
+        "drift": 9.1
+    },
+    "93": {
+        "task_type": "drift",
+        "drift": 9.2
+    },
+    "94": {
+        "task_type": "drift",
+        "drift": 9.3
+    },
+    "95": {
+        "task_type": "drift",
+        "drift": 9.4
+    },
+    "96": {
+        "task_type": "drift",
+        "drift": 9.5
+    },
+    "97": {
+        "task_type": "drift",
+        "drift": 9.6
+    },
+    "98": {
+        "task_type": "drift",
+        "drift": 9.7
+    },
+    "99": {
+        "task_type": "drift",
+        "drift": 9.8
+    },
+    "100": {
+        "task_type": "drift",
+        "drift": 9.9
     }
 }

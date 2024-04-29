@@ -98,26 +98,5 @@
     "25": {
         "task_type": "gmax",
         "gmax": 25
-    },
-    "26": {
-        "task_type": "gmax",
-        "gmax": 26
-    },
-    "27": {
-        "task_type": "gmax",
-        "gmax": 27
-    },
-    "28": {
-        "task_type": "gmax",
-        "gmax": 28
-    },
-    "29": {
-        "task_type": "gmax",
-        "gmax": 29
-    },
-    "30": {
-        "task_type": "gmax",
-        "gmax": 30
     }
-
 }
