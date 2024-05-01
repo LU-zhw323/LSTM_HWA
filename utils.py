@@ -146,7 +146,7 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
             return
 
     attempt = 0
-    release = 10
+    release = 20
     while attempt < release:
         try:
             with h5py.File(file_name, 'a') as f:
@@ -166,7 +166,7 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
             attempt += 1
             if attempt < release:
                 print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
-                time.sleep(10)
+                time.sleep(20)
                 continue
             else:
                 print('=' * 89)
