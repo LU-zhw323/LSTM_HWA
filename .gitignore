@@ -3,6 +3,7 @@ model/*
 
 __pycache__/
 
+models/*
 
 output/*
 !output/.gitkeep

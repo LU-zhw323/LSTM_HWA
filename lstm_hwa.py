@@ -53,7 +53,7 @@ def parse_args():
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
     args = parser.parse_args()
     task_id = args.task_id
-    with open('parameters.json', 'r') as f:
+    with open('hwa_parameter.json', 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
 
@@ -274,14 +274,14 @@ try:
                                            val_loss, math.exp(val_loss)))
         print('-' * 89)
         if not best_val_loss or val_loss < best_val_loss:
-            torch.save(model.state_dict(), f"./model/lstm_hwa_{args.noise}.th")
+            torch.save(model.state_dict(), f"./models/lstm_hwa_{args.noise}.th")
             best_val_loss = val_loss
         
 except KeyboardInterrupt:
     print('-' * 89)
     print('Exiting from training early')
 
-model.load_state_dict(torch.load(f"./model/lstm_hwa_{args.noise}.th", map_location=DEVICE))
+model.load_state_dict(torch.load(f"./models/lstm_hwa_{args.noise}.th", map_location=DEVICE))
 model.rnn.flatten_parameters()
 
 # Run on test data.
