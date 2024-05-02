@@ -51,7 +51,7 @@ class RNNModel(nn.Module):
 
     def forward(self, input, hidden):
         emb = self.encode_one_hot(input)
-        emb = self.drop(emb)
+        #emb = self.drop(emb)
         #emb = self.drop(self.encoder(input))
         output, hidden = self.rnn(emb, hidden)
         output = self.drop(output)
