@@ -3,7 +3,7 @@ model/*
 
 __pycache__/
 
-models/*
+hwa_models/*
 
 output/*
 !output/.gitkeep

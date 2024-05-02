@@ -199,14 +199,15 @@ if(model_type == 'FP'):
     analog_model.rnn.flatten_parameters()
     h5_file = f'./result/lstm_inf_scan_fp.h5'
 elif(model_type == 'HWA'):
-    model_save_path = './model/lstm_hwa_3.4.th'
+    #model_save_path = './model/lstm_hwa_3.4.th'
+    model_save_path = './hwa_models/lstm_hwa_5.0.th'
     hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
     analog_model = convert_to_analog(hwa_model,gen_rpu_config(args))
     analog_model.load_state_dict(
             torch.load(model_save_path, map_location=DEVICE)
         )
     analog_model.rnn.flatten_parameters()
-    h5_file = f'./result/lstm_inf_scan_hwa.h5'
+    h5_file = f'./result/lstm_inf_scan_hwa_5.h5'
 else:
     print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
