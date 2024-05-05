@@ -173,7 +173,7 @@ if(model_path):
     analog_model = convert_to_analog(pre_model, gen_rpu_config())
     analog_model.rnn.flatten_parameters()
     analog_model.load_state_dict(
-            torch.load('./hwa_pcm_4.0.th', map_location=DEVICE)
+            torch.load('./model/hwa_pcm_3.4.th', map_location=DEVICE)
         )
 else:
     model_save_path = './model/lstm_fp.pt'
