@@ -1,4 +1,3 @@
-/model/lstm_fp.pt
-/model/lstm_hwa.th
 __pycache__/
 result/
+model/
