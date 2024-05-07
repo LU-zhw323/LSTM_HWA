@@ -11,6 +11,7 @@ from aihwkit.inference.noise.pcm import PCMLikeNoiseModel
 from aihwkit.nn.conversion import convert_to_analog
 from aihwkit.simulator.parameters.enums import BoundManagementType, NoiseManagementType, WeightClipType, WeightModifierType, WeightNoiseType, WeightRemapType
 from numpy.core.function_base import logspace
+from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 import torch
 from typing import Tuple
 from torch import tensor, device, FloatTensor, Tensor, transpose, save, load
@@ -20,7 +21,7 @@ from torch.nn.utils.clip_grad import clip_grad_norm_
 from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.sampler import Sampler
 from torch.nn.functional import one_hot
-
+import types
 import numpy as np
 import h5py
 from mpi4py import MPI

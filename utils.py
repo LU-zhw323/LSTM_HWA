@@ -111,14 +111,7 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
     max_inference_time = 31536000
     n_times = 9
     t_inference_list = [
-        0,              # 0 seconds
-        1 * 86400,      # 1 day
-        30 * 86400,     # 1 month (30 days)
-        90 * 86400,     # 3 months (90 days)
-        180 * 86400,    # 6 months (180 days)
-        270 * 86400,    # 9 months (270 days)
-        360 * 86400     # 1 year (360 days, assuming each month has 30 days)
-    ]
+        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
     dtype = np.dtype([
         ('program_noise', np.float32),
         ('read_noise', np.float32), 
@@ -135,7 +128,7 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
     try:
         for i, t_inference in enumerate(t_inference_list):
                     analog_model.drift_analog_weights(t_inference)
-                    inference_loss = evaluate(test_data, model_type)
+                    inference_loss = evaluate(test_data,encoder, model_type)
                     print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
                     t_inference,inference_loss, math.exp(inference_loss)))
                     inference_data[i] = (
