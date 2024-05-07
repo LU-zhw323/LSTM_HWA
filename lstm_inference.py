@@ -1,3 +1,5 @@
+import types
+from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 import utils
 import model
 import json
@@ -44,34 +46,14 @@ import csv
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='Model training script.')
-    parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
-    parser.add_argument('--task_type', type=str, help='Task Type from SLURM array job')
-    args = parser.parse_args()
-    task_id = args.task_id
-    task_type = args.task_type
-    param_file = None
-    if task_type == 'inference_program_noise':
-        param_file = './param/parameter_program_noise.json'
-    elif task_type == 'inference_read_noise':
-        param_file = "./param/parameter_read_noise.json"
-    elif task_type == 'drift':
-        param_file = "./param/parameter_drift.json"
-    elif task_type == 'gmax':
-        param_file = './param/parameter_gmax.json'
-    with open(param_file, 'r') as f:
-        params = json.load(f)
-    param = params[str(task_id)]
 
-    return param
 
 class Params:
     def __init__(self):
         pass
 
 def set_param():
-    param = parse_args()
+    
     print()
     print('=' * 89)
     print("Parameters")
@@ -82,7 +64,6 @@ def set_param():
     # Then you need to replace args.lr as args.lr = params['lr']
     args = Params()
 
-    args.task_type = param['task_type']
 
     args.noise = 3.4
 
@@ -106,24 +87,6 @@ def set_param():
 
     # Default = 25
     args.gmax = 25
-
-    if args.task_type == 'inference_program_noise':
-        args.inference_progm_noise = param['inference_program_noise']
-        args.task_param = args.inference_progm_noise
-
-    elif args.task_type == 'inference_read_noise':
-        args.inference_read_noise = param['inference_read_noise']
-        args.task_param = args.inference_read_noise
-
-    elif args.task_type == 'drift':
-        args.drift = param['drift']
-        args.task_param = args.drift
-
-    elif args.task_type == 'gmax':
-        args.gmax = param['gmax']
-        args.task_param = args.gmax
-
-    print(f"Task Type: {args.task_type}")
     print(f"Drift: {args.drift}")
     print(f"Inference Program Noise: {args.inference_progm_noise}")
     print(f"Inference Read Noise: {args.inference_read_noise}")
@@ -188,39 +151,61 @@ def gen_rpu_config():
     rpu_config.modifier.pcm_t0 = 20
     rpu_config.modifier.pdrop = args.w_drop
     rpu_config.modifier.std_dev = args.noise
-
-    rpu_config.forward = IOParameters()
     rpu_config.noise_model = PCMLikeNoiseModel(
-        prog_noise_scale = args.inference_progm_noise,
-        read_noise_scale = args.inference_read_noise,
-        drift_scale = args.drift,
-        g_max=args.gmax
+        prog_noise_scale = 0.0,
+        read_noise_scale = 0.0,
+        drift_scale = 5.0,
+        g_converter=SinglePairConductanceConverter(g_min=0, g_max=25),
         )
     rpu_config.drift_compensation = GlobalDriftCompensation()
+    print(rpu_config.noise_model)
     return rpu_config
 
 
 ###############################################################################
 # Build the model
 ###############################################################################
-model_save_path = './model/lstm_hwa.th'
-hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
-analog_model = convert_to_analog(hwa_model,gen_rpu_config())
-analog_model.load_state_dict(
-        torch.load(model_save_path, map_location=DEVICE)
-    )
-analog_model.rnn.flatten_parameters()
+def new_forward(self, encoded_input, hidden):
+    emb = self.drop(encoded_input)
+    output, hidden = self.rnn(emb, hidden)
+    output = self.drop(output)
+    decoded = self.decoder(output)
+    decoded = decoded.view(-1, self.ntoken)
+    return torch.nn.functional.log_softmax(decoded, dim=1), hidden
+
+model_path = True
+analog_model = None
+if(model_path):
+    model_save_path = './model/lstm_fp.pt'
+    pre_model = torch.load(model_save_path).to(DEVICE)
+    pre_model.rnn.flatten_parameters()
+    del pre_model.encoder
+    pre_model.forward = types.MethodType(new_forward, pre_model)
+
+    analog_model = convert_to_analog(pre_model, gen_rpu_config())
+    analog_model.load_state_dict(
+            torch.load('./hwa.th', map_location=DEVICE),
+            load_rpu_config=False
+        )
+    analog_model.rnn.flatten_parameters()
+    encoder =torch.load('./encoder.pt').to(DEVICE)
+else:
+    model_save_path = './model/lstm_fp.pt'
+    pre_model = torch.load(model_save_path).to(DEVICE)
+    pre_model.rnn.flatten_parameters()
+    analog_model = convert_to_analog(pre_model, gen_rpu_config())
+    
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
 
-def evaluate(data_source):
+def evaluate(analog_model,data_source, analog):
     # Turn on evaluation mode which disables dropout.
     analog_model.eval()
     total_loss = 0.
     ntokens = len(corpus.dictionary)
     if args.model != 'Transformer':
-        hidden = analog_model.init_hidden(eval_batch_size)
+        hidden = analog_model.init_hidden(20)
     with torch.no_grad():
         for i in range(0, data_source.size(0) - 1, args.seq_len):
             data, targets = get_batch(data_source, i)
@@ -228,10 +213,32 @@ def evaluate(data_source):
                 output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
-                output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
+                if(analog):
+                    data = encoder(data)
+                output, hidden = analog_model(data, hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
-print()
-utils.inference_noise_model(analog_model, evaluate, test_data, args, f'./result/lstm_inf_{args.task_type}.h5', f"task_{args.task_type}_{args.task_param}")
+
+print('=' * 89)
+print("Inference")
+print('-' * 89)
+start_time = 60
+max_inference_time = 31536000
+n_times = 9
+t_inference_list = [
+        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
+try:
+    analog_model.eval()
+    #t_inference in second
+    for i, t_inference in enumerate(t_inference_list):
+        analog_model.drift_analog_weights(t_inference)
+        inference_loss = evaluate(analog_model, test_data, model_path)
+        print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+        t_inference,inference_loss, math.exp(inference_loss)))
+    print('=' * 89)
+    print()
+except KeyboardInterrupt:
+    print('=' * 89)
+    print('Exiting from Inference early')
