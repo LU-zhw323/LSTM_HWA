@@ -171,14 +171,18 @@ def get_batch(source, i):
     target = source[i+1:i+1+seq_len].view(-1)
     return data, target
 
-def gen_rpu_config(args):
+def gen_rpu_config():
     rpu_config = InferenceRPUConfig()
-    
+    rpu_config.modifier.type = WeightModifierType.PCM_NOISE
+    rpu_config.modifier.pcm_t0 = 20
+    rpu_config.modifier.pdrop = args.w_drop
+    rpu_config.modifier.std_dev = args.noise
+
     rpu_config.noise_model = PCMLikeNoiseModel(
         prog_noise_scale = args.inference_progm_noise,
         read_noise_scale = args.inference_read_noise,
         drift_scale = args.drift,
-        g_max=args.gmax
+        g_converter=SinglePairConductanceConverter(g_min=args.gmin, g_max=args.gmax)
         )
     if(use_compensation):
         print("Use Global Drift Compensation")
@@ -189,32 +193,46 @@ def gen_rpu_config(args):
 ###############################################################################
 # Build the model
 ###############################################################################
+def new_forward(self, encoded_input, hidden):
+    emb = self.drop(encoded_input)
+    output, hidden = self.rnn(emb, hidden)
+    output = self.drop(output)
+    decoded = self.decoder(output)
+    decoded = decoded.view(-1, self.ntoken)
+    return torch.nn.functional.log_softmax(decoded, dim=1), hidden
+
 analog_model = None
 h5_file = None
+encoder = None
 if(model_type == 'FP'):
     model_save_path = './model/lstm_fp.pt'
     pre_model = torch.load(model_save_path).to(DEVICE)
     pre_model.rnn.flatten_parameters()
-    analog_model = convert_to_analog(pre_model, gen_rpu_config(args))
+    analog_model = convert_to_analog(pre_model, gen_rpu_config())
     analog_model.rnn.flatten_parameters()
     h5_file = f'./result/lstm_inf_scan_fp.h5'
 elif(model_type == 'HWA'):
-    #model_save_path = './model/lstm_hwa_3.4.th'
-    model_save_path = './hwa_models/lstm_hwa_5.0.th'
-    hwa_model = model.RNNModel(args.model, ntokens, 650, 650, 2, 0.5, False).to(DEVICE)
-    analog_model = convert_to_analog(hwa_model,gen_rpu_config(args))
+    model_save_path = './model/lstm_fp.pt'
+    pre_model = torch.load(model_save_path).to(DEVICE)
+    pre_model.rnn.flatten_parameters()
+    del pre_model.encoder
+    pre_model.forward = types.MethodType(new_forward, pre_model)
+
+    analog_model = convert_to_analog(pre_model, gen_rpu_config())
     analog_model.load_state_dict(
-            torch.load(model_save_path, map_location=DEVICE)
+            torch.load('./model/lstm_hwa_3.4.th', map_location=DEVICE),
+            load_rpu_config=False
         )
     analog_model.rnn.flatten_parameters()
-    h5_file = f'./result/lstm_inf_scan_hwa_5.h5'
+    encoder =torch.load('./model/encoder.pt').to(DEVICE)
+    h5_file = f'./result/lstm_inf_scan_hwa.h5'
 else:
     print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
 
-def evaluate(data_source):
+def evaluate(data_source, encoder, model_type):
     # Turn on evaluation mode which disables dropout.
     analog_model.eval()
     total_loss = 0.
@@ -228,6 +246,8 @@ def evaluate(data_source):
                 output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
+                if(model_type == 'HWA'):
+                    data = encoder(data)
                 output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
             total_loss += len(data) * criterion(output, targets).item()
@@ -238,4 +258,4 @@ print()
 if analog_model != None:
     group_name = f"noDC" if not use_compensation else f"DC"
     args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
-    utils.inference_noise_model(analog_model, evaluate, test_data, args, h5_file, group_name)
+    utils.inference_noise_model(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder)
