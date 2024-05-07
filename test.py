@@ -1,3 +1,4 @@
+import types
 from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 import utils
 import model
@@ -151,8 +152,8 @@ def gen_rpu_config():
     rpu_config.modifier.pdrop = args.w_drop
     rpu_config.modifier.std_dev = args.noise
     rpu_config.noise_model = PCMLikeNoiseModel(
-        prog_noise_scale = 5.0,
-        read_noise_scale = 5.0,
+        prog_noise_scale = 0.0,
+        read_noise_scale = 0.0,
         drift_scale = 5.0,
         g_converter=SinglePairConductanceConverter(g_min=0, g_max=25),
         )
@@ -164,34 +165,47 @@ def gen_rpu_config():
 ###############################################################################
 # Build the model
 ###############################################################################
+def new_forward(self, encoded_input, hidden):
+    emb = self.drop(encoded_input)
+    output, hidden = self.rnn(emb, hidden)
+    output = self.drop(output)
+    decoded = self.decoder(output)
+    decoded = decoded.view(-1, self.ntoken)
+    return torch.nn.functional.log_softmax(decoded, dim=1), hidden
+
 model_path = True
 analog_model = None
 if(model_path):
     model_save_path = './model/lstm_fp.pt'
     pre_model = torch.load(model_save_path).to(DEVICE)
     pre_model.rnn.flatten_parameters()
+    del pre_model.encoder
+    pre_model.forward = types.MethodType(new_forward, pre_model)
+
     analog_model = convert_to_analog(pre_model, gen_rpu_config())
-    analog_model.rnn.flatten_parameters()
     analog_model.load_state_dict(
-            torch.load('./model/hwa_pcm_3.4.th', map_location=DEVICE)
+            torch.load('./hwa.th', map_location=DEVICE),
+            load_rpu_config=False
         )
+    analog_model.rnn.flatten_parameters()
+    encoder =torch.load('./encoder.pt').to(DEVICE)
 else:
     model_save_path = './model/lstm_fp.pt'
     pre_model = torch.load(model_save_path).to(DEVICE)
     pre_model.rnn.flatten_parameters()
     analog_model = convert_to_analog(pre_model, gen_rpu_config())
-    analog_model.rnn.flatten_parameters()
+    
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
 
-def evaluate(analog_model,data_source):
+def evaluate(analog_model,data_source, analog):
     # Turn on evaluation mode which disables dropout.
     analog_model.eval()
     total_loss = 0.
     ntokens = len(corpus.dictionary)
     if args.model != 'Transformer':
-        hidden = analog_model.init_hidden(eval_batch_size)
+        hidden = analog_model.init_hidden(20)
     with torch.no_grad():
         for i in range(0, data_source.size(0) - 1, args.seq_len):
             data, targets = get_batch(data_source, i)
@@ -199,8 +213,10 @@ def evaluate(analog_model,data_source):
                 output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
-                output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
+                if(analog):
+                    data = encoder(data)
+                output, hidden = analog_model(data, hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
@@ -213,22 +229,14 @@ max_inference_time = 31536000
 n_times = 9
 t_inference_list = [
         0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
-dtype = np.dtype([
-    ('noise', np.float32),
-    ('time', np.float32), 
-    ('loss', np.float32), 
-    ('ppl', np.float32)
-])
-inference_data = np.empty(len(t_inference_list), dtype=dtype)
 try:
     analog_model.eval()
     #t_inference in second
     for i, t_inference in enumerate(t_inference_list):
         analog_model.drift_analog_weights(t_inference)
-        inference_loss = evaluate(analog_model, test_data)
+        inference_loss = evaluate(analog_model, test_data, model_path)
         print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
         t_inference,inference_loss, math.exp(inference_loss)))
-        inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
     print('=' * 89)
     print()
 except KeyboardInterrupt:

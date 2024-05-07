@@ -18,7 +18,7 @@ from torch.nn.utils.clip_grad import clip_grad_norm_
 from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.sampler import Sampler
 from torch.nn.functional import one_hot
-
+import types
 import numpy as np
 import h5py
 from aihwkit.nn import AnalogSequential, AnalogRNN, AnalogLinear, AnalogLSTMCellCombinedWeight
@@ -36,6 +36,7 @@ from aihwkit.simulator.configs import (
 )
 from aihwkit.simulator.rpu_base import cuda
 
+from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 import data
 import csv
 import utils
@@ -47,16 +48,6 @@ import utils
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 initial_lr = 0
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='Model training script.')
-    parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
-    args = parser.parse_args()
-    task_id = args.task_id
-    with open('parameters.json', 'r') as f:
-        params = json.load(f)
-    param = params[str(task_id)]
-
-    return param
 
 class Params:
     def __init__(self):
@@ -64,7 +55,6 @@ class Params:
     
 
 def set_param():
-    param = parse_args()
     print()
     print('=' * 89)
     print("Parameters")
@@ -85,7 +75,7 @@ def set_param():
     args.noise = 3.4
     print(f"Noise: {args.noise}")
 
-    args.clip = 10
+    args.clip = 10.0
     print(f"Gradient Clipping: {args.clip}")
 
     args.w_drop = 0.01
@@ -158,15 +148,18 @@ def get_batch(source, i):
     target = source[i+1:i+1+seq_len].view(-1)
     return data, target
 
-def gen_rpu_config():
+def gen_rpu_config(args):
     rpu_config = InferenceRPUConfig()
     rpu_config.modifier.type = WeightModifierType.PCM_NOISE
-    rpu_config.modifier.pcm_t0 = 20
+    rpu_config.modifier.pcm_t0 = 20.0
     rpu_config.modifier.pdrop = args.w_drop
     rpu_config.modifier.std_dev = args.noise
-
-    rpu_config.forward = IOParameters()
-    rpu_config.noise_model = PCMLikeNoiseModel(g_max=25.0)
+    rpu_config.noise_model = PCMLikeNoiseModel(
+        prog_noise_scale = 0.0,
+        read_noise_scale = 0.0,
+        drift_scale = 0.0,
+        g_converter=SinglePairConductanceConverter(g_min=0, g_max=25),
+        )
     rpu_config.drift_compensation = GlobalDriftCompensation()
     return rpu_config
 
@@ -181,10 +174,25 @@ def create_sgd_optimizer(model):
 ###############################################################################
 # Build the model
 ###############################################################################
+def new_forward(self, encoded_input, hidden):
+    emb = self.drop(encoded_input)
+    output, hidden = self.rnn(emb, hidden)
+    output = self.drop(output)
+    decoded = self.decoder(output)
+    decoded = decoded.view(-1, self.ntoken)
+    return torch.nn.functional.log_softmax(decoded, dim=1), hidden
+
 model_save_path = './model/lstm_fp.pt'
 pre_model = torch.load(model_save_path).to(DEVICE)
 pre_model.rnn.flatten_parameters()
-model = convert_to_analog(pre_model, gen_rpu_config())
+
+###Detach Encoder
+encoder = pre_model.encoder
+del pre_model.encoder
+pre_model.forward = types.MethodType(new_forward, pre_model)
+
+rpu = gen_rpu_config(args)
+model = convert_to_analog(pre_model, rpu)
 model.rnn.flatten_parameters()
 optimizer = create_sgd_optimizer(model)
 #Since in the forward, it will perform log_softmax() on the output 
@@ -207,8 +215,9 @@ def evaluate(data_source):
                 output = model(data)
                 output = output.view(-1, ntokens)
             else:
-                output, hidden = model(data, hidden)
                 hidden = repackage_hidden(hidden)
+                data = encoder(data)
+                output, hidden = model(data, hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
@@ -231,6 +240,7 @@ def train():
             output = output.view(-1, ntokens)
         else:
             hidden = repackage_hidden(hidden)
+            data = encoder(data)
             output, hidden = model(data, hidden)
         loss = criterion(output, targets)
         loss.backward()
@@ -272,30 +282,49 @@ try:
                 'valid ppl {:8.2f}'.format(epoch, (time.time() - epoch_start_time),
                                            val_loss, math.exp(val_loss)))
         print('-' * 89)
-        if not best_val_loss or val_loss < best_val_loss:
-            torch.save(model.state_dict(), f"./model/lstm_hwa_{args.noise}.th")
-            best_val_loss = val_loss
+        
         
 except KeyboardInterrupt:
     print('-' * 89)
     print('Exiting from training early')
-
-model.load_state_dict(torch.load(f"./model/lstm_hwa_{args.noise}.th", map_location=DEVICE))
-model.rnn.flatten_parameters()
 
 # Run on test data.
 test_loss = evaluate(test_data)
 print('=' * 89)
 print('| End of training | test loss {:5.2f} | test ppl {:8.2f}'.format(
     test_loss, math.exp(test_loss)))
-print('=' * 89)
 
-# Write to file
-with h5py.File('./result/lstm_hwa.h5', 'a') as f:
-    task_group = f.require_group(f"task_noise_{args.noise}")
-    if 'train_results' in task_group:
-            del task_group['train_results']
-    task_group.create_dataset('train_results', data=math.exp(test_loss))
+print('=' * 89)
+torch.save(model.state_dict(), "./hwa.th")
+torch.save(encoder, './encoder.pt')
 
 print()
-utils.inference(model, evaluate, test_data, args, './result/lstm_hwa.h5', f"task_noise_{args.noise}")
+print('=' * 89)
+print("Inference")
+print('-' * 89)
+start_time = 60
+max_inference_time = 31536000
+n_times = 9
+t_inference_list = [
+        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
+dtype = np.dtype([
+    ('noise', np.float32),
+    ('time', np.float32), 
+    ('loss', np.float32), 
+    ('ppl', np.float32)
+])
+inference_data = np.empty(len(t_inference_list), dtype=dtype)
+try:
+    model.eval()
+    #t_inference in second
+    for i, t_inference in enumerate(t_inference_list):
+        model.drift_analog_weights(t_inference)
+        inference_loss = evaluate(test_data)
+        print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+        t_inference,inference_loss, math.exp(inference_loss)))
+        inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
+    print('=' * 89)
+    print()
+except KeyboardInterrupt:
+    print('=' * 89)
+    print('Exiting from Inference early')

@@ -18,7 +18,7 @@ from torch.nn.utils.clip_grad import clip_grad_norm_
 from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.sampler import Sampler
 from torch.nn.functional import one_hot
-
+import types
 import numpy as np
 import h5py
 from aihwkit.nn import AnalogSequential, AnalogRNN, AnalogLinear, AnalogLSTMCellCombinedWeight
@@ -175,9 +175,23 @@ def create_sgd_optimizer(model):
 ###############################################################################
 # Build the model
 ###############################################################################
+def new_forward(self, encoded_input, hidden):
+    emb = self.drop(encoded_input)
+    output, hidden = self.rnn(emb, hidden)
+    output = self.drop(output)
+    decoded = self.decoder(output)
+    decoded = decoded.view(-1, self.ntoken)
+    return torch.nn.functional.log_softmax(decoded, dim=1), hidden
+
 model_save_path = './model/lstm_fp.pt'
 pre_model = torch.load(model_save_path).to(DEVICE)
 pre_model.rnn.flatten_parameters()
+
+###Detach Encoder
+encoder = pre_model.encoder
+del pre_model.encoder
+pre_model.forward = types.MethodType(new_forward, pre_model)
+
 rpu = gen_rpu_config(args)
 model = convert_to_analog(pre_model, rpu)
 model.rnn.flatten_parameters()
@@ -202,8 +216,9 @@ def evaluate(data_source):
                 output = model(data)
                 output = output.view(-1, ntokens)
             else:
-                output, hidden = model(data, hidden)
                 hidden = repackage_hidden(hidden)
+                data = encoder(data)
+                output, hidden = model(data, hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
@@ -226,6 +241,7 @@ def train():
             output = output.view(-1, ntokens)
         else:
             hidden = repackage_hidden(hidden)
+            data = encoder(data)
             output, hidden = model(data, hidden)
         loss = criterion(output, targets)
         loss.backward()
@@ -281,6 +297,7 @@ print('| End of training | test loss {:5.2f} | test ppl {:8.2f}'.format(
 
 print('=' * 89)
 torch.save(model.state_dict(), "./hwa.th")
+torch.save(encoder, './encoder_module.pt')
 
 print()
 print('=' * 89)
