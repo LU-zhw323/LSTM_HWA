@@ -172,3 +172,69 @@ def inference_noise_model(analog_model, evaluate, test_data, args, file_name, gr
                 print('=' * 89)
                 print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
                 break
+
+
+def inference_time(analog_model, evaluate, test_data, args, file_name, group_name, model_type, encoder, t_inference):
+    print('=' * 89)
+    print("Inference")
+    print(f'File: {file_name}, Group: {group_name}, Data: {args.task_param}')
+    print('-' * 89)
+    dtype = np.dtype([
+        ('program_noise', np.float32),
+        ('read_noise', np.float32), 
+        ('drift', np.float32), 
+        ('gmin', np.float32), 
+        ('gmax', np.float32), 
+        ('time', np.float32),
+        ('loss', np.float32), 
+        ('ppl', np.float32)
+    ])
+    inference_data = np.empty(len(1), dtype=dtype)
+    analog_model.eval()
+    #t_inference in second
+    try:
+        analog_model.drift_analog_weights(t_inference)
+        inference_loss = evaluate(test_data,encoder, model_type)
+        print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
+        t_inference,inference_loss, math.exp(inference_loss)))
+        inference_data[i] = (
+            args.inference_progm_noise, 
+            args.inference_read_noise, 
+            args.drift,
+            args.gmin,
+            args.gmax, 
+            t_inference, 
+            inference_loss, 
+            math.exp(inference_loss))
+    except KeyboardInterrupt:
+            print('=' * 89)
+            print('Exiting from Inference early')
+            return
+
+    attempt = 0
+    release = 20
+    while attempt < release:
+        try:
+            with h5py.File(file_name, 'a') as f:
+                task_group = None
+                if not group_name in f:
+                    task_group = f.create_group(group_name)
+                else:
+                    task_group = f[group_name]
+                print(task_group)
+                if str(args.task_param) in task_group:
+                    del task_group[str(args.task_param)]
+                task_group.create_dataset(str(args.task_param), data=inference_data)
+                print('=' * 89)
+                print()
+                break
+        except OSError as e:
+            attempt += 1
+            if attempt < release:
+                print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
+                time.sleep(20)
+                continue
+            else:
+                print('=' * 89)
+                print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
+                break

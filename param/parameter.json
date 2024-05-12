@@ -1,2502 +1,4446 @@
 {
     "1": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.1
+        "gmin": 0.0,
+        "inference_noise": 0.0
     },
     "2": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.2
+        "gmin": 0.0,
+        "inference_noise": 0.1
     },
     "3": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.3
+        "gmin": 0.0,
+        "inference_noise": 0.2
     },
     "4": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.4
+        "gmin": 0.0,
+        "inference_noise": 0.3
     },
     "5": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.5
+        "gmin": 0.0,
+        "inference_noise": 0.4
     },
     "6": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.6
+        "gmin": 0.0,
+        "inference_noise": 0.5
     },
     "7": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.7
+        "gmin": 0.0,
+        "inference_noise": 0.6
     },
     "8": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.8
+        "gmin": 0.0,
+        "inference_noise": 0.7
     },
     "9": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 0.9
+        "gmin": 0.0,
+        "inference_noise": 0.8
     },
     "10": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.0
+        "gmin": 0.0,
+        "inference_noise": 0.9
     },
     "11": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.1
+        "gmin": 0.0,
+        "inference_noise": 1.0
     },
     "12": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.2
+        "gmin": 0.0,
+        "inference_noise": 1.1
     },
     "13": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.3
+        "gmin": 0.0,
+        "inference_noise": 1.2
     },
     "14": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.4
+        "gmin": 0.0,
+        "inference_noise": 1.3
     },
     "15": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.5
+        "gmin": 0.0,
+        "inference_noise": 1.4
     },
     "16": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.6
+        "gmin": 0.0,
+        "inference_noise": 1.5
     },
     "17": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.7
+        "gmin": 0.0,
+        "inference_noise": 1.6
     },
     "18": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.8
+        "gmin": 0.0,
+        "inference_noise": 1.7
     },
     "19": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 1.9
+        "gmin": 0.0,
+        "inference_noise": 1.8
     },
     "20": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.0
+        "gmin": 0.0,
+        "inference_noise": 1.9
     },
     "21": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.1
+        "gmin": 0.0,
+        "inference_noise": 2.0
     },
     "22": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.2
+        "gmin": 0.0,
+        "inference_noise": 2.1
     },
     "23": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.3
+        "gmin": 0.0,
+        "inference_noise": 2.2
     },
     "24": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.4
+        "gmin": 0.0,
+        "inference_noise": 2.3
     },
     "25": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.5
+        "gmin": 0.0,
+        "inference_noise": 2.4
     },
     "26": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.6
+        "gmin": 0.0,
+        "inference_noise": 2.5
     },
     "27": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.7
+        "gmin": 0.0,
+        "inference_noise": 2.6
     },
     "28": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.8
+        "gmin": 0.0,
+        "inference_noise": 2.7
     },
     "29": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 2.9
+        "gmin": 0.0,
+        "inference_noise": 2.8
     },
     "30": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.0
+        "gmin": 0.0,
+        "inference_noise": 2.9
     },
     "31": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.1
+        "gmin": 0.0,
+        "inference_noise": 3.0
     },
     "32": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.2
+        "gmin": 0.0,
+        "inference_noise": 3.1
     },
     "33": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.3
+        "gmin": 0.0,
+        "inference_noise": 3.2
     },
     "34": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.4
+        "gmin": 0.0,
+        "inference_noise": 3.3
     },
     "35": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.5
+        "gmin": 0.0,
+        "inference_noise": 3.4
     },
     "36": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.6
+        "gmin": 0.0,
+        "inference_noise": 3.5
     },
     "37": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.7
+        "gmin": 0.0,
+        "inference_noise": 3.6
     },
     "38": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.8
+        "gmin": 0.0,
+        "inference_noise": 3.7
     },
     "39": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 3.9
+        "gmin": 0.0,
+        "inference_noise": 3.8
     },
     "40": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.0
+        "gmin": 0.0,
+        "inference_noise": 3.9
     },
     "41": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.1
+        "gmin": 0.0,
+        "inference_noise": 4.0
     },
     "42": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.2
+        "gmin": 0.0,
+        "inference_noise": 4.1
     },
     "43": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.3
+        "gmin": 0.0,
+        "inference_noise": 4.2
     },
     "44": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.4
+        "gmin": 0.0,
+        "inference_noise": 4.3
     },
     "45": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.5
+        "gmin": 0.0,
+        "inference_noise": 4.4
     },
     "46": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.6
+        "gmin": 0.0,
+        "inference_noise": 4.5
     },
     "47": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.7
+        "gmin": 0.0,
+        "inference_noise": 4.6
     },
     "48": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.8
+        "gmin": 0.0,
+        "inference_noise": 4.7
     },
     "49": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 4.9
+        "gmin": 0.0,
+        "inference_noise": 4.8
     },
     "50": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.0
+        "gmin": 0.0,
+        "inference_noise": 4.9
     },
     "51": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.1
+        "gmin": 0.0,
+        "inference_noise": 5.0
     },
     "52": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.2
+        "gmin": 0.0,
+        "inference_noise": 5.1
     },
     "53": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.3
+        "gmin": 0.0,
+        "inference_noise": 5.2
     },
     "54": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.4
+        "gmin": 0.0,
+        "inference_noise": 5.3
     },
     "55": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.5
+        "gmin": 0.0,
+        "inference_noise": 5.4
     },
     "56": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.6
+        "gmin": 0.0,
+        "inference_noise": 5.5
     },
     "57": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.7
+        "gmin": 0.0,
+        "inference_noise": 5.6
     },
     "58": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.8
+        "gmin": 0.0,
+        "inference_noise": 5.7
     },
     "59": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 5.9
+        "gmin": 0.0,
+        "inference_noise": 5.8
     },
     "60": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.0
+        "gmin": 0.0,
+        "inference_noise": 5.9
     },
     "61": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.1
+        "gmin": 0.0,
+        "inference_noise": 6.0
     },
     "62": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.2
+        "gmin": 0.0,
+        "inference_noise": 6.1
     },
     "63": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.3
+        "gmin": 0.0,
+        "inference_noise": 6.2
     },
     "64": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.4
+        "gmin": 0.0,
+        "inference_noise": 6.3
     },
     "65": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.5
+        "gmin": 0.0,
+        "inference_noise": 6.4
     },
     "66": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.6
+        "gmin": 0.0,
+        "inference_noise": 6.5
     },
     "67": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.7
+        "gmin": 0.0,
+        "inference_noise": 6.6
     },
     "68": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.8
+        "gmin": 0.0,
+        "inference_noise": 6.7
     },
     "69": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 6.9
+        "gmin": 0.0,
+        "inference_noise": 6.8
     },
     "70": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.0
+        "gmin": 0.0,
+        "inference_noise": 6.9
     },
     "71": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.1
+        "gmin": 0.0,
+        "inference_noise": 7.0
     },
     "72": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.2
+        "gmin": 0.0,
+        "inference_noise": 7.1
     },
     "73": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.3
+        "gmin": 0.0,
+        "inference_noise": 7.2
     },
     "74": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.4
+        "gmin": 0.0,
+        "inference_noise": 7.3
     },
     "75": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.5
+        "gmin": 0.0,
+        "inference_noise": 7.4
     },
     "76": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.6
+        "gmin": 0.0,
+        "inference_noise": 7.5
     },
     "77": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.7
+        "gmin": 0.0,
+        "inference_noise": 7.6
     },
     "78": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.8
+        "gmin": 0.0,
+        "inference_noise": 7.7
     },
     "79": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 7.9
+        "gmin": 0.0,
+        "inference_noise": 7.8
     },
     "80": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.0
+        "gmin": 0.0,
+        "inference_noise": 7.9
     },
     "81": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.1
+        "gmin": 0.0,
+        "inference_noise": 8.0
     },
     "82": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.2
+        "gmin": 0.0,
+        "inference_noise": 8.1
     },
     "83": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.3
+        "gmin": 0.0,
+        "inference_noise": 8.2
     },
     "84": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.4
+        "gmin": 0.0,
+        "inference_noise": 8.3
     },
     "85": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.5
+        "gmin": 0.0,
+        "inference_noise": 8.4
     },
     "86": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.6
+        "gmin": 0.0,
+        "inference_noise": 8.5
     },
     "87": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.7
+        "gmin": 0.0,
+        "inference_noise": 8.6
     },
     "88": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.8
+        "gmin": 0.0,
+        "inference_noise": 8.7
     },
     "89": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 8.9
+        "gmin": 0.0,
+        "inference_noise": 8.8
     },
     "90": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.0
+        "gmin": 0.0,
+        "inference_noise": 8.9
     },
     "91": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.1
+        "gmin": 0.0,
+        "inference_noise": 9.0
     },
     "92": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.2
+        "gmin": 0.0,
+        "inference_noise": 9.1
     },
     "93": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.3
+        "gmin": 0.0,
+        "inference_noise": 9.2
     },
     "94": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.4
+        "gmin": 0.0,
+        "inference_noise": 9.3
     },
     "95": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.5
+        "gmin": 0.0,
+        "inference_noise": 9.4
     },
     "96": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.6
+        "gmin": 0.0,
+        "inference_noise": 9.5
     },
     "97": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.7
+        "gmin": 0.0,
+        "inference_noise": 9.6
     },
     "98": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.8
+        "gmin": 0.0,
+        "inference_noise": 9.7
     },
     "99": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 9.9
+        "gmin": 0.0,
+        "inference_noise": 9.8
     },
     "100": {
-        "gmax": 25.0,
-        "inference_noise": 2.0,
-        "drift": 10.0
+        "gmin": 0.0,
+        "inference_noise": 9.9
     },
     "101": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.1
+        "gmin": 0.0,
+        "inference_noise": 10.0
     },
     "102": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.2
+        "gmin": 1.0,
+        "inference_noise": 0.0
     },
     "103": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.3
+        "gmin": 1.0,
+        "inference_noise": 0.1
     },
     "104": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.4
+        "gmin": 1.0,
+        "inference_noise": 0.2
     },
     "105": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.5
+        "gmin": 1.0,
+        "inference_noise": 0.3
     },
     "106": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.6
+        "gmin": 1.0,
+        "inference_noise": 0.4
     },
     "107": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.7
+        "gmin": 1.0,
+        "inference_noise": 0.5
     },
     "108": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.8
+        "gmin": 1.0,
+        "inference_noise": 0.6
     },
     "109": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 0.9
+        "gmin": 1.0,
+        "inference_noise": 0.7
     },
     "110": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.0
+        "gmin": 1.0,
+        "inference_noise": 0.8
     },
     "111": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.1
+        "gmin": 1.0,
+        "inference_noise": 0.9
     },
     "112": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.2
+        "gmin": 1.0,
+        "inference_noise": 1.0
     },
     "113": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.3
+        "gmin": 1.0,
+        "inference_noise": 1.1
     },
     "114": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.4
+        "gmin": 1.0,
+        "inference_noise": 1.2
     },
     "115": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.5
+        "gmin": 1.0,
+        "inference_noise": 1.3
     },
     "116": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.6
+        "gmin": 1.0,
+        "inference_noise": 1.4
     },
     "117": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.7
+        "gmin": 1.0,
+        "inference_noise": 1.5
     },
     "118": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.8
+        "gmin": 1.0,
+        "inference_noise": 1.6
     },
     "119": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 1.9
+        "gmin": 1.0,
+        "inference_noise": 1.7
     },
     "120": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.0
+        "gmin": 1.0,
+        "inference_noise": 1.8
     },
     "121": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.1
+        "gmin": 1.0,
+        "inference_noise": 1.9
     },
     "122": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.2
+        "gmin": 1.0,
+        "inference_noise": 2.0
     },
     "123": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.3
+        "gmin": 1.0,
+        "inference_noise": 2.1
     },
     "124": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.4
+        "gmin": 1.0,
+        "inference_noise": 2.2
     },
     "125": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.5
+        "gmin": 1.0,
+        "inference_noise": 2.3
     },
     "126": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.6
+        "gmin": 1.0,
+        "inference_noise": 2.4
     },
     "127": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.7
+        "gmin": 1.0,
+        "inference_noise": 2.5
     },
     "128": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.8
+        "gmin": 1.0,
+        "inference_noise": 2.6
     },
     "129": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 2.9
+        "gmin": 1.0,
+        "inference_noise": 2.7
     },
     "130": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.0
+        "gmin": 1.0,
+        "inference_noise": 2.8
     },
     "131": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.1
+        "gmin": 1.0,
+        "inference_noise": 2.9
     },
     "132": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.2
+        "gmin": 1.0,
+        "inference_noise": 3.0
     },
     "133": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.3
+        "gmin": 1.0,
+        "inference_noise": 3.1
     },
     "134": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.4
+        "gmin": 1.0,
+        "inference_noise": 3.2
     },
     "135": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.5
+        "gmin": 1.0,
+        "inference_noise": 3.3
     },
     "136": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.6
+        "gmin": 1.0,
+        "inference_noise": 3.4
     },
     "137": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.7
+        "gmin": 1.0,
+        "inference_noise": 3.5
     },
     "138": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.8
+        "gmin": 1.0,
+        "inference_noise": 3.6
     },
     "139": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 3.9
+        "gmin": 1.0,
+        "inference_noise": 3.7
     },
     "140": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.0
+        "gmin": 1.0,
+        "inference_noise": 3.8
     },
     "141": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.1
+        "gmin": 1.0,
+        "inference_noise": 3.9
     },
     "142": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.2
+        "gmin": 1.0,
+        "inference_noise": 4.0
     },
     "143": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.3
+        "gmin": 1.0,
+        "inference_noise": 4.1
     },
     "144": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.4
+        "gmin": 1.0,
+        "inference_noise": 4.2
     },
     "145": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.5
+        "gmin": 1.0,
+        "inference_noise": 4.3
     },
     "146": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.6
+        "gmin": 1.0,
+        "inference_noise": 4.4
     },
     "147": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.7
+        "gmin": 1.0,
+        "inference_noise": 4.5
     },
     "148": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.8
+        "gmin": 1.0,
+        "inference_noise": 4.6
     },
     "149": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 4.9
+        "gmin": 1.0,
+        "inference_noise": 4.7
     },
     "150": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.0
+        "gmin": 1.0,
+        "inference_noise": 4.8
     },
     "151": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.1
+        "gmin": 1.0,
+        "inference_noise": 4.9
     },
     "152": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.2
+        "gmin": 1.0,
+        "inference_noise": 5.0
     },
     "153": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.3
+        "gmin": 1.0,
+        "inference_noise": 5.1
     },
     "154": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.4
+        "gmin": 1.0,
+        "inference_noise": 5.2
     },
     "155": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.5
+        "gmin": 1.0,
+        "inference_noise": 5.3
     },
     "156": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.6
+        "gmin": 1.0,
+        "inference_noise": 5.4
     },
     "157": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.7
+        "gmin": 1.0,
+        "inference_noise": 5.5
     },
     "158": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.8
+        "gmin": 1.0,
+        "inference_noise": 5.6
     },
     "159": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 5.9
+        "gmin": 1.0,
+        "inference_noise": 5.7
     },
     "160": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.0
+        "gmin": 1.0,
+        "inference_noise": 5.8
     },
     "161": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.1
+        "gmin": 1.0,
+        "inference_noise": 5.9
     },
     "162": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.2
+        "gmin": 1.0,
+        "inference_noise": 6.0
     },
     "163": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.3
+        "gmin": 1.0,
+        "inference_noise": 6.1
     },
     "164": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.4
+        "gmin": 1.0,
+        "inference_noise": 6.2
     },
     "165": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.5
+        "gmin": 1.0,
+        "inference_noise": 6.3
     },
     "166": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.6
+        "gmin": 1.0,
+        "inference_noise": 6.4
     },
     "167": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.7
+        "gmin": 1.0,
+        "inference_noise": 6.5
     },
     "168": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.8
+        "gmin": 1.0,
+        "inference_noise": 6.6
     },
     "169": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 6.9
+        "gmin": 1.0,
+        "inference_noise": 6.7
     },
     "170": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.0
+        "gmin": 1.0,
+        "inference_noise": 6.8
     },
     "171": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.1
+        "gmin": 1.0,
+        "inference_noise": 6.9
     },
     "172": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.2
+        "gmin": 1.0,
+        "inference_noise": 7.0
     },
     "173": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.3
+        "gmin": 1.0,
+        "inference_noise": 7.1
     },
     "174": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.4
+        "gmin": 1.0,
+        "inference_noise": 7.2
     },
     "175": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.5
+        "gmin": 1.0,
+        "inference_noise": 7.3
     },
     "176": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.6
+        "gmin": 1.0,
+        "inference_noise": 7.4
     },
     "177": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.7
+        "gmin": 1.0,
+        "inference_noise": 7.5
     },
     "178": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.8
+        "gmin": 1.0,
+        "inference_noise": 7.6
     },
     "179": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 7.9
+        "gmin": 1.0,
+        "inference_noise": 7.7
     },
     "180": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.0
+        "gmin": 1.0,
+        "inference_noise": 7.8
     },
     "181": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.1
+        "gmin": 1.0,
+        "inference_noise": 7.9
     },
     "182": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.2
+        "gmin": 1.0,
+        "inference_noise": 8.0
     },
     "183": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.3
+        "gmin": 1.0,
+        "inference_noise": 8.1
     },
     "184": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.4
+        "gmin": 1.0,
+        "inference_noise": 8.2
     },
     "185": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.5
+        "gmin": 1.0,
+        "inference_noise": 8.3
     },
     "186": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.6
+        "gmin": 1.0,
+        "inference_noise": 8.4
     },
     "187": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.7
+        "gmin": 1.0,
+        "inference_noise": 8.5
     },
     "188": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.8
+        "gmin": 1.0,
+        "inference_noise": 8.6
     },
     "189": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 8.9
+        "gmin": 1.0,
+        "inference_noise": 8.7
     },
     "190": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.0
+        "gmin": 1.0,
+        "inference_noise": 8.8
     },
     "191": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.1
+        "gmin": 1.0,
+        "inference_noise": 8.9
     },
     "192": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.2
+        "gmin": 1.0,
+        "inference_noise": 9.0
     },
     "193": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.3
+        "gmin": 1.0,
+        "inference_noise": 9.1
     },
     "194": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.4
+        "gmin": 1.0,
+        "inference_noise": 9.2
     },
     "195": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.5
+        "gmin": 1.0,
+        "inference_noise": 9.3
     },
     "196": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.6
+        "gmin": 1.0,
+        "inference_noise": 9.4
     },
     "197": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.7
+        "gmin": 1.0,
+        "inference_noise": 9.5
     },
     "198": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.8
+        "gmin": 1.0,
+        "inference_noise": 9.6
     },
     "199": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 9.9
+        "gmin": 1.0,
+        "inference_noise": 9.7
     },
     "200": {
-        "gmax": 25.0,
-        "inference_noise": 3.0,
-        "drift": 10.0
+        "gmin": 1.0,
+        "inference_noise": 9.8
     },
     "201": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.1
+        "gmin": 1.0,
+        "inference_noise": 9.9
     },
     "202": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.2
+        "gmin": 1.0,
+        "inference_noise": 10.0
     },
     "203": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.3
+        "gmin": 2.0,
+        "inference_noise": 0.0
     },
     "204": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.4
+        "gmin": 2.0,
+        "inference_noise": 0.1
     },
     "205": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.5
+        "gmin": 2.0,
+        "inference_noise": 0.2
     },
     "206": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.6
+        "gmin": 2.0,
+        "inference_noise": 0.3
     },
     "207": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.7
+        "gmin": 2.0,
+        "inference_noise": 0.4
     },
     "208": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.8
+        "gmin": 2.0,
+        "inference_noise": 0.5
     },
     "209": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 0.9
+        "gmin": 2.0,
+        "inference_noise": 0.6
     },
     "210": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.0
+        "gmin": 2.0,
+        "inference_noise": 0.7
     },
     "211": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.1
+        "gmin": 2.0,
+        "inference_noise": 0.8
     },
     "212": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.2
+        "gmin": 2.0,
+        "inference_noise": 0.9
     },
     "213": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.3
+        "gmin": 2.0,
+        "inference_noise": 1.0
     },
     "214": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.4
+        "gmin": 2.0,
+        "inference_noise": 1.1
     },
     "215": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.5
+        "gmin": 2.0,
+        "inference_noise": 1.2
     },
     "216": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.6
+        "gmin": 2.0,
+        "inference_noise": 1.3
     },
     "217": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.7
+        "gmin": 2.0,
+        "inference_noise": 1.4
     },
     "218": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.8
+        "gmin": 2.0,
+        "inference_noise": 1.5
     },
     "219": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 1.9
+        "gmin": 2.0,
+        "inference_noise": 1.6
     },
     "220": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.0
+        "gmin": 2.0,
+        "inference_noise": 1.7
     },
     "221": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.1
+        "gmin": 2.0,
+        "inference_noise": 1.8
     },
     "222": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.2
+        "gmin": 2.0,
+        "inference_noise": 1.9
     },
     "223": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.3
+        "gmin": 2.0,
+        "inference_noise": 2.0
     },
     "224": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.4
+        "gmin": 2.0,
+        "inference_noise": 2.1
     },
     "225": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.5
+        "gmin": 2.0,
+        "inference_noise": 2.2
     },
     "226": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.6
+        "gmin": 2.0,
+        "inference_noise": 2.3
     },
     "227": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.7
+        "gmin": 2.0,
+        "inference_noise": 2.4
     },
     "228": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.8
+        "gmin": 2.0,
+        "inference_noise": 2.5
     },
     "229": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 2.9
+        "gmin": 2.0,
+        "inference_noise": 2.6
     },
     "230": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.0
+        "gmin": 2.0,
+        "inference_noise": 2.7
     },
     "231": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.1
+        "gmin": 2.0,
+        "inference_noise": 2.8
     },
     "232": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.2
+        "gmin": 2.0,
+        "inference_noise": 2.9
     },
     "233": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.3
+        "gmin": 2.0,
+        "inference_noise": 3.0
     },
     "234": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.4
+        "gmin": 2.0,
+        "inference_noise": 3.1
     },
     "235": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.5
+        "gmin": 2.0,
+        "inference_noise": 3.2
     },
     "236": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.6
+        "gmin": 2.0,
+        "inference_noise": 3.3
     },
     "237": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.7
+        "gmin": 2.0,
+        "inference_noise": 3.4
     },
     "238": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.8
+        "gmin": 2.0,
+        "inference_noise": 3.5
     },
     "239": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 3.9
+        "gmin": 2.0,
+        "inference_noise": 3.6
     },
     "240": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.0
+        "gmin": 2.0,
+        "inference_noise": 3.7
     },
     "241": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.1
+        "gmin": 2.0,
+        "inference_noise": 3.8
     },
     "242": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.2
+        "gmin": 2.0,
+        "inference_noise": 3.9
     },
     "243": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.3
+        "gmin": 2.0,
+        "inference_noise": 4.0
     },
     "244": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.4
+        "gmin": 2.0,
+        "inference_noise": 4.1
     },
     "245": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.5
+        "gmin": 2.0,
+        "inference_noise": 4.2
     },
     "246": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.6
+        "gmin": 2.0,
+        "inference_noise": 4.3
     },
     "247": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.7
+        "gmin": 2.0,
+        "inference_noise": 4.4
     },
     "248": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.8
+        "gmin": 2.0,
+        "inference_noise": 4.5
     },
     "249": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 4.9
+        "gmin": 2.0,
+        "inference_noise": 4.6
     },
     "250": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.0
+        "gmin": 2.0,
+        "inference_noise": 4.7
     },
     "251": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.1
+        "gmin": 2.0,
+        "inference_noise": 4.8
     },
     "252": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.2
+        "gmin": 2.0,
+        "inference_noise": 4.9
     },
     "253": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.3
+        "gmin": 2.0,
+        "inference_noise": 5.0
     },
     "254": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.4
+        "gmin": 2.0,
+        "inference_noise": 5.1
     },
     "255": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.5
+        "gmin": 2.0,
+        "inference_noise": 5.2
     },
     "256": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.6
+        "gmin": 2.0,
+        "inference_noise": 5.3
     },
     "257": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.7
+        "gmin": 2.0,
+        "inference_noise": 5.4
     },
     "258": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.8
+        "gmin": 2.0,
+        "inference_noise": 5.5
     },
     "259": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 5.9
+        "gmin": 2.0,
+        "inference_noise": 5.6
     },
     "260": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.0
+        "gmin": 2.0,
+        "inference_noise": 5.7
     },
     "261": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.1
+        "gmin": 2.0,
+        "inference_noise": 5.8
     },
     "262": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.2
+        "gmin": 2.0,
+        "inference_noise": 5.9
     },
     "263": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.3
+        "gmin": 2.0,
+        "inference_noise": 6.0
     },
     "264": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.4
+        "gmin": 2.0,
+        "inference_noise": 6.1
     },
     "265": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.5
+        "gmin": 2.0,
+        "inference_noise": 6.2
     },
     "266": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.6
+        "gmin": 2.0,
+        "inference_noise": 6.3
     },
     "267": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.7
+        "gmin": 2.0,
+        "inference_noise": 6.4
     },
     "268": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.8
+        "gmin": 2.0,
+        "inference_noise": 6.5
     },
     "269": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 6.9
+        "gmin": 2.0,
+        "inference_noise": 6.6
     },
     "270": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.0
+        "gmin": 2.0,
+        "inference_noise": 6.7
     },
     "271": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.1
+        "gmin": 2.0,
+        "inference_noise": 6.8
     },
     "272": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.2
+        "gmin": 2.0,
+        "inference_noise": 6.9
     },
     "273": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.3
+        "gmin": 2.0,
+        "inference_noise": 7.0
     },
     "274": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.4
+        "gmin": 2.0,
+        "inference_noise": 7.1
     },
     "275": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.5
+        "gmin": 2.0,
+        "inference_noise": 7.2
     },
     "276": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.6
+        "gmin": 2.0,
+        "inference_noise": 7.3
     },
     "277": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.7
+        "gmin": 2.0,
+        "inference_noise": 7.4
     },
     "278": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.8
+        "gmin": 2.0,
+        "inference_noise": 7.5
     },
     "279": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 7.9
+        "gmin": 2.0,
+        "inference_noise": 7.6
     },
     "280": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.0
+        "gmin": 2.0,
+        "inference_noise": 7.7
     },
     "281": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.1
+        "gmin": 2.0,
+        "inference_noise": 7.8
     },
     "282": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.2
+        "gmin": 2.0,
+        "inference_noise": 7.9
     },
     "283": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.3
+        "gmin": 2.0,
+        "inference_noise": 8.0
     },
     "284": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.4
+        "gmin": 2.0,
+        "inference_noise": 8.1
     },
     "285": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.5
+        "gmin": 2.0,
+        "inference_noise": 8.2
     },
     "286": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.6
+        "gmin": 2.0,
+        "inference_noise": 8.3
     },
     "287": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.7
+        "gmin": 2.0,
+        "inference_noise": 8.4
     },
     "288": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.8
+        "gmin": 2.0,
+        "inference_noise": 8.5
     },
     "289": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 8.9
+        "gmin": 2.0,
+        "inference_noise": 8.6
     },
     "290": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.0
+        "gmin": 2.0,
+        "inference_noise": 8.7
     },
     "291": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.1
+        "gmin": 2.0,
+        "inference_noise": 8.8
     },
     "292": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.2
+        "gmin": 2.0,
+        "inference_noise": 8.9
     },
     "293": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.3
+        "gmin": 2.0,
+        "inference_noise": 9.0
     },
     "294": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.4
+        "gmin": 2.0,
+        "inference_noise": 9.1
     },
     "295": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.5
+        "gmin": 2.0,
+        "inference_noise": 9.2
     },
     "296": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.6
+        "gmin": 2.0,
+        "inference_noise": 9.3
     },
     "297": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.7
+        "gmin": 2.0,
+        "inference_noise": 9.4
     },
     "298": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.8
+        "gmin": 2.0,
+        "inference_noise": 9.5
     },
     "299": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 9.9
+        "gmin": 2.0,
+        "inference_noise": 9.6
     },
     "300": {
-        "gmax": 25.0,
-        "inference_noise": 4.0,
-        "drift": 10.0
+        "gmin": 2.0,
+        "inference_noise": 9.7
     },
     "301": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.1
+        "gmin": 2.0,
+        "inference_noise": 9.8
     },
     "302": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.2
+        "gmin": 2.0,
+        "inference_noise": 9.9
     },
     "303": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.3
+        "gmin": 2.0,
+        "inference_noise": 10.0
     },
     "304": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.4
+        "gmin": 3.0,
+        "inference_noise": 0.0
     },
     "305": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.5
+        "gmin": 3.0,
+        "inference_noise": 0.1
     },
     "306": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.6
+        "gmin": 3.0,
+        "inference_noise": 0.2
     },
     "307": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.7
+        "gmin": 3.0,
+        "inference_noise": 0.3
     },
     "308": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.8
+        "gmin": 3.0,
+        "inference_noise": 0.4
     },
     "309": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 0.9
+        "gmin": 3.0,
+        "inference_noise": 0.5
     },
     "310": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.0
+        "gmin": 3.0,
+        "inference_noise": 0.6
     },
     "311": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.1
+        "gmin": 3.0,
+        "inference_noise": 0.7
     },
     "312": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.2
+        "gmin": 3.0,
+        "inference_noise": 0.8
     },
     "313": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.3
+        "gmin": 3.0,
+        "inference_noise": 0.9
     },
     "314": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.4
+        "gmin": 3.0,
+        "inference_noise": 1.0
     },
     "315": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.5
+        "gmin": 3.0,
+        "inference_noise": 1.1
     },
     "316": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.6
+        "gmin": 3.0,
+        "inference_noise": 1.2
     },
     "317": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.7
+        "gmin": 3.0,
+        "inference_noise": 1.3
     },
     "318": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.8
+        "gmin": 3.0,
+        "inference_noise": 1.4
     },
     "319": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 1.9
+        "gmin": 3.0,
+        "inference_noise": 1.5
     },
     "320": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.0
+        "gmin": 3.0,
+        "inference_noise": 1.6
     },
     "321": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.1
+        "gmin": 3.0,
+        "inference_noise": 1.7
     },
     "322": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.2
+        "gmin": 3.0,
+        "inference_noise": 1.8
     },
     "323": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.3
+        "gmin": 3.0,
+        "inference_noise": 1.9
     },
     "324": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.4
+        "gmin": 3.0,
+        "inference_noise": 2.0
     },
     "325": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.5
+        "gmin": 3.0,
+        "inference_noise": 2.1
     },
     "326": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.6
+        "gmin": 3.0,
+        "inference_noise": 2.2
     },
     "327": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.7
+        "gmin": 3.0,
+        "inference_noise": 2.3
     },
     "328": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.8
+        "gmin": 3.0,
+        "inference_noise": 2.4
     },
     "329": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 2.9
+        "gmin": 3.0,
+        "inference_noise": 2.5
     },
     "330": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.0
+        "gmin": 3.0,
+        "inference_noise": 2.6
     },
     "331": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.1
+        "gmin": 3.0,
+        "inference_noise": 2.7
     },
     "332": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.2
+        "gmin": 3.0,
+        "inference_noise": 2.8
     },
     "333": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.3
+        "gmin": 3.0,
+        "inference_noise": 2.9
     },
     "334": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.4
+        "gmin": 3.0,
+        "inference_noise": 3.0
     },
     "335": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.5
+        "gmin": 3.0,
+        "inference_noise": 3.1
     },
     "336": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.6
+        "gmin": 3.0,
+        "inference_noise": 3.2
     },
     "337": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.7
+        "gmin": 3.0,
+        "inference_noise": 3.3
     },
     "338": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.8
+        "gmin": 3.0,
+        "inference_noise": 3.4
     },
     "339": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 3.9
+        "gmin": 3.0,
+        "inference_noise": 3.5
     },
     "340": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.0
+        "gmin": 3.0,
+        "inference_noise": 3.6
     },
     "341": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.1
+        "gmin": 3.0,
+        "inference_noise": 3.7
     },
     "342": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.2
+        "gmin": 3.0,
+        "inference_noise": 3.8
     },
     "343": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.3
+        "gmin": 3.0,
+        "inference_noise": 3.9
     },
     "344": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.4
+        "gmin": 3.0,
+        "inference_noise": 4.0
     },
     "345": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.5
+        "gmin": 3.0,
+        "inference_noise": 4.1
     },
     "346": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.6
+        "gmin": 3.0,
+        "inference_noise": 4.2
     },
     "347": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.7
+        "gmin": 3.0,
+        "inference_noise": 4.3
     },
     "348": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.8
+        "gmin": 3.0,
+        "inference_noise": 4.4
     },
     "349": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 4.9
+        "gmin": 3.0,
+        "inference_noise": 4.5
     },
     "350": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.0
+        "gmin": 3.0,
+        "inference_noise": 4.6
     },
     "351": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.1
+        "gmin": 3.0,
+        "inference_noise": 4.7
     },
     "352": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.2
+        "gmin": 3.0,
+        "inference_noise": 4.8
     },
     "353": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.3
+        "gmin": 3.0,
+        "inference_noise": 4.9
     },
     "354": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.4
+        "gmin": 3.0,
+        "inference_noise": 5.0
     },
     "355": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.5
+        "gmin": 3.0,
+        "inference_noise": 5.1
     },
     "356": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.6
+        "gmin": 3.0,
+        "inference_noise": 5.2
     },
     "357": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.7
+        "gmin": 3.0,
+        "inference_noise": 5.3
     },
     "358": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.8
+        "gmin": 3.0,
+        "inference_noise": 5.4
     },
     "359": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 5.9
+        "gmin": 3.0,
+        "inference_noise": 5.5
     },
     "360": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.0
+        "gmin": 3.0,
+        "inference_noise": 5.6
     },
     "361": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.1
+        "gmin": 3.0,
+        "inference_noise": 5.7
     },
     "362": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.2
+        "gmin": 3.0,
+        "inference_noise": 5.8
     },
     "363": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.3
+        "gmin": 3.0,
+        "inference_noise": 5.9
     },
     "364": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.4
+        "gmin": 3.0,
+        "inference_noise": 6.0
     },
     "365": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.5
+        "gmin": 3.0,
+        "inference_noise": 6.1
     },
     "366": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.6
+        "gmin": 3.0,
+        "inference_noise": 6.2
     },
     "367": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.7
+        "gmin": 3.0,
+        "inference_noise": 6.3
     },
     "368": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.8
+        "gmin": 3.0,
+        "inference_noise": 6.4
     },
     "369": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 6.9
+        "gmin": 3.0,
+        "inference_noise": 6.5
     },
     "370": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.0
+        "gmin": 3.0,
+        "inference_noise": 6.6
     },
     "371": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.1
+        "gmin": 3.0,
+        "inference_noise": 6.7
     },
     "372": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.2
+        "gmin": 3.0,
+        "inference_noise": 6.8
     },
     "373": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.3
+        "gmin": 3.0,
+        "inference_noise": 6.9
     },
     "374": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.4
+        "gmin": 3.0,
+        "inference_noise": 7.0
     },
     "375": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.5
+        "gmin": 3.0,
+        "inference_noise": 7.1
     },
     "376": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.6
+        "gmin": 3.0,
+        "inference_noise": 7.2
     },
     "377": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.7
+        "gmin": 3.0,
+        "inference_noise": 7.3
     },
     "378": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.8
+        "gmin": 3.0,
+        "inference_noise": 7.4
     },
     "379": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 7.9
+        "gmin": 3.0,
+        "inference_noise": 7.5
     },
     "380": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.0
+        "gmin": 3.0,
+        "inference_noise": 7.6
     },
     "381": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.1
+        "gmin": 3.0,
+        "inference_noise": 7.7
     },
     "382": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.2
+        "gmin": 3.0,
+        "inference_noise": 7.8
     },
     "383": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.3
+        "gmin": 3.0,
+        "inference_noise": 7.9
     },
     "384": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.4
+        "gmin": 3.0,
+        "inference_noise": 8.0
     },
     "385": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.5
+        "gmin": 3.0,
+        "inference_noise": 8.1
     },
     "386": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.6
+        "gmin": 3.0,
+        "inference_noise": 8.2
     },
     "387": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.7
+        "gmin": 3.0,
+        "inference_noise": 8.3
     },
     "388": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.8
+        "gmin": 3.0,
+        "inference_noise": 8.4
     },
     "389": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 8.9
+        "gmin": 3.0,
+        "inference_noise": 8.5
     },
     "390": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.0
+        "gmin": 3.0,
+        "inference_noise": 8.6
     },
     "391": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.1
+        "gmin": 3.0,
+        "inference_noise": 8.7
     },
     "392": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.2
+        "gmin": 3.0,
+        "inference_noise": 8.8
     },
     "393": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.3
+        "gmin": 3.0,
+        "inference_noise": 8.9
     },
     "394": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.4
+        "gmin": 3.0,
+        "inference_noise": 9.0
     },
     "395": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.5
+        "gmin": 3.0,
+        "inference_noise": 9.1
     },
     "396": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.6
+        "gmin": 3.0,
+        "inference_noise": 9.2
     },
     "397": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.7
+        "gmin": 3.0,
+        "inference_noise": 9.3
     },
     "398": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.8
+        "gmin": 3.0,
+        "inference_noise": 9.4
     },
     "399": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 9.9
+        "gmin": 3.0,
+        "inference_noise": 9.5
     },
     "400": {
-        "gmax": 25.0,
-        "inference_noise": 5.0,
-        "drift": 10.0
+        "gmin": 3.0,
+        "inference_noise": 9.6
     },
     "401": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.1
+        "gmin": 3.0,
+        "inference_noise": 9.7
     },
     "402": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.2
+        "gmin": 3.0,
+        "inference_noise": 9.8
     },
     "403": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.3
+        "gmin": 3.0,
+        "inference_noise": 9.9
     },
     "404": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.4
+        "gmin": 3.0,
+        "inference_noise": 10.0
     },
     "405": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.5
+        "gmin": 4.0,
+        "inference_noise": 0.0
     },
     "406": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.6
+        "gmin": 4.0,
+        "inference_noise": 0.1
     },
     "407": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.7
+        "gmin": 4.0,
+        "inference_noise": 0.2
     },
     "408": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.8
+        "gmin": 4.0,
+        "inference_noise": 0.3
     },
     "409": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 0.9
+        "gmin": 4.0,
+        "inference_noise": 0.4
     },
     "410": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.0
+        "gmin": 4.0,
+        "inference_noise": 0.5
     },
     "411": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.1
+        "gmin": 4.0,
+        "inference_noise": 0.6
     },
     "412": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.2
+        "gmin": 4.0,
+        "inference_noise": 0.7
     },
     "413": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.3
+        "gmin": 4.0,
+        "inference_noise": 0.8
     },
     "414": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.4
+        "gmin": 4.0,
+        "inference_noise": 0.9
     },
     "415": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.5
+        "gmin": 4.0,
+        "inference_noise": 1.0
     },
     "416": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.6
+        "gmin": 4.0,
+        "inference_noise": 1.1
     },
     "417": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.7
+        "gmin": 4.0,
+        "inference_noise": 1.2
     },
     "418": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.8
+        "gmin": 4.0,
+        "inference_noise": 1.3
     },
     "419": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 1.9
+        "gmin": 4.0,
+        "inference_noise": 1.4
     },
     "420": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.0
+        "gmin": 4.0,
+        "inference_noise": 1.5
     },
     "421": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.1
+        "gmin": 4.0,
+        "inference_noise": 1.6
     },
     "422": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.2
+        "gmin": 4.0,
+        "inference_noise": 1.7
     },
     "423": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.3
+        "gmin": 4.0,
+        "inference_noise": 1.8
     },
     "424": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.4
+        "gmin": 4.0,
+        "inference_noise": 1.9
     },
     "425": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.5
+        "gmin": 4.0,
+        "inference_noise": 2.0
     },
     "426": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.6
+        "gmin": 4.0,
+        "inference_noise": 2.1
     },
     "427": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.7
+        "gmin": 4.0,
+        "inference_noise": 2.2
     },
     "428": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.8
+        "gmin": 4.0,
+        "inference_noise": 2.3
     },
     "429": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 2.9
+        "gmin": 4.0,
+        "inference_noise": 2.4
     },
     "430": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.0
+        "gmin": 4.0,
+        "inference_noise": 2.5
     },
     "431": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.1
+        "gmin": 4.0,
+        "inference_noise": 2.6
     },
     "432": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.2
+        "gmin": 4.0,
+        "inference_noise": 2.7
     },
     "433": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.3
+        "gmin": 4.0,
+        "inference_noise": 2.8
     },
     "434": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.4
+        "gmin": 4.0,
+        "inference_noise": 2.9
     },
     "435": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.5
+        "gmin": 4.0,
+        "inference_noise": 3.0
     },
     "436": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.6
+        "gmin": 4.0,
+        "inference_noise": 3.1
     },
     "437": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.7
+        "gmin": 4.0,
+        "inference_noise": 3.2
     },
     "438": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.8
+        "gmin": 4.0,
+        "inference_noise": 3.3
     },
     "439": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 3.9
+        "gmin": 4.0,
+        "inference_noise": 3.4
     },
     "440": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.0
+        "gmin": 4.0,
+        "inference_noise": 3.5
     },
     "441": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.1
+        "gmin": 4.0,
+        "inference_noise": 3.6
     },
     "442": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.2
+        "gmin": 4.0,
+        "inference_noise": 3.7
     },
     "443": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.3
+        "gmin": 4.0,
+        "inference_noise": 3.8
     },
     "444": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.4
+        "gmin": 4.0,
+        "inference_noise": 3.9
     },
     "445": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.5
+        "gmin": 4.0,
+        "inference_noise": 4.0
     },
     "446": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.6
+        "gmin": 4.0,
+        "inference_noise": 4.1
     },
     "447": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.7
+        "gmin": 4.0,
+        "inference_noise": 4.2
     },
     "448": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.8
+        "gmin": 4.0,
+        "inference_noise": 4.3
     },
     "449": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 4.9
+        "gmin": 4.0,
+        "inference_noise": 4.4
     },
     "450": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.0
+        "gmin": 4.0,
+        "inference_noise": 4.5
     },
     "451": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.1
+        "gmin": 4.0,
+        "inference_noise": 4.6
     },
     "452": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.2
+        "gmin": 4.0,
+        "inference_noise": 4.7
     },
     "453": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.3
+        "gmin": 4.0,
+        "inference_noise": 4.8
     },
     "454": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.4
+        "gmin": 4.0,
+        "inference_noise": 4.9
     },
     "455": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.5
+        "gmin": 4.0,
+        "inference_noise": 5.0
     },
     "456": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.6
+        "gmin": 4.0,
+        "inference_noise": 5.1
     },
     "457": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.7
+        "gmin": 4.0,
+        "inference_noise": 5.2
     },
     "458": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.8
+        "gmin": 4.0,
+        "inference_noise": 5.3
     },
     "459": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 5.9
+        "gmin": 4.0,
+        "inference_noise": 5.4
     },
     "460": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.0
+        "gmin": 4.0,
+        "inference_noise": 5.5
     },
     "461": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.1
+        "gmin": 4.0,
+        "inference_noise": 5.6
     },
     "462": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.2
+        "gmin": 4.0,
+        "inference_noise": 5.7
     },
     "463": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.3
+        "gmin": 4.0,
+        "inference_noise": 5.8
     },
     "464": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.4
+        "gmin": 4.0,
+        "inference_noise": 5.9
     },
     "465": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.5
+        "gmin": 4.0,
+        "inference_noise": 6.0
     },
     "466": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.6
+        "gmin": 4.0,
+        "inference_noise": 6.1
     },
     "467": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.7
+        "gmin": 4.0,
+        "inference_noise": 6.2
     },
     "468": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.8
+        "gmin": 4.0,
+        "inference_noise": 6.3
     },
     "469": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 6.9
+        "gmin": 4.0,
+        "inference_noise": 6.4
     },
     "470": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.0
+        "gmin": 4.0,
+        "inference_noise": 6.5
     },
     "471": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.1
+        "gmin": 4.0,
+        "inference_noise": 6.6
     },
     "472": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.2
+        "gmin": 4.0,
+        "inference_noise": 6.7
     },
     "473": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.3
+        "gmin": 4.0,
+        "inference_noise": 6.8
     },
     "474": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.4
+        "gmin": 4.0,
+        "inference_noise": 6.9
     },
     "475": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.5
+        "gmin": 4.0,
+        "inference_noise": 7.0
     },
     "476": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.6
+        "gmin": 4.0,
+        "inference_noise": 7.1
     },
     "477": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.7
+        "gmin": 4.0,
+        "inference_noise": 7.2
     },
     "478": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.8
+        "gmin": 4.0,
+        "inference_noise": 7.3
     },
     "479": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 7.9
+        "gmin": 4.0,
+        "inference_noise": 7.4
     },
     "480": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.0
+        "gmin": 4.0,
+        "inference_noise": 7.5
     },
     "481": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.1
+        "gmin": 4.0,
+        "inference_noise": 7.6
     },
     "482": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.2
+        "gmin": 4.0,
+        "inference_noise": 7.7
     },
     "483": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.3
+        "gmin": 4.0,
+        "inference_noise": 7.8
     },
     "484": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.4
+        "gmin": 4.0,
+        "inference_noise": 7.9
     },
     "485": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.5
+        "gmin": 4.0,
+        "inference_noise": 8.0
     },
     "486": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.6
+        "gmin": 4.0,
+        "inference_noise": 8.1
     },
     "487": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.7
+        "gmin": 4.0,
+        "inference_noise": 8.2
     },
     "488": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.8
+        "gmin": 4.0,
+        "inference_noise": 8.3
     },
     "489": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 8.9
+        "gmin": 4.0,
+        "inference_noise": 8.4
     },
     "490": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.0
+        "gmin": 4.0,
+        "inference_noise": 8.5
     },
     "491": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.1
+        "gmin": 4.0,
+        "inference_noise": 8.6
     },
     "492": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.2
+        "gmin": 4.0,
+        "inference_noise": 8.7
     },
     "493": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.3
+        "gmin": 4.0,
+        "inference_noise": 8.8
     },
     "494": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.4
+        "gmin": 4.0,
+        "inference_noise": 8.9
     },
     "495": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.5
+        "gmin": 4.0,
+        "inference_noise": 9.0
     },
     "496": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.6
+        "gmin": 4.0,
+        "inference_noise": 9.1
     },
     "497": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.7
+        "gmin": 4.0,
+        "inference_noise": 9.2
     },
     "498": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.8
+        "gmin": 4.0,
+        "inference_noise": 9.3
     },
     "499": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 9.9
+        "gmin": 4.0,
+        "inference_noise": 9.4
     },
     "500": {
-        "gmax": 25.0,
-        "inference_noise": 6.0,
-        "drift": 10.0
+        "gmin": 4.0,
+        "inference_noise": 9.5
+    },
+    "501": {
+        "gmin": 4.0,
+        "inference_noise": 9.6
+    },
+    "502": {
+        "gmin": 4.0,
+        "inference_noise": 9.7
+    },
+    "503": {
+        "gmin": 4.0,
+        "inference_noise": 9.8
+    },
+    "504": {
+        "gmin": 4.0,
+        "inference_noise": 9.9
+    },
+    "505": {
+        "gmin": 4.0,
+        "inference_noise": 10.0
+    },
+    "506": {
+        "gmin": 5.0,
+        "inference_noise": 0.0
+    },
+    "507": {
+        "gmin": 5.0,
+        "inference_noise": 0.1
+    },
+    "508": {
+        "gmin": 5.0,
+        "inference_noise": 0.2
+    },
+    "509": {
+        "gmin": 5.0,
+        "inference_noise": 0.3
+    },
+    "510": {
+        "gmin": 5.0,
+        "inference_noise": 0.4
+    },
+    "511": {
+        "gmin": 5.0,
+        "inference_noise": 0.5
+    },
+    "512": {
+        "gmin": 5.0,
+        "inference_noise": 0.6
+    },
+    "513": {
+        "gmin": 5.0,
+        "inference_noise": 0.7
+    },
+    "514": {
+        "gmin": 5.0,
+        "inference_noise": 0.8
+    },
+    "515": {
+        "gmin": 5.0,
+        "inference_noise": 0.9
+    },
+    "516": {
+        "gmin": 5.0,
+        "inference_noise": 1.0
+    },
+    "517": {
+        "gmin": 5.0,
+        "inference_noise": 1.1
+    },
+    "518": {
+        "gmin": 5.0,
+        "inference_noise": 1.2
+    },
+    "519": {
+        "gmin": 5.0,
+        "inference_noise": 1.3
+    },
+    "520": {
+        "gmin": 5.0,
+        "inference_noise": 1.4
+    },
+    "521": {
+        "gmin": 5.0,
+        "inference_noise": 1.5
+    },
+    "522": {
+        "gmin": 5.0,
+        "inference_noise": 1.6
+    },
+    "523": {
+        "gmin": 5.0,
+        "inference_noise": 1.7
+    },
+    "524": {
+        "gmin": 5.0,
+        "inference_noise": 1.8
+    },
+    "525": {
+        "gmin": 5.0,
+        "inference_noise": 1.9
+    },
+    "526": {
+        "gmin": 5.0,
+        "inference_noise": 2.0
+    },
+    "527": {
+        "gmin": 5.0,
+        "inference_noise": 2.1
+    },
+    "528": {
+        "gmin": 5.0,
+        "inference_noise": 2.2
+    },
+    "529": {
+        "gmin": 5.0,
+        "inference_noise": 2.3
+    },
+    "530": {
+        "gmin": 5.0,
+        "inference_noise": 2.4
+    },
+    "531": {
+        "gmin": 5.0,
+        "inference_noise": 2.5
+    },
+    "532": {
+        "gmin": 5.0,
+        "inference_noise": 2.6
+    },
+    "533": {
+        "gmin": 5.0,
+        "inference_noise": 2.7
+    },
+    "534": {
+        "gmin": 5.0,
+        "inference_noise": 2.8
+    },
+    "535": {
+        "gmin": 5.0,
+        "inference_noise": 2.9
+    },
+    "536": {
+        "gmin": 5.0,
+        "inference_noise": 3.0
+    },
+    "537": {
+        "gmin": 5.0,
+        "inference_noise": 3.1
+    },
+    "538": {
+        "gmin": 5.0,
+        "inference_noise": 3.2
+    },
+    "539": {
+        "gmin": 5.0,
+        "inference_noise": 3.3
+    },
+    "540": {
+        "gmin": 5.0,
+        "inference_noise": 3.4
+    },
+    "541": {
+        "gmin": 5.0,
+        "inference_noise": 3.5
+    },
+    "542": {
+        "gmin": 5.0,
+        "inference_noise": 3.6
+    },
+    "543": {
+        "gmin": 5.0,
+        "inference_noise": 3.7
+    },
+    "544": {
+        "gmin": 5.0,
+        "inference_noise": 3.8
+    },
+    "545": {
+        "gmin": 5.0,
+        "inference_noise": 3.9
+    },
+    "546": {
+        "gmin": 5.0,
+        "inference_noise": 4.0
+    },
+    "547": {
+        "gmin": 5.0,
+        "inference_noise": 4.1
+    },
+    "548": {
+        "gmin": 5.0,
+        "inference_noise": 4.2
+    },
+    "549": {
+        "gmin": 5.0,
+        "inference_noise": 4.3
+    },
+    "550": {
+        "gmin": 5.0,
+        "inference_noise": 4.4
+    },
+    "551": {
+        "gmin": 5.0,
+        "inference_noise": 4.5
+    },
+    "552": {
+        "gmin": 5.0,
+        "inference_noise": 4.6
+    },
+    "553": {
+        "gmin": 5.0,
+        "inference_noise": 4.7
+    },
+    "554": {
+        "gmin": 5.0,
+        "inference_noise": 4.8
+    },
+    "555": {
+        "gmin": 5.0,
+        "inference_noise": 4.9
+    },
+    "556": {
+        "gmin": 5.0,
+        "inference_noise": 5.0
+    },
+    "557": {
+        "gmin": 5.0,
+        "inference_noise": 5.1
+    },
+    "558": {
+        "gmin": 5.0,
+        "inference_noise": 5.2
+    },
+    "559": {
+        "gmin": 5.0,
+        "inference_noise": 5.3
+    },
+    "560": {
+        "gmin": 5.0,
+        "inference_noise": 5.4
+    },
+    "561": {
+        "gmin": 5.0,
+        "inference_noise": 5.5
+    },
+    "562": {
+        "gmin": 5.0,
+        "inference_noise": 5.6
+    },
+    "563": {
+        "gmin": 5.0,
+        "inference_noise": 5.7
+    },
+    "564": {
+        "gmin": 5.0,
+        "inference_noise": 5.8
+    },
+    "565": {
+        "gmin": 5.0,
+        "inference_noise": 5.9
+    },
+    "566": {
+        "gmin": 5.0,
+        "inference_noise": 6.0
+    },
+    "567": {
+        "gmin": 5.0,
+        "inference_noise": 6.1
+    },
+    "568": {
+        "gmin": 5.0,
+        "inference_noise": 6.2
+    },
+    "569": {
+        "gmin": 5.0,
+        "inference_noise": 6.3
+    },
+    "570": {
+        "gmin": 5.0,
+        "inference_noise": 6.4
+    },
+    "571": {
+        "gmin": 5.0,
+        "inference_noise": 6.5
+    },
+    "572": {
+        "gmin": 5.0,
+        "inference_noise": 6.6
+    },
+    "573": {
+        "gmin": 5.0,
+        "inference_noise": 6.7
+    },
+    "574": {
+        "gmin": 5.0,
+        "inference_noise": 6.8
+    },
+    "575": {
+        "gmin": 5.0,
+        "inference_noise": 6.9
+    },
+    "576": {
+        "gmin": 5.0,
+        "inference_noise": 7.0
+    },
+    "577": {
+        "gmin": 5.0,
+        "inference_noise": 7.1
+    },
+    "578": {
+        "gmin": 5.0,
+        "inference_noise": 7.2
+    },
+    "579": {
+        "gmin": 5.0,
+        "inference_noise": 7.3
+    },
+    "580": {
+        "gmin": 5.0,
+        "inference_noise": 7.4
+    },
+    "581": {
+        "gmin": 5.0,
+        "inference_noise": 7.5
+    },
+    "582": {
+        "gmin": 5.0,
+        "inference_noise": 7.6
+    },
+    "583": {
+        "gmin": 5.0,
+        "inference_noise": 7.7
+    },
+    "584": {
+        "gmin": 5.0,
+        "inference_noise": 7.8
+    },
+    "585": {
+        "gmin": 5.0,
+        "inference_noise": 7.9
+    },
+    "586": {
+        "gmin": 5.0,
+        "inference_noise": 8.0
+    },
+    "587": {
+        "gmin": 5.0,
+        "inference_noise": 8.1
+    },
+    "588": {
+        "gmin": 5.0,
+        "inference_noise": 8.2
+    },
+    "589": {
+        "gmin": 5.0,
+        "inference_noise": 8.3
+    },
+    "590": {
+        "gmin": 5.0,
+        "inference_noise": 8.4
+    },
+    "591": {
+        "gmin": 5.0,
+        "inference_noise": 8.5
+    },
+    "592": {
+        "gmin": 5.0,
+        "inference_noise": 8.6
+    },
+    "593": {
+        "gmin": 5.0,
+        "inference_noise": 8.7
+    },
+    "594": {
+        "gmin": 5.0,
+        "inference_noise": 8.8
+    },
+    "595": {
+        "gmin": 5.0,
+        "inference_noise": 8.9
+    },
+    "596": {
+        "gmin": 5.0,
+        "inference_noise": 9.0
+    },
+    "597": {
+        "gmin": 5.0,
+        "inference_noise": 9.1
+    },
+    "598": {
+        "gmin": 5.0,
+        "inference_noise": 9.2
+    },
+    "599": {
+        "gmin": 5.0,
+        "inference_noise": 9.3
+    },
+    "600": {
+        "gmin": 5.0,
+        "inference_noise": 9.4
+    },
+    "601": {
+        "gmin": 5.0,
+        "inference_noise": 9.5
+    },
+    "602": {
+        "gmin": 5.0,
+        "inference_noise": 9.6
+    },
+    "603": {
+        "gmin": 5.0,
+        "inference_noise": 9.7
+    },
+    "604": {
+        "gmin": 5.0,
+        "inference_noise": 9.8
+    },
+    "605": {
+        "gmin": 5.0,
+        "inference_noise": 9.9
+    },
+    "606": {
+        "gmin": 5.0,
+        "inference_noise": 10.0
+    },
+    "607": {
+        "gmin": 6.0,
+        "inference_noise": 0.0
+    },
+    "608": {
+        "gmin": 6.0,
+        "inference_noise": 0.1
+    },
+    "609": {
+        "gmin": 6.0,
+        "inference_noise": 0.2
+    },
+    "610": {
+        "gmin": 6.0,
+        "inference_noise": 0.3
+    },
+    "611": {
+        "gmin": 6.0,
+        "inference_noise": 0.4
+    },
+    "612": {
+        "gmin": 6.0,
+        "inference_noise": 0.5
+    },
+    "613": {
+        "gmin": 6.0,
+        "inference_noise": 0.6
+    },
+    "614": {
+        "gmin": 6.0,
+        "inference_noise": 0.7
+    },
+    "615": {
+        "gmin": 6.0,
+        "inference_noise": 0.8
+    },
+    "616": {
+        "gmin": 6.0,
+        "inference_noise": 0.9
+    },
+    "617": {
+        "gmin": 6.0,
+        "inference_noise": 1.0
+    },
+    "618": {
+        "gmin": 6.0,
+        "inference_noise": 1.1
+    },
+    "619": {
+        "gmin": 6.0,
+        "inference_noise": 1.2
+    },
+    "620": {
+        "gmin": 6.0,
+        "inference_noise": 1.3
+    },
+    "621": {
+        "gmin": 6.0,
+        "inference_noise": 1.4
+    },
+    "622": {
+        "gmin": 6.0,
+        "inference_noise": 1.5
+    },
+    "623": {
+        "gmin": 6.0,
+        "inference_noise": 1.6
+    },
+    "624": {
+        "gmin": 6.0,
+        "inference_noise": 1.7
+    },
+    "625": {
+        "gmin": 6.0,
+        "inference_noise": 1.8
+    },
+    "626": {
+        "gmin": 6.0,
+        "inference_noise": 1.9
+    },
+    "627": {
+        "gmin": 6.0,
+        "inference_noise": 2.0
+    },
+    "628": {
+        "gmin": 6.0,
+        "inference_noise": 2.1
+    },
+    "629": {
+        "gmin": 6.0,
+        "inference_noise": 2.2
+    },
+    "630": {
+        "gmin": 6.0,
+        "inference_noise": 2.3
+    },
+    "631": {
+        "gmin": 6.0,
+        "inference_noise": 2.4
+    },
+    "632": {
+        "gmin": 6.0,
+        "inference_noise": 2.5
+    },
+    "633": {
+        "gmin": 6.0,
+        "inference_noise": 2.6
+    },
+    "634": {
+        "gmin": 6.0,
+        "inference_noise": 2.7
+    },
+    "635": {
+        "gmin": 6.0,
+        "inference_noise": 2.8
+    },
+    "636": {
+        "gmin": 6.0,
+        "inference_noise": 2.9
+    },
+    "637": {
+        "gmin": 6.0,
+        "inference_noise": 3.0
+    },
+    "638": {
+        "gmin": 6.0,
+        "inference_noise": 3.1
+    },
+    "639": {
+        "gmin": 6.0,
+        "inference_noise": 3.2
+    },
+    "640": {
+        "gmin": 6.0,
+        "inference_noise": 3.3
+    },
+    "641": {
+        "gmin": 6.0,
+        "inference_noise": 3.4
+    },
+    "642": {
+        "gmin": 6.0,
+        "inference_noise": 3.5
+    },
+    "643": {
+        "gmin": 6.0,
+        "inference_noise": 3.6
+    },
+    "644": {
+        "gmin": 6.0,
+        "inference_noise": 3.7
+    },
+    "645": {
+        "gmin": 6.0,
+        "inference_noise": 3.8
+    },
+    "646": {
+        "gmin": 6.0,
+        "inference_noise": 3.9
+    },
+    "647": {
+        "gmin": 6.0,
+        "inference_noise": 4.0
+    },
+    "648": {
+        "gmin": 6.0,
+        "inference_noise": 4.1
+    },
+    "649": {
+        "gmin": 6.0,
+        "inference_noise": 4.2
+    },
+    "650": {
+        "gmin": 6.0,
+        "inference_noise": 4.3
+    },
+    "651": {
+        "gmin": 6.0,
+        "inference_noise": 4.4
+    },
+    "652": {
+        "gmin": 6.0,
+        "inference_noise": 4.5
+    },
+    "653": {
+        "gmin": 6.0,
+        "inference_noise": 4.6
+    },
+    "654": {
+        "gmin": 6.0,
+        "inference_noise": 4.7
+    },
+    "655": {
+        "gmin": 6.0,
+        "inference_noise": 4.8
+    },
+    "656": {
+        "gmin": 6.0,
+        "inference_noise": 4.9
+    },
+    "657": {
+        "gmin": 6.0,
+        "inference_noise": 5.0
+    },
+    "658": {
+        "gmin": 6.0,
+        "inference_noise": 5.1
+    },
+    "659": {
+        "gmin": 6.0,
+        "inference_noise": 5.2
+    },
+    "660": {
+        "gmin": 6.0,
+        "inference_noise": 5.3
+    },
+    "661": {
+        "gmin": 6.0,
+        "inference_noise": 5.4
+    },
+    "662": {
+        "gmin": 6.0,
+        "inference_noise": 5.5
+    },
+    "663": {
+        "gmin": 6.0,
+        "inference_noise": 5.6
+    },
+    "664": {
+        "gmin": 6.0,
+        "inference_noise": 5.7
+    },
+    "665": {
+        "gmin": 6.0,
+        "inference_noise": 5.8
+    },
+    "666": {
+        "gmin": 6.0,
+        "inference_noise": 5.9
+    },
+    "667": {
+        "gmin": 6.0,
+        "inference_noise": 6.0
+    },
+    "668": {
+        "gmin": 6.0,
+        "inference_noise": 6.1
+    },
+    "669": {
+        "gmin": 6.0,
+        "inference_noise": 6.2
+    },
+    "670": {
+        "gmin": 6.0,
+        "inference_noise": 6.3
+    },
+    "671": {
+        "gmin": 6.0,
+        "inference_noise": 6.4
+    },
+    "672": {
+        "gmin": 6.0,
+        "inference_noise": 6.5
+    },
+    "673": {
+        "gmin": 6.0,
+        "inference_noise": 6.6
+    },
+    "674": {
+        "gmin": 6.0,
+        "inference_noise": 6.7
+    },
+    "675": {
+        "gmin": 6.0,
+        "inference_noise": 6.8
+    },
+    "676": {
+        "gmin": 6.0,
+        "inference_noise": 6.9
+    },
+    "677": {
+        "gmin": 6.0,
+        "inference_noise": 7.0
+    },
+    "678": {
+        "gmin": 6.0,
+        "inference_noise": 7.1
+    },
+    "679": {
+        "gmin": 6.0,
+        "inference_noise": 7.2
+    },
+    "680": {
+        "gmin": 6.0,
+        "inference_noise": 7.3
+    },
+    "681": {
+        "gmin": 6.0,
+        "inference_noise": 7.4
+    },
+    "682": {
+        "gmin": 6.0,
+        "inference_noise": 7.5
+    },
+    "683": {
+        "gmin": 6.0,
+        "inference_noise": 7.6
+    },
+    "684": {
+        "gmin": 6.0,
+        "inference_noise": 7.7
+    },
+    "685": {
+        "gmin": 6.0,
+        "inference_noise": 7.8
+    },
+    "686": {
+        "gmin": 6.0,
+        "inference_noise": 7.9
+    },
+    "687": {
+        "gmin": 6.0,
+        "inference_noise": 8.0
+    },
+    "688": {
+        "gmin": 6.0,
+        "inference_noise": 8.1
+    },
+    "689": {
+        "gmin": 6.0,
+        "inference_noise": 8.2
+    },
+    "690": {
+        "gmin": 6.0,
+        "inference_noise": 8.3
+    },
+    "691": {
+        "gmin": 6.0,
+        "inference_noise": 8.4
+    },
+    "692": {
+        "gmin": 6.0,
+        "inference_noise": 8.5
+    },
+    "693": {
+        "gmin": 6.0,
+        "inference_noise": 8.6
+    },
+    "694": {
+        "gmin": 6.0,
+        "inference_noise": 8.7
+    },
+    "695": {
+        "gmin": 6.0,
+        "inference_noise": 8.8
+    },
+    "696": {
+        "gmin": 6.0,
+        "inference_noise": 8.9
+    },
+    "697": {
+        "gmin": 6.0,
+        "inference_noise": 9.0
+    },
+    "698": {
+        "gmin": 6.0,
+        "inference_noise": 9.1
+    },
+    "699": {
+        "gmin": 6.0,
+        "inference_noise": 9.2
+    },
+    "700": {
+        "gmin": 6.0,
+        "inference_noise": 9.3
+    },
+    "701": {
+        "gmin": 6.0,
+        "inference_noise": 9.4
+    },
+    "702": {
+        "gmin": 6.0,
+        "inference_noise": 9.5
+    },
+    "703": {
+        "gmin": 6.0,
+        "inference_noise": 9.6
+    },
+    "704": {
+        "gmin": 6.0,
+        "inference_noise": 9.7
+    },
+    "705": {
+        "gmin": 6.0,
+        "inference_noise": 9.8
+    },
+    "706": {
+        "gmin": 6.0,
+        "inference_noise": 9.9
+    },
+    "707": {
+        "gmin": 6.0,
+        "inference_noise": 10.0
+    },
+    "708": {
+        "gmin": 7.0,
+        "inference_noise": 0.0
+    },
+    "709": {
+        "gmin": 7.0,
+        "inference_noise": 0.1
+    },
+    "710": {
+        "gmin": 7.0,
+        "inference_noise": 0.2
+    },
+    "711": {
+        "gmin": 7.0,
+        "inference_noise": 0.3
+    },
+    "712": {
+        "gmin": 7.0,
+        "inference_noise": 0.4
+    },
+    "713": {
+        "gmin": 7.0,
+        "inference_noise": 0.5
+    },
+    "714": {
+        "gmin": 7.0,
+        "inference_noise": 0.6
+    },
+    "715": {
+        "gmin": 7.0,
+        "inference_noise": 0.7
+    },
+    "716": {
+        "gmin": 7.0,
+        "inference_noise": 0.8
+    },
+    "717": {
+        "gmin": 7.0,
+        "inference_noise": 0.9
+    },
+    "718": {
+        "gmin": 7.0,
+        "inference_noise": 1.0
+    },
+    "719": {
+        "gmin": 7.0,
+        "inference_noise": 1.1
+    },
+    "720": {
+        "gmin": 7.0,
+        "inference_noise": 1.2
+    },
+    "721": {
+        "gmin": 7.0,
+        "inference_noise": 1.3
+    },
+    "722": {
+        "gmin": 7.0,
+        "inference_noise": 1.4
+    },
+    "723": {
+        "gmin": 7.0,
+        "inference_noise": 1.5
+    },
+    "724": {
+        "gmin": 7.0,
+        "inference_noise": 1.6
+    },
+    "725": {
+        "gmin": 7.0,
+        "inference_noise": 1.7
+    },
+    "726": {
+        "gmin": 7.0,
+        "inference_noise": 1.8
+    },
+    "727": {
+        "gmin": 7.0,
+        "inference_noise": 1.9
+    },
+    "728": {
+        "gmin": 7.0,
+        "inference_noise": 2.0
+    },
+    "729": {
+        "gmin": 7.0,
+        "inference_noise": 2.1
+    },
+    "730": {
+        "gmin": 7.0,
+        "inference_noise": 2.2
+    },
+    "731": {
+        "gmin": 7.0,
+        "inference_noise": 2.3
+    },
+    "732": {
+        "gmin": 7.0,
+        "inference_noise": 2.4
+    },
+    "733": {
+        "gmin": 7.0,
+        "inference_noise": 2.5
+    },
+    "734": {
+        "gmin": 7.0,
+        "inference_noise": 2.6
+    },
+    "735": {
+        "gmin": 7.0,
+        "inference_noise": 2.7
+    },
+    "736": {
+        "gmin": 7.0,
+        "inference_noise": 2.8
+    },
+    "737": {
+        "gmin": 7.0,
+        "inference_noise": 2.9
+    },
+    "738": {
+        "gmin": 7.0,
+        "inference_noise": 3.0
+    },
+    "739": {
+        "gmin": 7.0,
+        "inference_noise": 3.1
+    },
+    "740": {
+        "gmin": 7.0,
+        "inference_noise": 3.2
+    },
+    "741": {
+        "gmin": 7.0,
+        "inference_noise": 3.3
+    },
+    "742": {
+        "gmin": 7.0,
+        "inference_noise": 3.4
+    },
+    "743": {
+        "gmin": 7.0,
+        "inference_noise": 3.5
+    },
+    "744": {
+        "gmin": 7.0,
+        "inference_noise": 3.6
+    },
+    "745": {
+        "gmin": 7.0,
+        "inference_noise": 3.7
+    },
+    "746": {
+        "gmin": 7.0,
+        "inference_noise": 3.8
+    },
+    "747": {
+        "gmin": 7.0,
+        "inference_noise": 3.9
+    },
+    "748": {
+        "gmin": 7.0,
+        "inference_noise": 4.0
+    },
+    "749": {
+        "gmin": 7.0,
+        "inference_noise": 4.1
+    },
+    "750": {
+        "gmin": 7.0,
+        "inference_noise": 4.2
+    },
+    "751": {
+        "gmin": 7.0,
+        "inference_noise": 4.3
+    },
+    "752": {
+        "gmin": 7.0,
+        "inference_noise": 4.4
+    },
+    "753": {
+        "gmin": 7.0,
+        "inference_noise": 4.5
+    },
+    "754": {
+        "gmin": 7.0,
+        "inference_noise": 4.6
+    },
+    "755": {
+        "gmin": 7.0,
+        "inference_noise": 4.7
+    },
+    "756": {
+        "gmin": 7.0,
+        "inference_noise": 4.8
+    },
+    "757": {
+        "gmin": 7.0,
+        "inference_noise": 4.9
+    },
+    "758": {
+        "gmin": 7.0,
+        "inference_noise": 5.0
+    },
+    "759": {
+        "gmin": 7.0,
+        "inference_noise": 5.1
+    },
+    "760": {
+        "gmin": 7.0,
+        "inference_noise": 5.2
+    },
+    "761": {
+        "gmin": 7.0,
+        "inference_noise": 5.3
+    },
+    "762": {
+        "gmin": 7.0,
+        "inference_noise": 5.4
+    },
+    "763": {
+        "gmin": 7.0,
+        "inference_noise": 5.5
+    },
+    "764": {
+        "gmin": 7.0,
+        "inference_noise": 5.6
+    },
+    "765": {
+        "gmin": 7.0,
+        "inference_noise": 5.7
+    },
+    "766": {
+        "gmin": 7.0,
+        "inference_noise": 5.8
+    },
+    "767": {
+        "gmin": 7.0,
+        "inference_noise": 5.9
+    },
+    "768": {
+        "gmin": 7.0,
+        "inference_noise": 6.0
+    },
+    "769": {
+        "gmin": 7.0,
+        "inference_noise": 6.1
+    },
+    "770": {
+        "gmin": 7.0,
+        "inference_noise": 6.2
+    },
+    "771": {
+        "gmin": 7.0,
+        "inference_noise": 6.3
+    },
+    "772": {
+        "gmin": 7.0,
+        "inference_noise": 6.4
+    },
+    "773": {
+        "gmin": 7.0,
+        "inference_noise": 6.5
+    },
+    "774": {
+        "gmin": 7.0,
+        "inference_noise": 6.6
+    },
+    "775": {
+        "gmin": 7.0,
+        "inference_noise": 6.7
+    },
+    "776": {
+        "gmin": 7.0,
+        "inference_noise": 6.8
+    },
+    "777": {
+        "gmin": 7.0,
+        "inference_noise": 6.9
+    },
+    "778": {
+        "gmin": 7.0,
+        "inference_noise": 7.0
+    },
+    "779": {
+        "gmin": 7.0,
+        "inference_noise": 7.1
+    },
+    "780": {
+        "gmin": 7.0,
+        "inference_noise": 7.2
+    },
+    "781": {
+        "gmin": 7.0,
+        "inference_noise": 7.3
+    },
+    "782": {
+        "gmin": 7.0,
+        "inference_noise": 7.4
+    },
+    "783": {
+        "gmin": 7.0,
+        "inference_noise": 7.5
+    },
+    "784": {
+        "gmin": 7.0,
+        "inference_noise": 7.6
+    },
+    "785": {
+        "gmin": 7.0,
+        "inference_noise": 7.7
+    },
+    "786": {
+        "gmin": 7.0,
+        "inference_noise": 7.8
+    },
+    "787": {
+        "gmin": 7.0,
+        "inference_noise": 7.9
+    },
+    "788": {
+        "gmin": 7.0,
+        "inference_noise": 8.0
+    },
+    "789": {
+        "gmin": 7.0,
+        "inference_noise": 8.1
+    },
+    "790": {
+        "gmin": 7.0,
+        "inference_noise": 8.2
+    },
+    "791": {
+        "gmin": 7.0,
+        "inference_noise": 8.3
+    },
+    "792": {
+        "gmin": 7.0,
+        "inference_noise": 8.4
+    },
+    "793": {
+        "gmin": 7.0,
+        "inference_noise": 8.5
+    },
+    "794": {
+        "gmin": 7.0,
+        "inference_noise": 8.6
+    },
+    "795": {
+        "gmin": 7.0,
+        "inference_noise": 8.7
+    },
+    "796": {
+        "gmin": 7.0,
+        "inference_noise": 8.8
+    },
+    "797": {
+        "gmin": 7.0,
+        "inference_noise": 8.9
+    },
+    "798": {
+        "gmin": 7.0,
+        "inference_noise": 9.0
+    },
+    "799": {
+        "gmin": 7.0,
+        "inference_noise": 9.1
+    },
+    "800": {
+        "gmin": 7.0,
+        "inference_noise": 9.2
+    },
+    "801": {
+        "gmin": 7.0,
+        "inference_noise": 9.3
+    },
+    "802": {
+        "gmin": 7.0,
+        "inference_noise": 9.4
+    },
+    "803": {
+        "gmin": 7.0,
+        "inference_noise": 9.5
+    },
+    "804": {
+        "gmin": 7.0,
+        "inference_noise": 9.6
+    },
+    "805": {
+        "gmin": 7.0,
+        "inference_noise": 9.7
+    },
+    "806": {
+        "gmin": 7.0,
+        "inference_noise": 9.8
+    },
+    "807": {
+        "gmin": 7.0,
+        "inference_noise": 9.9
+    },
+    "808": {
+        "gmin": 7.0,
+        "inference_noise": 10.0
+    },
+    "809": {
+        "gmin": 8.0,
+        "inference_noise": 0.0
+    },
+    "810": {
+        "gmin": 8.0,
+        "inference_noise": 0.1
+    },
+    "811": {
+        "gmin": 8.0,
+        "inference_noise": 0.2
+    },
+    "812": {
+        "gmin": 8.0,
+        "inference_noise": 0.3
+    },
+    "813": {
+        "gmin": 8.0,
+        "inference_noise": 0.4
+    },
+    "814": {
+        "gmin": 8.0,
+        "inference_noise": 0.5
+    },
+    "815": {
+        "gmin": 8.0,
+        "inference_noise": 0.6
+    },
+    "816": {
+        "gmin": 8.0,
+        "inference_noise": 0.7
+    },
+    "817": {
+        "gmin": 8.0,
+        "inference_noise": 0.8
+    },
+    "818": {
+        "gmin": 8.0,
+        "inference_noise": 0.9
+    },
+    "819": {
+        "gmin": 8.0,
+        "inference_noise": 1.0
+    },
+    "820": {
+        "gmin": 8.0,
+        "inference_noise": 1.1
+    },
+    "821": {
+        "gmin": 8.0,
+        "inference_noise": 1.2
+    },
+    "822": {
+        "gmin": 8.0,
+        "inference_noise": 1.3
+    },
+    "823": {
+        "gmin": 8.0,
+        "inference_noise": 1.4
+    },
+    "824": {
+        "gmin": 8.0,
+        "inference_noise": 1.5
+    },
+    "825": {
+        "gmin": 8.0,
+        "inference_noise": 1.6
+    },
+    "826": {
+        "gmin": 8.0,
+        "inference_noise": 1.7
+    },
+    "827": {
+        "gmin": 8.0,
+        "inference_noise": 1.8
+    },
+    "828": {
+        "gmin": 8.0,
+        "inference_noise": 1.9
+    },
+    "829": {
+        "gmin": 8.0,
+        "inference_noise": 2.0
+    },
+    "830": {
+        "gmin": 8.0,
+        "inference_noise": 2.1
+    },
+    "831": {
+        "gmin": 8.0,
+        "inference_noise": 2.2
+    },
+    "832": {
+        "gmin": 8.0,
+        "inference_noise": 2.3
+    },
+    "833": {
+        "gmin": 8.0,
+        "inference_noise": 2.4
+    },
+    "834": {
+        "gmin": 8.0,
+        "inference_noise": 2.5
+    },
+    "835": {
+        "gmin": 8.0,
+        "inference_noise": 2.6
+    },
+    "836": {
+        "gmin": 8.0,
+        "inference_noise": 2.7
+    },
+    "837": {
+        "gmin": 8.0,
+        "inference_noise": 2.8
+    },
+    "838": {
+        "gmin": 8.0,
+        "inference_noise": 2.9
+    },
+    "839": {
+        "gmin": 8.0,
+        "inference_noise": 3.0
+    },
+    "840": {
+        "gmin": 8.0,
+        "inference_noise": 3.1
+    },
+    "841": {
+        "gmin": 8.0,
+        "inference_noise": 3.2
+    },
+    "842": {
+        "gmin": 8.0,
+        "inference_noise": 3.3
+    },
+    "843": {
+        "gmin": 8.0,
+        "inference_noise": 3.4
+    },
+    "844": {
+        "gmin": 8.0,
+        "inference_noise": 3.5
+    },
+    "845": {
+        "gmin": 8.0,
+        "inference_noise": 3.6
+    },
+    "846": {
+        "gmin": 8.0,
+        "inference_noise": 3.7
+    },
+    "847": {
+        "gmin": 8.0,
+        "inference_noise": 3.8
+    },
+    "848": {
+        "gmin": 8.0,
+        "inference_noise": 3.9
+    },
+    "849": {
+        "gmin": 8.0,
+        "inference_noise": 4.0
+    },
+    "850": {
+        "gmin": 8.0,
+        "inference_noise": 4.1
+    },
+    "851": {
+        "gmin": 8.0,
+        "inference_noise": 4.2
+    },
+    "852": {
+        "gmin": 8.0,
+        "inference_noise": 4.3
+    },
+    "853": {
+        "gmin": 8.0,
+        "inference_noise": 4.4
+    },
+    "854": {
+        "gmin": 8.0,
+        "inference_noise": 4.5
+    },
+    "855": {
+        "gmin": 8.0,
+        "inference_noise": 4.6
+    },
+    "856": {
+        "gmin": 8.0,
+        "inference_noise": 4.7
+    },
+    "857": {
+        "gmin": 8.0,
+        "inference_noise": 4.8
+    },
+    "858": {
+        "gmin": 8.0,
+        "inference_noise": 4.9
+    },
+    "859": {
+        "gmin": 8.0,
+        "inference_noise": 5.0
+    },
+    "860": {
+        "gmin": 8.0,
+        "inference_noise": 5.1
+    },
+    "861": {
+        "gmin": 8.0,
+        "inference_noise": 5.2
+    },
+    "862": {
+        "gmin": 8.0,
+        "inference_noise": 5.3
+    },
+    "863": {
+        "gmin": 8.0,
+        "inference_noise": 5.4
+    },
+    "864": {
+        "gmin": 8.0,
+        "inference_noise": 5.5
+    },
+    "865": {
+        "gmin": 8.0,
+        "inference_noise": 5.6
+    },
+    "866": {
+        "gmin": 8.0,
+        "inference_noise": 5.7
+    },
+    "867": {
+        "gmin": 8.0,
+        "inference_noise": 5.8
+    },
+    "868": {
+        "gmin": 8.0,
+        "inference_noise": 5.9
+    },
+    "869": {
+        "gmin": 8.0,
+        "inference_noise": 6.0
+    },
+    "870": {
+        "gmin": 8.0,
+        "inference_noise": 6.1
+    },
+    "871": {
+        "gmin": 8.0,
+        "inference_noise": 6.2
+    },
+    "872": {
+        "gmin": 8.0,
+        "inference_noise": 6.3
+    },
+    "873": {
+        "gmin": 8.0,
+        "inference_noise": 6.4
+    },
+    "874": {
+        "gmin": 8.0,
+        "inference_noise": 6.5
+    },
+    "875": {
+        "gmin": 8.0,
+        "inference_noise": 6.6
+    },
+    "876": {
+        "gmin": 8.0,
+        "inference_noise": 6.7
+    },
+    "877": {
+        "gmin": 8.0,
+        "inference_noise": 6.8
+    },
+    "878": {
+        "gmin": 8.0,
+        "inference_noise": 6.9
+    },
+    "879": {
+        "gmin": 8.0,
+        "inference_noise": 7.0
+    },
+    "880": {
+        "gmin": 8.0,
+        "inference_noise": 7.1
+    },
+    "881": {
+        "gmin": 8.0,
+        "inference_noise": 7.2
+    },
+    "882": {
+        "gmin": 8.0,
+        "inference_noise": 7.3
+    },
+    "883": {
+        "gmin": 8.0,
+        "inference_noise": 7.4
+    },
+    "884": {
+        "gmin": 8.0,
+        "inference_noise": 7.5
+    },
+    "885": {
+        "gmin": 8.0,
+        "inference_noise": 7.6
+    },
+    "886": {
+        "gmin": 8.0,
+        "inference_noise": 7.7
+    },
+    "887": {
+        "gmin": 8.0,
+        "inference_noise": 7.8
+    },
+    "888": {
+        "gmin": 8.0,
+        "inference_noise": 7.9
+    },
+    "889": {
+        "gmin": 8.0,
+        "inference_noise": 8.0
+    },
+    "890": {
+        "gmin": 8.0,
+        "inference_noise": 8.1
+    },
+    "891": {
+        "gmin": 8.0,
+        "inference_noise": 8.2
+    },
+    "892": {
+        "gmin": 8.0,
+        "inference_noise": 8.3
+    },
+    "893": {
+        "gmin": 8.0,
+        "inference_noise": 8.4
+    },
+    "894": {
+        "gmin": 8.0,
+        "inference_noise": 8.5
+    },
+    "895": {
+        "gmin": 8.0,
+        "inference_noise": 8.6
+    },
+    "896": {
+        "gmin": 8.0,
+        "inference_noise": 8.7
+    },
+    "897": {
+        "gmin": 8.0,
+        "inference_noise": 8.8
+    },
+    "898": {
+        "gmin": 8.0,
+        "inference_noise": 8.9
+    },
+    "899": {
+        "gmin": 8.0,
+        "inference_noise": 9.0
+    },
+    "900": {
+        "gmin": 8.0,
+        "inference_noise": 9.1
+    },
+    "901": {
+        "gmin": 8.0,
+        "inference_noise": 9.2
+    },
+    "902": {
+        "gmin": 8.0,
+        "inference_noise": 9.3
+    },
+    "903": {
+        "gmin": 8.0,
+        "inference_noise": 9.4
+    },
+    "904": {
+        "gmin": 8.0,
+        "inference_noise": 9.5
+    },
+    "905": {
+        "gmin": 8.0,
+        "inference_noise": 9.6
+    },
+    "906": {
+        "gmin": 8.0,
+        "inference_noise": 9.7
+    },
+    "907": {
+        "gmin": 8.0,
+        "inference_noise": 9.8
+    },
+    "908": {
+        "gmin": 8.0,
+        "inference_noise": 9.9
+    },
+    "909": {
+        "gmin": 8.0,
+        "inference_noise": 10.0
+    },
+    "910": {
+        "gmin": 9.0,
+        "inference_noise": 0.0
+    },
+    "911": {
+        "gmin": 9.0,
+        "inference_noise": 0.1
+    },
+    "912": {
+        "gmin": 9.0,
+        "inference_noise": 0.2
+    },
+    "913": {
+        "gmin": 9.0,
+        "inference_noise": 0.3
+    },
+    "914": {
+        "gmin": 9.0,
+        "inference_noise": 0.4
+    },
+    "915": {
+        "gmin": 9.0,
+        "inference_noise": 0.5
+    },
+    "916": {
+        "gmin": 9.0,
+        "inference_noise": 0.6
+    },
+    "917": {
+        "gmin": 9.0,
+        "inference_noise": 0.7
+    },
+    "918": {
+        "gmin": 9.0,
+        "inference_noise": 0.8
+    },
+    "919": {
+        "gmin": 9.0,
+        "inference_noise": 0.9
+    },
+    "920": {
+        "gmin": 9.0,
+        "inference_noise": 1.0
+    },
+    "921": {
+        "gmin": 9.0,
+        "inference_noise": 1.1
+    },
+    "922": {
+        "gmin": 9.0,
+        "inference_noise": 1.2
+    },
+    "923": {
+        "gmin": 9.0,
+        "inference_noise": 1.3
+    },
+    "924": {
+        "gmin": 9.0,
+        "inference_noise": 1.4
+    },
+    "925": {
+        "gmin": 9.0,
+        "inference_noise": 1.5
+    },
+    "926": {
+        "gmin": 9.0,
+        "inference_noise": 1.6
+    },
+    "927": {
+        "gmin": 9.0,
+        "inference_noise": 1.7
+    },
+    "928": {
+        "gmin": 9.0,
+        "inference_noise": 1.8
+    },
+    "929": {
+        "gmin": 9.0,
+        "inference_noise": 1.9
+    },
+    "930": {
+        "gmin": 9.0,
+        "inference_noise": 2.0
+    },
+    "931": {
+        "gmin": 9.0,
+        "inference_noise": 2.1
+    },
+    "932": {
+        "gmin": 9.0,
+        "inference_noise": 2.2
+    },
+    "933": {
+        "gmin": 9.0,
+        "inference_noise": 2.3
+    },
+    "934": {
+        "gmin": 9.0,
+        "inference_noise": 2.4
+    },
+    "935": {
+        "gmin": 9.0,
+        "inference_noise": 2.5
+    },
+    "936": {
+        "gmin": 9.0,
+        "inference_noise": 2.6
+    },
+    "937": {
+        "gmin": 9.0,
+        "inference_noise": 2.7
+    },
+    "938": {
+        "gmin": 9.0,
+        "inference_noise": 2.8
+    },
+    "939": {
+        "gmin": 9.0,
+        "inference_noise": 2.9
+    },
+    "940": {
+        "gmin": 9.0,
+        "inference_noise": 3.0
+    },
+    "941": {
+        "gmin": 9.0,
+        "inference_noise": 3.1
+    },
+    "942": {
+        "gmin": 9.0,
+        "inference_noise": 3.2
+    },
+    "943": {
+        "gmin": 9.0,
+        "inference_noise": 3.3
+    },
+    "944": {
+        "gmin": 9.0,
+        "inference_noise": 3.4
+    },
+    "945": {
+        "gmin": 9.0,
+        "inference_noise": 3.5
+    },
+    "946": {
+        "gmin": 9.0,
+        "inference_noise": 3.6
+    },
+    "947": {
+        "gmin": 9.0,
+        "inference_noise": 3.7
+    },
+    "948": {
+        "gmin": 9.0,
+        "inference_noise": 3.8
+    },
+    "949": {
+        "gmin": 9.0,
+        "inference_noise": 3.9
+    },
+    "950": {
+        "gmin": 9.0,
+        "inference_noise": 4.0
+    },
+    "951": {
+        "gmin": 9.0,
+        "inference_noise": 4.1
+    },
+    "952": {
+        "gmin": 9.0,
+        "inference_noise": 4.2
+    },
+    "953": {
+        "gmin": 9.0,
+        "inference_noise": 4.3
+    },
+    "954": {
+        "gmin": 9.0,
+        "inference_noise": 4.4
+    },
+    "955": {
+        "gmin": 9.0,
+        "inference_noise": 4.5
+    },
+    "956": {
+        "gmin": 9.0,
+        "inference_noise": 4.6
+    },
+    "957": {
+        "gmin": 9.0,
+        "inference_noise": 4.7
+    },
+    "958": {
+        "gmin": 9.0,
+        "inference_noise": 4.8
+    },
+    "959": {
+        "gmin": 9.0,
+        "inference_noise": 4.9
+    },
+    "960": {
+        "gmin": 9.0,
+        "inference_noise": 5.0
+    },
+    "961": {
+        "gmin": 9.0,
+        "inference_noise": 5.1
+    },
+    "962": {
+        "gmin": 9.0,
+        "inference_noise": 5.2
+    },
+    "963": {
+        "gmin": 9.0,
+        "inference_noise": 5.3
+    },
+    "964": {
+        "gmin": 9.0,
+        "inference_noise": 5.4
+    },
+    "965": {
+        "gmin": 9.0,
+        "inference_noise": 5.5
+    },
+    "966": {
+        "gmin": 9.0,
+        "inference_noise": 5.6
+    },
+    "967": {
+        "gmin": 9.0,
+        "inference_noise": 5.7
+    },
+    "968": {
+        "gmin": 9.0,
+        "inference_noise": 5.8
+    },
+    "969": {
+        "gmin": 9.0,
+        "inference_noise": 5.9
+    },
+    "970": {
+        "gmin": 9.0,
+        "inference_noise": 6.0
+    },
+    "971": {
+        "gmin": 9.0,
+        "inference_noise": 6.1
+    },
+    "972": {
+        "gmin": 9.0,
+        "inference_noise": 6.2
+    },
+    "973": {
+        "gmin": 9.0,
+        "inference_noise": 6.3
+    },
+    "974": {
+        "gmin": 9.0,
+        "inference_noise": 6.4
+    },
+    "975": {
+        "gmin": 9.0,
+        "inference_noise": 6.5
+    },
+    "976": {
+        "gmin": 9.0,
+        "inference_noise": 6.6
+    },
+    "977": {
+        "gmin": 9.0,
+        "inference_noise": 6.7
+    },
+    "978": {
+        "gmin": 9.0,
+        "inference_noise": 6.8
+    },
+    "979": {
+        "gmin": 9.0,
+        "inference_noise": 6.9
+    },
+    "980": {
+        "gmin": 9.0,
+        "inference_noise": 7.0
+    },
+    "981": {
+        "gmin": 9.0,
+        "inference_noise": 7.1
+    },
+    "982": {
+        "gmin": 9.0,
+        "inference_noise": 7.2
+    },
+    "983": {
+        "gmin": 9.0,
+        "inference_noise": 7.3
+    },
+    "984": {
+        "gmin": 9.0,
+        "inference_noise": 7.4
+    },
+    "985": {
+        "gmin": 9.0,
+        "inference_noise": 7.5
+    },
+    "986": {
+        "gmin": 9.0,
+        "inference_noise": 7.6
+    },
+    "987": {
+        "gmin": 9.0,
+        "inference_noise": 7.7
+    },
+    "988": {
+        "gmin": 9.0,
+        "inference_noise": 7.8
+    },
+    "989": {
+        "gmin": 9.0,
+        "inference_noise": 7.9
+    },
+    "990": {
+        "gmin": 9.0,
+        "inference_noise": 8.0
+    },
+    "991": {
+        "gmin": 9.0,
+        "inference_noise": 8.1
+    },
+    "992": {
+        "gmin": 9.0,
+        "inference_noise": 8.2
+    },
+    "993": {
+        "gmin": 9.0,
+        "inference_noise": 8.3
+    },
+    "994": {
+        "gmin": 9.0,
+        "inference_noise": 8.4
+    },
+    "995": {
+        "gmin": 9.0,
+        "inference_noise": 8.5
+    },
+    "996": {
+        "gmin": 9.0,
+        "inference_noise": 8.6
+    },
+    "997": {
+        "gmin": 9.0,
+        "inference_noise": 8.7
+    },
+    "998": {
+        "gmin": 9.0,
+        "inference_noise": 8.8
+    },
+    "999": {
+        "gmin": 9.0,
+        "inference_noise": 8.9
+    },
+    "1000": {
+        "gmin": 9.0,
+        "inference_noise": 9.0
+    },
+    "1001": {
+        "gmin": 9.0,
+        "inference_noise": 9.1
+    },
+    "1002": {
+        "gmin": 9.0,
+        "inference_noise": 9.2
+    },
+    "1003": {
+        "gmin": 9.0,
+        "inference_noise": 9.3
+    },
+    "1004": {
+        "gmin": 9.0,
+        "inference_noise": 9.4
+    },
+    "1005": {
+        "gmin": 9.0,
+        "inference_noise": 9.5
+    },
+    "1006": {
+        "gmin": 9.0,
+        "inference_noise": 9.6
+    },
+    "1007": {
+        "gmin": 9.0,
+        "inference_noise": 9.7
+    },
+    "1008": {
+        "gmin": 9.0,
+        "inference_noise": 9.8
+    },
+    "1009": {
+        "gmin": 9.0,
+        "inference_noise": 9.9
+    },
+    "1010": {
+        "gmin": 9.0,
+        "inference_noise": 10.0
+    },
+    "1011": {
+        "gmin": 10.0,
+        "inference_noise": 0.0
+    },
+    "1012": {
+        "gmin": 10.0,
+        "inference_noise": 0.1
+    },
+    "1013": {
+        "gmin": 10.0,
+        "inference_noise": 0.2
+    },
+    "1014": {
+        "gmin": 10.0,
+        "inference_noise": 0.3
+    },
+    "1015": {
+        "gmin": 10.0,
+        "inference_noise": 0.4
+    },
+    "1016": {
+        "gmin": 10.0,
+        "inference_noise": 0.5
+    },
+    "1017": {
+        "gmin": 10.0,
+        "inference_noise": 0.6
+    },
+    "1018": {
+        "gmin": 10.0,
+        "inference_noise": 0.7
+    },
+    "1019": {
+        "gmin": 10.0,
+        "inference_noise": 0.8
+    },
+    "1020": {
+        "gmin": 10.0,
+        "inference_noise": 0.9
+    },
+    "1021": {
+        "gmin": 10.0,
+        "inference_noise": 1.0
+    },
+    "1022": {
+        "gmin": 10.0,
+        "inference_noise": 1.1
+    },
+    "1023": {
+        "gmin": 10.0,
+        "inference_noise": 1.2
+    },
+    "1024": {
+        "gmin": 10.0,
+        "inference_noise": 1.3
+    },
+    "1025": {
+        "gmin": 10.0,
+        "inference_noise": 1.4
+    },
+    "1026": {
+        "gmin": 10.0,
+        "inference_noise": 1.5
+    },
+    "1027": {
+        "gmin": 10.0,
+        "inference_noise": 1.6
+    },
+    "1028": {
+        "gmin": 10.0,
+        "inference_noise": 1.7
+    },
+    "1029": {
+        "gmin": 10.0,
+        "inference_noise": 1.8
+    },
+    "1030": {
+        "gmin": 10.0,
+        "inference_noise": 1.9
+    },
+    "1031": {
+        "gmin": 10.0,
+        "inference_noise": 2.0
+    },
+    "1032": {
+        "gmin": 10.0,
+        "inference_noise": 2.1
+    },
+    "1033": {
+        "gmin": 10.0,
+        "inference_noise": 2.2
+    },
+    "1034": {
+        "gmin": 10.0,
+        "inference_noise": 2.3
+    },
+    "1035": {
+        "gmin": 10.0,
+        "inference_noise": 2.4
+    },
+    "1036": {
+        "gmin": 10.0,
+        "inference_noise": 2.5
+    },
+    "1037": {
+        "gmin": 10.0,
+        "inference_noise": 2.6
+    },
+    "1038": {
+        "gmin": 10.0,
+        "inference_noise": 2.7
+    },
+    "1039": {
+        "gmin": 10.0,
+        "inference_noise": 2.8
+    },
+    "1040": {
+        "gmin": 10.0,
+        "inference_noise": 2.9
+    },
+    "1041": {
+        "gmin": 10.0,
+        "inference_noise": 3.0
+    },
+    "1042": {
+        "gmin": 10.0,
+        "inference_noise": 3.1
+    },
+    "1043": {
+        "gmin": 10.0,
+        "inference_noise": 3.2
+    },
+    "1044": {
+        "gmin": 10.0,
+        "inference_noise": 3.3
+    },
+    "1045": {
+        "gmin": 10.0,
+        "inference_noise": 3.4
+    },
+    "1046": {
+        "gmin": 10.0,
+        "inference_noise": 3.5
+    },
+    "1047": {
+        "gmin": 10.0,
+        "inference_noise": 3.6
+    },
+    "1048": {
+        "gmin": 10.0,
+        "inference_noise": 3.7
+    },
+    "1049": {
+        "gmin": 10.0,
+        "inference_noise": 3.8
+    },
+    "1050": {
+        "gmin": 10.0,
+        "inference_noise": 3.9
+    },
+    "1051": {
+        "gmin": 10.0,
+        "inference_noise": 4.0
+    },
+    "1052": {
+        "gmin": 10.0,
+        "inference_noise": 4.1
+    },
+    "1053": {
+        "gmin": 10.0,
+        "inference_noise": 4.2
+    },
+    "1054": {
+        "gmin": 10.0,
+        "inference_noise": 4.3
+    },
+    "1055": {
+        "gmin": 10.0,
+        "inference_noise": 4.4
+    },
+    "1056": {
+        "gmin": 10.0,
+        "inference_noise": 4.5
+    },
+    "1057": {
+        "gmin": 10.0,
+        "inference_noise": 4.6
+    },
+    "1058": {
+        "gmin": 10.0,
+        "inference_noise": 4.7
+    },
+    "1059": {
+        "gmin": 10.0,
+        "inference_noise": 4.8
+    },
+    "1060": {
+        "gmin": 10.0,
+        "inference_noise": 4.9
+    },
+    "1061": {
+        "gmin": 10.0,
+        "inference_noise": 5.0
+    },
+    "1062": {
+        "gmin": 10.0,
+        "inference_noise": 5.1
+    },
+    "1063": {
+        "gmin": 10.0,
+        "inference_noise": 5.2
+    },
+    "1064": {
+        "gmin": 10.0,
+        "inference_noise": 5.3
+    },
+    "1065": {
+        "gmin": 10.0,
+        "inference_noise": 5.4
+    },
+    "1066": {
+        "gmin": 10.0,
+        "inference_noise": 5.5
+    },
+    "1067": {
+        "gmin": 10.0,
+        "inference_noise": 5.6
+    },
+    "1068": {
+        "gmin": 10.0,
+        "inference_noise": 5.7
+    },
+    "1069": {
+        "gmin": 10.0,
+        "inference_noise": 5.8
+    },
+    "1070": {
+        "gmin": 10.0,
+        "inference_noise": 5.9
+    },
+    "1071": {
+        "gmin": 10.0,
+        "inference_noise": 6.0
+    },
+    "1072": {
+        "gmin": 10.0,
+        "inference_noise": 6.1
+    },
+    "1073": {
+        "gmin": 10.0,
+        "inference_noise": 6.2
+    },
+    "1074": {
+        "gmin": 10.0,
+        "inference_noise": 6.3
+    },
+    "1075": {
+        "gmin": 10.0,
+        "inference_noise": 6.4
+    },
+    "1076": {
+        "gmin": 10.0,
+        "inference_noise": 6.5
+    },
+    "1077": {
+        "gmin": 10.0,
+        "inference_noise": 6.6
+    },
+    "1078": {
+        "gmin": 10.0,
+        "inference_noise": 6.7
+    },
+    "1079": {
+        "gmin": 10.0,
+        "inference_noise": 6.8
+    },
+    "1080": {
+        "gmin": 10.0,
+        "inference_noise": 6.9
+    },
+    "1081": {
+        "gmin": 10.0,
+        "inference_noise": 7.0
+    },
+    "1082": {
+        "gmin": 10.0,
+        "inference_noise": 7.1
+    },
+    "1083": {
+        "gmin": 10.0,
+        "inference_noise": 7.2
+    },
+    "1084": {
+        "gmin": 10.0,
+        "inference_noise": 7.3
+    },
+    "1085": {
+        "gmin": 10.0,
+        "inference_noise": 7.4
+    },
+    "1086": {
+        "gmin": 10.0,
+        "inference_noise": 7.5
+    },
+    "1087": {
+        "gmin": 10.0,
+        "inference_noise": 7.6
+    },
+    "1088": {
+        "gmin": 10.0,
+        "inference_noise": 7.7
+    },
+    "1089": {
+        "gmin": 10.0,
+        "inference_noise": 7.8
+    },
+    "1090": {
+        "gmin": 10.0,
+        "inference_noise": 7.9
+    },
+    "1091": {
+        "gmin": 10.0,
+        "inference_noise": 8.0
+    },
+    "1092": {
+        "gmin": 10.0,
+        "inference_noise": 8.1
+    },
+    "1093": {
+        "gmin": 10.0,
+        "inference_noise": 8.2
+    },
+    "1094": {
+        "gmin": 10.0,
+        "inference_noise": 8.3
+    },
+    "1095": {
+        "gmin": 10.0,
+        "inference_noise": 8.4
+    },
+    "1096": {
+        "gmin": 10.0,
+        "inference_noise": 8.5
+    },
+    "1097": {
+        "gmin": 10.0,
+        "inference_noise": 8.6
+    },
+    "1098": {
+        "gmin": 10.0,
+        "inference_noise": 8.7
+    },
+    "1099": {
+        "gmin": 10.0,
+        "inference_noise": 8.8
+    },
+    "1100": {
+        "gmin": 10.0,
+        "inference_noise": 8.9
+    },
+    "1101": {
+        "gmin": 10.0,
+        "inference_noise": 9.0
+    },
+    "1102": {
+        "gmin": 10.0,
+        "inference_noise": 9.1
+    },
+    "1103": {
+        "gmin": 10.0,
+        "inference_noise": 9.2
+    },
+    "1104": {
+        "gmin": 10.0,
+        "inference_noise": 9.3
+    },
+    "1105": {
+        "gmin": 10.0,
+        "inference_noise": 9.4
+    },
+    "1106": {
+        "gmin": 10.0,
+        "inference_noise": 9.5
+    },
+    "1107": {
+        "gmin": 10.0,
+        "inference_noise": 9.6
+    },
+    "1108": {
+        "gmin": 10.0,
+        "inference_noise": 9.7
+    },
+    "1109": {
+        "gmin": 10.0,
+        "inference_noise": 9.8
+    },
+    "1110": {
+        "gmin": 10.0,
+        "inference_noise": 9.9
+    },
+    "1111": {
+        "gmin": 10.0,
+        "inference_noise": 10.0
     }
 }

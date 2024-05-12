@@ -52,17 +52,14 @@ def parse_args():
     global use_compensation
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
-    parser.add_argument('--task_type', type=str, help='Task Type from SLURM array job')
     parser.add_argument('--model_type', type=str, help='Model Type (HWA or FP)')
-    parser.add_argument('--drift_compensate', type=str, help='Use Drift Compensation or not')
     args = parser.parse_args()
     task_id = args.task_id
-    task_type = args.task_type
     model_type = args.model_type
     if(args.drift_compensate == '1'):
         use_compensation = True
     param_file = None
-    param_file = './param/parameter.json'
+    param_file = './param/parameter_inference_noise.json'
     with open(param_file, 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
@@ -108,11 +105,10 @@ def set_param():
     # Default = 25
     args.gmax = 25.0
 
-    args.gmax = param['gmax']
+
     args.inference_progm_noise = param['inference_noise']
     args.inference_read_noise = param['inference_noise']
-    args.drift = param['drift']
-
+    args.gmin = param['gmin']
 
     print(f"Drift: {args.drift}")
     print(f"Inference Program Noise: {args.inference_progm_noise}")
@@ -203,30 +199,33 @@ def new_forward(self, encoded_input, hidden):
     return torch.nn.functional.log_softmax(decoded, dim=1), hidden
 
 analog_model = None
-h5_file = None
+group_name = None
 encoder = None
 if(model_type == 'FP'):
     model_save_path = './model/lstm_fp.pt'
     pre_model = torch.load(model_save_path).to(DEVICE)
     pre_model.rnn.flatten_parameters()
+    del pre_model.encoder
+    pre_model.forward = types.MethodType(new_forward, pre_model)
     analog_model = convert_to_analog(pre_model, gen_rpu_config())
     analog_model.rnn.flatten_parameters()
-    h5_file = f'./result/lstm_inf_scan_fp.h5'
+    encoder =torch.load('./model/encoder.pt').to(DEVICE)
+    group_name = f'FP'
 elif(model_type == 'HWA'):
     model_save_path = './model/lstm_fp.pt'
-    pre_model = torch.load(model_save_path).to(DEVICE)
+    pre_model = torch.load(model_save_path)
     pre_model.rnn.flatten_parameters()
     del pre_model.encoder
     pre_model.forward = types.MethodType(new_forward, pre_model)
 
     analog_model = convert_to_analog(pre_model, gen_rpu_config())
     analog_model.load_state_dict(
-            torch.load('./model/lstm_hwa_3.4.th', map_location=DEVICE),
+            torch.load('./model/lstm_hwa_3.4.th', map_location = DEVICE),
             load_rpu_config=False
         )
     analog_model.rnn.flatten_parameters()
     encoder =torch.load('./model/encoder.pt').to(DEVICE)
-    h5_file = f'./result/lstm_inf_scan_hwa.h5'
+    group_name = f'HWA'
 else:
     print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
@@ -247,16 +246,19 @@ def evaluate(data_source, encoder, model_type):
                 output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
-                if(model_type == 'HWA'):
-                    data = encoder(data)
+                data = encoder(data)
                 output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
 print()
-
 if analog_model != None:
-    group_name = f"noDC" if not use_compensation else f"DC"
+    ###############################################################################
+    # Specify time
+    ###############################################################################
+    h5_file = f'./result/lstm_inf_gmin_noise_day.h5'
+    time = 86400.0
+
     args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
-    utils.inference_noise_model(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder)
+    utils.inference_time(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)
