@@ -58,8 +58,7 @@ def parse_args():
     model_type = args.model_type
     if(args.drift_compensate == '1'):
         use_compensation = True
-    param_file = None
-    param_file = './param/parameter_inference_noise.json'
+    param_file = './param/parameter.json'
     with open(param_file, 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
