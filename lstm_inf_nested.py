@@ -56,8 +56,8 @@ def parse_args():
     args = parser.parse_args()
     task_id = args.task_id
     model_type = args.model_type
-    if(args.drift_compensate == '1'):
-        use_compensation = True
+    """if(args.drift_compensate == '1'):
+        use_compensation = True"""
     param_file = './param/parameter.json'
     with open(param_file, 'r') as f:
         params = json.load(f)
@@ -180,9 +180,9 @@ def gen_rpu_config():
         drift_scale = args.drift,
         g_converter=SinglePairConductanceConverter(g_min=args.gmin, g_max=args.gmax)
         )
-    if(use_compensation):
+    """if(use_compensation):
         print("Use Global Drift Compensation")
-        rpu_config.drift_compensation = GlobalDriftCompensation()
+        rpu_config.drift_compensation = GlobalDriftCompensation()"""
     return rpu_config
 
 

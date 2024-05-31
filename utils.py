@@ -189,7 +189,7 @@ def inference_time(analog_model, evaluate, test_data, args, file_name, group_nam
         ('loss', np.float32), 
         ('ppl', np.float32)
     ])
-    inference_data = np.empty(len(1), dtype=dtype)
+    inference_data = np.empty(1, dtype=dtype)
     analog_model.eval()
     #t_inference in second
     try:
@@ -197,7 +197,7 @@ def inference_time(analog_model, evaluate, test_data, args, file_name, group_nam
         inference_loss = evaluate(test_data,encoder, model_type)
         print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
         t_inference,inference_loss, math.exp(inference_loss)))
-        inference_data[i] = (
+        inference_data[0] = (
             args.inference_progm_noise, 
             args.inference_read_noise, 
             args.drift,
