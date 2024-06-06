@@ -256,8 +256,11 @@ if analog_model != None:
     ###############################################################################
     # Specify time
     ###############################################################################
-    h5_file = f'./result/lstm_inf_gmin_noise_day.h5'
-    time = 86400.0
+    h5_file = f'./result/lstm_inf_gmin_noise_week.h5'
+    #day
+    #time = 86400.0
+    #week
+    time = 604800.0
 
     args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
     utils.inference_time(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)

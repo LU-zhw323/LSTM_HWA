@@ -7,7 +7,7 @@
 #SBATCH -t 2880
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhw323@lehigh.edu
-#SBATCH --array=701-1000
+#SBATCH --array=1-400
 #SBATCH --output=./output/std_log/myjob-%A-%a.out
 
 # UASGE: sbatch inf.sh
