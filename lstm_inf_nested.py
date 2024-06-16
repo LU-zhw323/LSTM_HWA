@@ -58,7 +58,12 @@ def parse_args():
     model_type = args.model_type
     """if(args.drift_compensate == '1'):
         use_compensation = True"""
-    param_file = './param/parameter.json'
+    #Read Normal
+    #param_file = './param/parameter.json'
+    #Read Over 1000
+    param_file = './param/parameter_continue.json'
+    task_id += 1000
+
     with open(param_file, 'r') as f:
         params = json.load(f)
     param = params[str(task_id)]
@@ -256,7 +261,7 @@ if analog_model != None:
     ###############################################################################
     # Specify time
     ###############################################################################
-    h5_file = f'./result/lstm_inf_gmin_noise_year.h5'
+    h5_file = f'./result/lstm_inf_gmin_noise_month.h5'
     #day
     #time = 86400.0
     #week
@@ -264,9 +269,9 @@ if analog_model != None:
     #month
     time = 2678400.0
     #three month
-    time = time * 3.0
+    #time = time * 3.0
     #year
-    time = time * 4.0
+    #time = time * 4.0
 
     args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
     utils.inference_time(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)

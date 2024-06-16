@@ -3,11 +3,11 @@
 
 #SBATCH -c 6
 #SBATCH -p hawkgpu
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:2
 #SBATCH -t 2880
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhw323@lehigh.edu
-#SBATCH --array=501-1000
+#SBATCH --array=1-111
 #SBATCH --output=./output/std_log/myjob-%A-%a.out
 
 # UASGE: sbatch inf.sh
@@ -31,6 +31,4 @@ export PATH="/share/ceph/hawk/nil422_proj/shared/shared-aihwkitgpu/conda-env-aih
 python lstm_inf_nested.py --task_id ${SLURM_ARRAY_TASK_ID} --model_type ${MODEL_TYPE}
 STATUS=$?
 
-if [ $STATUS -eq 0 ]; then
-    rm "./output/std_log/myjob-${ADJUSTED_JOB_ID}-${SLURM_ARRAY_TASK_ID}.out"
-fi
+
