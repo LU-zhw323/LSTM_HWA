@@ -59,10 +59,10 @@ def parse_args():
     """if(args.drift_compensate == '1'):
         use_compensation = True"""
     #Read Normal
-    #param_file = './param/parameter.json'
+    param_file = './param/parameter.json'
     #Read Over 1000
-    param_file = './param/parameter_continue.json'
-    task_id += 1000
+    #param_file = './param/parameter_continue.json'
+    #task_id += 1000
 
     with open(param_file, 'r') as f:
         params = json.load(f)
@@ -261,13 +261,13 @@ if analog_model != None:
     ###############################################################################
     # Specify time
     ###############################################################################
-    h5_file = f'./result/lstm_inf_gmin_noise_month.h5'
+    h5_file = f'./result/lstm_inf_gmin_noise_day.h5'
     #day
-    #time = 86400.0
+    time = 86400.0
     #week
     #time = 604800.0
     #month
-    time = 2678400.0
+    #time = 2678400.0
     #three month
     #time = time * 3.0
     #year
