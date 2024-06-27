@@ -261,11 +261,11 @@ if analog_model != None:
     ###############################################################################
     # Specify time
     ###############################################################################
-    h5_file = f'./result/lstm_inf_gmin_noise_day.h5'
+    h5_file = f'./result/lstm_inf_gmin_noise_week.h5'
     #day
-    time = 86400.0
+    #time = 86400.0
     #week
-    #time = 604800.0
+    time = 604800.0
     #month
     #time = 2678400.0
     #three month
