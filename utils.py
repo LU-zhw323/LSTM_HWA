@@ -295,10 +295,10 @@ def inference_time_avg(analog_model, evaluate, test_data, args, file_name, group
                     task_group = f.create_group(group_name)
                 else:
                     task_group = f[group_name]
-                print(task_group)
                 if str(args.task_param) in task_group:
                     del task_group[str(args.task_param)]
                 task_group.create_dataset(str(args.task_param), data=inference_data)
+                print(task_group)
                 print('=' * 89)
                 print()
                 break

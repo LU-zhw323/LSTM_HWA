@@ -47,23 +47,27 @@ import csv
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model_type = None
 use_compensation = False
+date_type = None
 def parse_args():
     global model_type
     global use_compensation
+    global date_type
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
     parser.add_argument('--model_type', type=str, help='Model Type (HWA or FP)')
+    parser.add_argument('--date_type', type=str, help='Date Type')
     args = parser.parse_args()
     task_id = args.task_id
     model_type = args.model_type
-    """if(args.drift_compensate == '1'):
-        use_compensation = True"""
+    date_type = args.date_type
+    
     #Read Normal
-    param_file = './param/parameter_day.json'
+    param_file = f'./param/parameter_{date_type}.json'
     #Read Over 1000
     #param_file = './param/parameter_continue.json'
     #task_id += 1000
-
+    print(f"Task: {task_id}")
+    print(f"JSON: {param_file}")
     with open(param_file, 'r') as f:
         params = json.load(f)
     param = params["entry_" + str(task_id)]
@@ -158,7 +162,7 @@ test_data = batchify(corpus.test, eval_batch_size)
 ntokens = len(corpus.dictionary)
 
 def repackage_hidden(h):
-    """Wraps hidden states in new Tensors, to detach them from their history."""
+    
 
     if isinstance(h, torch.Tensor):
         return h.detach()
@@ -185,9 +189,7 @@ def gen_rpu_config():
         drift_scale = args.drift,
         g_converter=SinglePairConductanceConverter(g_min=args.gmin, g_max=args.gmax)
         )
-    """if(use_compensation):
-        print("Use Global Drift Compensation")
-        rpu_config.drift_compensation = GlobalDriftCompensation()"""
+    
     return rpu_config
 
 
@@ -261,17 +263,22 @@ if analog_model != None:
     ###############################################################################
     # Specify time
     ###############################################################################
-    h5_file = f'./result/lstm_inf_gmin_noise_day_avg.h5'
-    #day
-    time = 86400.0
-    #week
-    #time = 604800.0
-    #month
-    #time = 2678400.0
-    #three month
-    #time = time * 3.0
-    #year
-    #time = time * 4.0
-
-    args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
-    utils.inference_time_avg(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)
+    h5_file = f'./result/avg/lstm_inf_gmin_noise_{date_type}_avg.h5'
+    print(f"H5: {h5_file}")
+    time = 0.0
+    if(date_type == 'day'):
+        time = 86400.0
+    elif(date_type == 'week'):
+        time = 604800.0
+    elif(date_type == 'month'):
+        time = 2678400.0
+    elif(date_type == 'quarter'):
+        time = 2678400.0 * 3.0
+    elif(date_type == 'year'):
+        time = 2678400.0 * 12.0
+    else:
+        print("Not a valid date")
+    print(f"Time: {time}")
+    if time != 0.0:
+        args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
+        utils.inference_time_avg(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)
