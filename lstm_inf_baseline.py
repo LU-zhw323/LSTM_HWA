@@ -1,3 +1,5 @@
+import utils
+import model
 import json
 from math import log10
 import math
@@ -9,6 +11,7 @@ from aihwkit.inference.noise.pcm import PCMLikeNoiseModel
 from aihwkit.nn.conversion import convert_to_analog
 from aihwkit.simulator.parameters.enums import BoundManagementType, NoiseManagementType, WeightClipType, WeightModifierType, WeightNoiseType, WeightRemapType
 from numpy.core.function_base import logspace
+from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 import torch
 from typing import Tuple
 from torch import tensor, device, FloatTensor, Tensor, transpose, save, load
@@ -21,6 +24,7 @@ from torch.nn.functional import one_hot
 import types
 import numpy as np
 import h5py
+from mpi4py import MPI
 from aihwkit.nn import AnalogSequential, AnalogRNN, AnalogLinear, AnalogLSTMCellCombinedWeight
 from aihwkit.optim import AnalogSGD
 from aihwkit.simulator.configs import (
@@ -36,19 +40,11 @@ from aihwkit.simulator.configs import (
 )
 from aihwkit.simulator.rpu_base import cuda
 
-from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 import data
 import csv
-import utils
-###############################################################################
-# Prepare file
-###############################################################################
 
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-initial_lr = 0
-
-
 class Params:
     def __init__(self):
         pass
@@ -65,8 +61,6 @@ def set_param():
     # Then you need to replace args.lr as args.lr = params['lr']
     args = Params()
     args.lr = 0.01
-    global initial_lr
-    initial_lr = args.lr
     print(f"Learning Rate: {args.lr}")
 
     args.dropout = 0.5
@@ -93,6 +87,24 @@ def set_param():
     args.epochs = 60
     print(f"Epochs: {args.epochs}")
 
+    args.drift = 0.0
+    
+
+    args.inference_progm_noise = 0.0
+
+
+
+    # Long term Read fluctuations (short term read noise in IO Parameter)
+    args.inference_read_noise = 0.0
+
+
+    # Default = 0
+    args.gmin = 0.0
+
+
+    # Default = 25
+    args.gmax = 25.0
+
     args.model = 'LSTM'
     args.data = './data/ptb'
     args.emsize = 650
@@ -106,6 +118,7 @@ def set_param():
     print('=' * 89)
     print()
     return args
+
 
 ###############################################################################
 # Set Parameter
@@ -122,10 +135,6 @@ def batchify(data, bsz):
     data = data.view(bsz, -1).t().contiguous()
     return data.to(DEVICE)
 
-
-###############################################################################
-# Load Data
-###############################################################################
 corpus = data.Corpus(args.data)
 eval_batch_size = 20
 train_data = batchify(corpus.train, args.batch_size)
@@ -164,13 +173,6 @@ def gen_rpu_config(args):
     return rpu_config
 
 
-def create_sgd_optimizer(model):
-    
-    optimizer = AnalogSGD(model.parameters(), lr=args.lr, momentum=args.mom, weight_decay=args.w_decay)
-    optimizer.regroup_param_groups(model)
-
-    return optimizer
-
 ###############################################################################
 # Build the model
 ###############################################################################
@@ -182,149 +184,77 @@ def new_forward(self, encoded_input, hidden):
     decoded = decoded.view(-1, self.ntoken)
     return torch.nn.functional.log_softmax(decoded, dim=1), hidden
 
-model_save_path = './model/lstm_fp.pt'
-pre_model = torch.load(model_save_path).to(DEVICE)
-pre_model.rnn.flatten_parameters()
+analog_model = None
+group_name = None
+encoder = None
+model_type = 'HWA'
+if(model_type == 'FP'):
+    model_save_path = './model/lstm_fp.pt'
+    pre_model = torch.load(model_save_path).to(DEVICE)
+    pre_model.rnn.flatten_parameters()
+    del pre_model.encoder
+    pre_model.forward = types.MethodType(new_forward, pre_model)
+    analog_model = convert_to_analog(pre_model, gen_rpu_config())
+    analog_model.rnn.flatten_parameters()
+    encoder =torch.load('./model/encoder.pt').to(DEVICE)
+    group_name = f'FP'
+elif(model_type == 'HWA'):
+    model_save_path = './model/lstm_fp.pt'
+    pre_model = torch.load(model_save_path)
+    pre_model.rnn.flatten_parameters()
+    del pre_model.encoder
+    pre_model.forward = types.MethodType(new_forward, pre_model)
 
-###Detach Encoder
-encoder = pre_model.encoder
-del pre_model.encoder
-pre_model.forward = types.MethodType(new_forward, pre_model)
-
-rpu = gen_rpu_config(args)
-model = convert_to_analog(pre_model, rpu)
-model.rnn.flatten_parameters()
-optimizer = create_sgd_optimizer(model)
+    analog_model = convert_to_analog(pre_model, gen_rpu_config(args))
+    analog_model.load_state_dict(
+            torch.load('./model/lstm_hwa_3.4.th', map_location = DEVICE),
+            load_rpu_config=True
+        )
+    analog_model.rnn.flatten_parameters()
+    encoder =torch.load('./model/encoder.pt').to(DEVICE)
+    group_name = f'HWA'
+else:
+    print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
 #Therefore, using NLLLoss here is equivalent to CrossEntropyLoss
 criterion = nn.NLLLoss()
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=args.lr_decay, patience=0, verbose=False)
 
-
-def evaluate(data_source):
+def evaluate(data_source, encoder, model_type):
     # Turn on evaluation mode which disables dropout.
-    model.eval()
+    analog_model.eval()
     total_loss = 0.
     ntokens = len(corpus.dictionary)
     if args.model != 'Transformer':
-        hidden = model.init_hidden(eval_batch_size)
+        hidden = analog_model.init_hidden(eval_batch_size)
     with torch.no_grad():
         for i in range(0, data_source.size(0) - 1, args.seq_len):
             data, targets = get_batch(data_source, i)
             if args.model == 'Transformer':
-                output = model(data)
+                output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
-                hidden = repackage_hidden(hidden)
                 data = encoder(data)
-                output, hidden = model(data, hidden)
+                output, hidden = analog_model(data, hidden)
+                hidden = repackage_hidden(hidden)
             total_loss += len(data) * criterion(output, targets).item()
     return total_loss / (len(data_source) - 1)
 
-
-def train():
-    # Turn on training mode which enables dropout.
-    model.train()
-    total_loss = 0.
-    start_time = time.time()
-    ntokens = len(corpus.dictionary)
-    if args.model != 'Transformer':
-        hidden = model.init_hidden(args.batch_size)
-    for batch, i in enumerate(range(0, train_data.size(0) - 1, args.seq_len)): 
-        data, targets = get_batch(train_data, i)
-        # Starting each batch, we detach the hidden state from how it was previously produced.
-        # If we didn't, the model would try backpropagating all the way to start of the dataset.
-        optimizer.zero_grad()
-        if args.model == 'Transformer':
-            output = model(data)
-            output = output.view(-1, ntokens)
-        else:
-            hidden = repackage_hidden(hidden)
-            data = encoder(data)
-            output, hidden = model(data, hidden)
-        loss = criterion(output, targets)
-        loss.backward()
-        
-        # `clip_grad_norm` helps prevent the exploding gradient problem in RNNs / LSTMs.
-        torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)
-        optimizer.step()
-
-        total_loss += loss.item()
-        
-        if batch % args.log_interval == 0 and batch > 0:
-            cur_loss = total_loss / args.log_interval
-            elapsed = time.time() - start_time
-            print('| epoch {:3d} | {:5d}/{:5d} batches | lr {:.2g} | ms/batch {:5.2f} | '
-                    'loss {:5.2f} | ppl {:8.2f}'.format(
-                epoch, batch, len(train_data) // args.seq_len, optimizer.param_groups[0]['lr'],
-                elapsed * 1000 / args.log_interval, cur_loss, math.exp(cur_loss)))
-            total_loss = 0
-            start_time = time.time()
-
-    
-# Loop over epochs.
-#lr = args.lr
-best_val_loss = None
-
 print()
-print('=' * 89)
-print("Training")
-print('-' * 89)
-# At any point you can hit Ctrl + C to break out of training early.
-try:
-    for epoch in range(1, args.epochs+1):
-        epoch_start_time = time.time()
-        train()
-        val_loss = evaluate(val_data)
-        scheduler.step(val_loss)
-        print('-' * 89)
-        print('| end of epoch {:3d} | time: {:5.2f}s | valid loss {:5.2f} | '
-                'valid ppl {:8.2f}'.format(epoch, (time.time() - epoch_start_time),
-                                           val_loss, math.exp(val_loss)))
-        print('-' * 89)
-        
-        
-except KeyboardInterrupt:
-    print('-' * 89)
-    print('Exiting from training early')
 
-# Run on test data.
-test_loss = evaluate(test_data)
-print('=' * 89)
-print('| End of training | test loss {:5.2f} | test ppl {:8.2f}'.format(
-    test_loss, math.exp(test_loss)))
+###############################################################################
+# Specify time
+###############################################################################
+h5_file = f'./result/lstm_inf_baseline.h5'
+#day
+#time = 86400.0
+#week
+time = 0.0
+#month
+#time = 2678400.0
+#three month
+#time = time * 3.0
+#year
+#time = time * 4.0
 
-print('=' * 89)
-torch.save(model.state_dict(), "./hwa.th")
-torch.save(encoder, './encoder.pt')
-
-print()
-print('=' * 89)
-print("Inference")
-print('-' * 89)
-start_time = 60
-max_inference_time = 31536000
-n_times = 9
-t_inference_list = [
-        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
-dtype = np.dtype([
-    ('noise', np.float32),
-    ('time', np.float32), 
-    ('loss', np.float32), 
-    ('ppl', np.float32)
-])
-inference_data = np.empty(len(t_inference_list), dtype=dtype)
-try:
-    model.eval()
-    #t_inference in second
-    for i, t_inference in enumerate(t_inference_list):
-        model.drift_analog_weights(t_inference)
-        inference_loss = evaluate(test_data)
-        print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
-        t_inference,inference_loss, math.exp(inference_loss)))
-        inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
-    print('=' * 89)
-    print()
-except KeyboardInterrupt:
-    print('=' * 89)
-    print('Exiting from Inference early')
+args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
+utils.inference_base(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)
