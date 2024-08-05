@@ -156,7 +156,7 @@ def get_batch(source, i):
     data = source[i:i+seq_len]
     target = source[i+1:i+1+seq_len].view(-1)
     return data, target
-
+    
 def gen_rpu_config(args):
     rpu_config = InferenceRPUConfig()
     rpu_config.modifier.type = WeightModifierType.PCM_NOISE
@@ -173,6 +173,7 @@ def gen_rpu_config(args):
     return rpu_config
 
 
+
 ###############################################################################
 # Build the model
 ###############################################################################
@@ -187,7 +188,7 @@ def new_forward(self, encoded_input, hidden):
 analog_model = None
 group_name = None
 encoder = None
-model_type = 'HWA'
+model_type = 'FP'
 if(model_type == 'FP'):
     model_save_path = './model/lstm_fp.pt'
     pre_model = torch.load(model_save_path).to(DEVICE)
@@ -198,21 +199,6 @@ if(model_type == 'FP'):
     analog_model.rnn.flatten_parameters()
     encoder =torch.load('./model/encoder.pt').to(DEVICE)
     group_name = f'FP'
-elif(model_type == 'HWA'):
-    model_save_path = './model/lstm_fp.pt'
-    pre_model = torch.load(model_save_path)
-    pre_model.rnn.flatten_parameters()
-    del pre_model.encoder
-    pre_model.forward = types.MethodType(new_forward, pre_model)
-
-    analog_model = convert_to_analog(pre_model, gen_rpu_config(args))
-    analog_model.load_state_dict(
-            torch.load('./model/lstm_hwa_3.4.th', map_location = DEVICE),
-            load_rpu_config=True
-        )
-    analog_model.rnn.flatten_parameters()
-    encoder =torch.load('./model/encoder.pt').to(DEVICE)
-    group_name = f'HWA'
 else:
     print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
@@ -233,7 +219,7 @@ def evaluate(data_source, encoder, model_type):
                 output = analog_model(data)
                 output = output.view(-1, ntokens)
             else:
-                data = encoder(data)
+                #data = encoder(data)
                 output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
             total_loss += len(data) * criterion(output, targets).item()
@@ -244,17 +230,15 @@ print()
 ###############################################################################
 # Specify time
 ###############################################################################
-h5_file = f'./result/lstm_inf_baseline.h5'
-#day
-#time = 86400.0
-#week
-time = 1.0
-#month
-#time = 2678400.0
-#three month
-#time = time * 3.0
-#year
-#time = time * 4.0
+total_inference_loss = 0.0
+num_iterations = 25
+for i in range(num_iterations):
+    inference_loss = evaluate(test_data,encoder, model_type)
+    print('| test loss {:5.2f} | test ppl {:8.2f}'.format(
+    inference_loss, math.exp(inference_loss)))
+    total_inference_loss += inference_loss
 
-args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
-utils.inference_base(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)
+average_inference_loss = total_inference_loss / num_iterations
+average_test_ppl = math.exp(average_inference_loss)
+print('| AVG test loss {:5.2f} | AVG test ppl {:8.2f}'.format(
+    average_inference_loss, math.exp(average_test_ppl)))
