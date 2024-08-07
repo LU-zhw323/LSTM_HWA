@@ -1,14 +1,485 @@
-{"entry_1":{"gmin":11,"inference_noise":0},
-"entry_2":{"gmin":11,"inference_noise":0.1},
-"entry_3":{"gmin":11,"inference_noise":0.2},
-"entry_4":{"gmin":11,"inference_noise":0.3},
-"entry_5":{"gmin":11,"inference_noise":0.4},
-"entry_6":{"gmin":11,"inference_noise":0.5},
-"entry_7":{"gmin":12,"inference_noise":0},
-"entry_8":{"gmin":12,"inference_noise":0.1},
-"entry_9":{"gmin":12,"inference_noise":0.2},
-"entry_10":{"gmin":12,"inference_noise":0.3},
-"entry_11":{"gmin":12,"inference_noise":0.4},
-"entry_12":{"gmin":12,"inference_noise":0.5},
-"entry_13":{"gmin":13,"inference_noise":0},
-"entry_14":{"gmin":14,"inference_noise":0}}
+{"entry_1":{"gmin":0,"inference_noise":0},"entry_2":{"gmin":0,"inference_noise":0.1},"entry_3":{"gmin":0,"inference_noise":0.2},"entry_4":{"gmin":0,"inference_noise":0.3},"entry_5":{"gmin":0,"inference_noise":0.4},"entry_6":{"gmin":0,"inference_noise":0.5},"entry_7":{"gmin":0,"inference_noise":0.6},"entry_8":{"gmin":0,"inference_noise":0.7},"entry_9":{"gmin":0,"inference_noise":0.8},"entry_10":{"gmin":0,"inference_noise":0.9},"entry_11":{"gmin":0,"inference_noise":1},"entry_12":{"gmin":0,"inference_noise":1.1},"entry_13":{"gmin":0,"inference_noise":1.2},"entry_14":{"gmin":0,"inference_noise":1.3},"entry_15":{"gmin":0,"inference_noise":1.4},"entry_16":{"gmin":0,"inference_noise":1.5},"entry_17":{"gmin":0,"inference_noise":1.6},"entry_18":{"gmin":0,"inference_noise":1.7},"entry_19":{"gmin":0,"inference_noise":1.8},"entry_20":{"gmin":0,"inference_noise":1.9},"entry_21":{"gmin":0,"inference_noise":2},"entry_22":{"gmin":0,"inference_noise":2.1},"entry_23":{"gmin":0,"inference_noise":2.2},"entry_24":{"gmin":0,"inference_noise":2.3},"entry_25":{"gmin":0,"inference_noise":2.4},"entry_26":{"gmin":0,"inference_noise":2.5},"entry_27":{"gmin":0,"inference_noise":2.6},"entry_28":{"gmin":0,"inference_noise":2.7},"entry_29":{"gmin":0,"inference_noise":2.8},"entry_30":{"gmin":0,"inference_noise":2.9},"entry_31":{"gmin":0,"inference_noise":3},"entry_32":{"gmin":0,"inference_noise":3.1},"entry_33":{"gmin":0,"inference_noise":3.2},"entry_34":{"gmin":0,"inference_noise":3.3},"entry_35":{"gmin":0,"inference_noise":3.4},"entry_36":{"gmin":0,"inference_noise":3.5},"entry_37":{"gmin":0,"inference_noise":3.6},"entry_38":{"gmin":0,"inference_noise":3.8},"entry_39":{"gmin":1,"inference_noise":0},"entry_40":{"gmin":1,"inference_noise":0.1},"entry_41":{"gmin":1,"inference_noise":0.2},"entry_42":{"gmin":1,"inference_noise":0.3},"entry_43":{"gmin":1,"inference_noise":0.4},"entry_44":{"gmin":1,"inference_noise":0.5},"entry_45":{"gmin":1,"inference_noise":0.6},"entry_46":{"gmin":1,"inference_noise":0.7},"entry_47":{"gmin":1,"inference_noise":0.8},"entry_48":{"gmin":1,"inference_noise":0.9},"entry_49":{"gmin":1,"inference_noise":1},"entry_50":{"gmin":1,"inference_noise":1.1},"entry_51":{"gmin":1,"inference_noise":1.2},"entry_52":{"gmin":1,"inference_noise":1.3},"entry_53":{"gmin":1,"inference_noise":1.4},"entry_54":{"gmin":1,"inference_noise":1.5},"entry_55":{"gmin":1,"inference_noise":1.6},"entry_56":{"gmin":1,"inference_noise":1.7},"entry_57":{"gmin":1,"inference_noise":1.8},"entry_58":{"gmin":1,"inference_noise":1.9},"entry_59":{"gmin":1,"inference_noise":2},"entry_60":{"gmin":1,"inference_noise":2.1},"entry_61":{"gmin":1,"inference_noise":2.2},"entry_62":{"gmin":1,"inference_noise":2.3},"entry_63":{"gmin":1,"inference_noise":2.4},"entry_64":{"gmin":1,"inference_noise":2.5},"entry_65":{"gmin":1,"inference_noise":2.6},"entry_66":{"gmin":1,"inference_noise":2.7},"entry_67":{"gmin":1,"inference_noise":2.8},"entry_68":{"gmin":10,"inference_noise":0},"entry_69":{"gmin":10,"inference_noise":0.1},"entry_70":{"gmin":10,"inference_noise":0.2},"entry_71":{"gmin":10,"inference_noise":0.3},"entry_72":{"gmin":10,"inference_noise":0.4},"entry_73":{"gmin":10,"inference_noise":0.5},"entry_74":{"gmin":2,"inference_noise":0},"entry_75":{"gmin":2,"inference_noise":0.1},"entry_76":{"gmin":2,"inference_noise":0.2},"entry_77":{"gmin":2,"inference_noise":0.3},"entry_78":{"gmin":2,"inference_noise":0.4},"entry_79":{"gmin":2,"inference_noise":0.5},"entry_80":{"gmin":2,"inference_noise":0.6},"entry_81":{"gmin":2,"inference_noise":0.7},"entry_82":{"gmin":2,"inference_noise":0.8},"entry_83":{"gmin":2,"inference_noise":0.9},"entry_84":{"gmin":2,"inference_noise":1},"entry_85":{"gmin":2,"inference_noise":1.1},"entry_86":{"gmin":2,"inference_noise":1.2},"entry_87":{"gmin":2,"inference_noise":1.3},"entry_88":{"gmin":2,"inference_noise":1.4},"entry_89":{"gmin":2,"inference_noise":1.5},"entry_90":{"gmin":2,"inference_noise":1.6},"entry_91":{"gmin":2,"inference_noise":1.7},"entry_92":{"gmin":2,"inference_noise":1.8},"entry_93":{"gmin":2,"inference_noise":1.9},"entry_94":{"gmin":2,"inference_noise":2},"entry_95":{"gmin":2,"inference_noise":2.1},"entry_96":{"gmin":2,"inference_noise":2.2},"entry_97":{"gmin":2,"inference_noise":2.3},"entry_98":{"gmin":3,"inference_noise":0},"entry_99":{"gmin":3,"inference_noise":0.1},"entry_100":{"gmin":3,"inference_noise":0.2},"entry_101":{"gmin":3,"inference_noise":0.3},"entry_102":{"gmin":3,"inference_noise":0.4},"entry_103":{"gmin":3,"inference_noise":0.5},"entry_104":{"gmin":3,"inference_noise":0.6},"entry_105":{"gmin":3,"inference_noise":0.7},"entry_106":{"gmin":3,"inference_noise":0.8},"entry_107":{"gmin":3,"inference_noise":0.9},"entry_108":{"gmin":3,"inference_noise":1},"entry_109":{"gmin":3,"inference_noise":1.1},"entry_110":{"gmin":3,"inference_noise":1.2},"entry_111":{"gmin":3,"inference_noise":1.3},"entry_112":{"gmin":3,"inference_noise":1.4},"entry_113":{"gmin":3,"inference_noise":1.5},"entry_114":{"gmin":3,"inference_noise":1.6},"entry_115":{"gmin":3,"inference_noise":1.7},"entry_116":{"gmin":3,"inference_noise":1.8},"entry_117":{"gmin":3,"inference_noise":1.9},"entry_118":{"gmin":4,"inference_noise":0},"entry_119":{"gmin":4,"inference_noise":0.1},"entry_120":{"gmin":4,"inference_noise":0.2},"entry_121":{"gmin":4,"inference_noise":0.3},"entry_122":{"gmin":4,"inference_noise":0.4},"entry_123":{"gmin":4,"inference_noise":0.5},"entry_124":{"gmin":4,"inference_noise":0.6},"entry_125":{"gmin":4,"inference_noise":0.7},"entry_126":{"gmin":4,"inference_noise":0.8},"entry_127":{"gmin":4,"inference_noise":0.9},"entry_128":{"gmin":4,"inference_noise":1},"entry_129":{"gmin":4,"inference_noise":1.1},"entry_130":{"gmin":4,"inference_noise":1.2},"entry_131":{"gmin":4,"inference_noise":1.3},"entry_132":{"gmin":4,"inference_noise":1.4},"entry_133":{"gmin":4,"inference_noise":1.5},"entry_134":{"gmin":4,"inference_noise":1.6},"entry_135":{"gmin":5,"inference_noise":0},"entry_136":{"gmin":5,"inference_noise":0.1},"entry_137":{"gmin":5,"inference_noise":0.2},"entry_138":{"gmin":5,"inference_noise":0.3},"entry_139":{"gmin":5,"inference_noise":0.4},"entry_140":{"gmin":5,"inference_noise":0.5},"entry_141":{"gmin":5,"inference_noise":0.6},"entry_142":{"gmin":5,"inference_noise":0.7},"entry_143":{"gmin":5,"inference_noise":0.8},"entry_144":{"gmin":5,"inference_noise":0.9},"entry_145":{"gmin":5,"inference_noise":1},"entry_146":{"gmin":5,"inference_noise":1.1},"entry_147":{"gmin":5,"inference_noise":1.2},"entry_148":{"gmin":6,"inference_noise":0},"entry_149":{"gmin":6,"inference_noise":0.1},"entry_150":{"gmin":6,"inference_noise":0.2},"entry_151":{"gmin":6,"inference_noise":0.3},"entry_152":{"gmin":6,"inference_noise":0.4},"entry_153":{"gmin":6,"inference_noise":0.5},"entry_154":{"gmin":6,"inference_noise":0.6},"entry_155":{"gmin":6,"inference_noise":0.7},"entry_156":{"gmin":6,"inference_noise":0.8},"entry_157":{"gmin":6,"inference_noise":0.9},"entry_158":{"gmin":6,"inference_noise":1},"entry_159":{"gmin":7,"inference_noise":0},"entry_160":{"gmin":7,"inference_noise":0.1},"entry_161":{"gmin":7,"inference_noise":0.2},"entry_162":{"gmin":7,"inference_noise":0.3},"entry_163":{"gmin":7,"inference_noise":0.4},"entry_164":{"gmin":7,"inference_noise":0.5},"entry_165":{"gmin":7,"inference_noise":0.6},"entry_166":{"gmin":7,"inference_noise":0.7},"entry_167":{"gmin":7,"inference_noise":0.8},"entry_168":{"gmin":7,"inference_noise":0.9},"entry_169":{"gmin":8,"inference_noise":0},"entry_170":{"gmin":8,"inference_noise":0.1},"entry_171":{"gmin":8,"inference_noise":0.2},"entry_172":{"gmin":8,"inference_noise":0.3},"entry_173":{"gmin":8,"inference_noise":0.4},"entry_174":{"gmin":8,"inference_noise":0.5},"entry_175":{"gmin":8,"inference_noise":0.6},"entry_176":{"gmin":8,"inference_noise":0.7},"entry_177":{"gmin":8,"inference_noise":0.8},"entry_178":{"gmin":8,"inference_noise":0.9},"entry_179":{"gmin":9,"inference_noise":0},"entry_180":{"gmin":9,"inference_noise":0.1},"entry_181":{"gmin":9,"inference_noise":0.2},"entry_182":{"gmin":9,"inference_noise":0.3},"entry_183":{"gmin":9,"inference_noise":0.4},"entry_184":{"gmin":9,"inference_noise":0.5},"entry_185":{"gmin":9,"inference_noise":0.6},"entry_186":{"gmin":9,"inference_noise":0.7},
+"entry_187":{"gmin":11,"inference_noise":0},
+"entry_188":{"gmin":11,"inference_noise":0.1},
+"entry_189":{"gmin":11,"inference_noise":0.2},
+"entry_190":{"gmin":11,"inference_noise":0.3},
+"entry_191":{"gmin":11,"inference_noise":0.4},
+"entry_192":{"gmin":11,"inference_noise":0.5},
+"entry_193":{"gmin":12,"inference_noise":0},
+"entry_194":{"gmin":12,"inference_noise":0.1},
+"entry_195":{"gmin":12,"inference_noise":0.2},
+"entry_196":{"gmin":12,"inference_noise":0.3},
+"entry_197":{"gmin":12,"inference_noise":0.4},
+"entry_198":{"gmin":12,"inference_noise":0.5},
+"entry_199":{"gmin":13,"inference_noise":0},
+"entry_200":{"gmin":14,"inference_noise":0},
+"entry_201":{"gmin":0,"inference_noise":3.7},
+"entry_202": {
+        "gmin": 0.005,
+        "inference_noise": 0.0
+    },
+    "entry_203": {
+        "gmin": 0.005,
+        "inference_noise": 0.1
+    },
+    "entry_204": {
+        "gmin": 0.005,
+        "inference_noise": 0.2
+    },
+    "entry_205": {
+        "gmin": 0.005,
+        "inference_noise": 0.3
+    },
+    "entry_206": {
+        "gmin": 0.005,
+        "inference_noise": 0.4
+    },
+    "entry_207": {
+        "gmin": 0.005,
+        "inference_noise": 0.5
+    },
+    "entry_208": {
+        "gmin": 0.005,
+        "inference_noise": 0.6
+    },
+    "entry_209": {
+        "gmin": 0.005,
+        "inference_noise": 0.7
+    },
+    "entry_210": {
+        "gmin": 0.005,
+        "inference_noise": 0.8
+    },
+    "entry_211": {
+        "gmin": 0.005,
+        "inference_noise": 0.9
+    },
+    "entry_212": {
+        "gmin": 0.005,
+        "inference_noise": 1.0
+    },
+    "entry_213": {
+        "gmin": 0.005,
+        "inference_noise": 1.1
+    },
+    "entry_214": {
+        "gmin": 0.005,
+        "inference_noise": 1.2
+    },
+    "entry_215": {
+        "gmin": 0.005,
+        "inference_noise": 1.3
+    },
+    "entry_216": {
+        "gmin": 0.005,
+        "inference_noise": 1.4
+    },
+    "entry_217": {
+        "gmin": 0.005,
+        "inference_noise": 1.5
+    },
+    "entry_218": {
+        "gmin": 0.005,
+        "inference_noise": 1.6
+    },
+    "entry_219": {
+        "gmin": 0.005,
+        "inference_noise": 1.7
+    },
+    "entry_220": {
+        "gmin": 0.005,
+        "inference_noise": 1.8
+    },
+    "entry_221": {
+        "gmin": 0.005,
+        "inference_noise": 1.9
+    },
+    "entry_222": {
+        "gmin": 0.005,
+        "inference_noise": 2.0
+    },
+    "entry_223": {
+        "gmin": 0.005,
+        "inference_noise": 2.1
+    },
+    "entry_224": {
+        "gmin": 0.005,
+        "inference_noise": 2.2
+    },
+    "entry_225": {
+        "gmin": 0.005,
+        "inference_noise": 2.3
+    },
+    "entry_226": {
+        "gmin": 0.005,
+        "inference_noise": 2.4
+    },
+    "entry_227": {
+        "gmin": 0.005,
+        "inference_noise": 2.5
+    },
+    "entry_228": {
+        "gmin": 0.005,
+        "inference_noise": 2.6
+    },
+    "entry_229": {
+        "gmin": 0.005,
+        "inference_noise": 2.7
+    },
+    "entry_230": {
+        "gmin": 0.005,
+        "inference_noise": 2.8
+    },
+    "entry_231": {
+        "gmin": 0.005,
+        "inference_noise": 2.9
+    },
+    "entry_232": {
+        "gmin": 0.005,
+        "inference_noise": 3.0
+    },
+    "entry_233": {
+        "gmin": 0.005,
+        "inference_noise": 3.1
+    },
+    "entry_234": {
+        "gmin": 0.005,
+        "inference_noise": 3.2
+    },
+    "entry_235": {
+        "gmin": 0.005,
+        "inference_noise": 3.3
+    },
+    "entry_236": {
+        "gmin": 0.005,
+        "inference_noise": 3.4
+    },
+    "entry_237": {
+        "gmin": 0.005,
+        "inference_noise": 3.5
+    },
+    "entry_238": {
+        "gmin": 0.005,
+        "inference_noise": 3.6
+    },
+    "entry_239": {
+        "gmin": 0.005,
+        "inference_noise": 3.7
+    },
+    "entry_240": {
+        "gmin": 0.005,
+        "inference_noise": 3.8
+    },
+    "entry_241": {
+        "gmin": 0.05,
+        "inference_noise": 0.0
+    },
+    "entry_242": {
+        "gmin": 0.05,
+        "inference_noise": 0.1
+    },
+    "entry_243": {
+        "gmin": 0.05,
+        "inference_noise": 0.2
+    },
+    "entry_244": {
+        "gmin": 0.05,
+        "inference_noise": 0.3
+    },
+    "entry_245": {
+        "gmin": 0.05,
+        "inference_noise": 0.4
+    },
+    "entry_246": {
+        "gmin": 0.05,
+        "inference_noise": 0.5
+    },
+    "entry_247": {
+        "gmin": 0.05,
+        "inference_noise": 0.6
+    },
+    "entry_248": {
+        "gmin": 0.05,
+        "inference_noise": 0.7
+    },
+    "entry_249": {
+        "gmin": 0.05,
+        "inference_noise": 0.8
+    },
+    "entry_250": {
+        "gmin": 0.05,
+        "inference_noise": 0.9
+    },
+    "entry_251": {
+        "gmin": 0.05,
+        "inference_noise": 1.0
+    },
+    "entry_252": {
+        "gmin": 0.05,
+        "inference_noise": 1.1
+    },
+    "entry_253": {
+        "gmin": 0.05,
+        "inference_noise": 1.2
+    },
+    "entry_254": {
+        "gmin": 0.05,
+        "inference_noise": 1.3
+    },
+    "entry_255": {
+        "gmin": 0.05,
+        "inference_noise": 1.4
+    },
+    "entry_256": {
+        "gmin": 0.05,
+        "inference_noise": 1.5
+    },
+    "entry_257": {
+        "gmin": 0.05,
+        "inference_noise": 1.6
+    },
+    "entry_258": {
+        "gmin": 0.05,
+        "inference_noise": 1.7
+    },
+    "entry_259": {
+        "gmin": 0.05,
+        "inference_noise": 1.8
+    },
+    "entry_260": {
+        "gmin": 0.05,
+        "inference_noise": 1.9
+    },
+    "entry_261": {
+        "gmin": 0.05,
+        "inference_noise": 2.0
+    },
+    "entry_262": {
+        "gmin": 0.05,
+        "inference_noise": 2.1
+    },
+    "entry_263": {
+        "gmin": 0.05,
+        "inference_noise": 2.2
+    },
+    "entry_264": {
+        "gmin": 0.05,
+        "inference_noise": 2.3
+    },
+    "entry_265": {
+        "gmin": 0.05,
+        "inference_noise": 2.4
+    },
+    "entry_266": {
+        "gmin": 0.05,
+        "inference_noise": 2.5
+    },
+    "entry_267": {
+        "gmin": 0.05,
+        "inference_noise": 2.6
+    },
+    "entry_268": {
+        "gmin": 0.05,
+        "inference_noise": 2.7
+    },
+    "entry_269": {
+        "gmin": 0.05,
+        "inference_noise": 2.8
+    },
+    "entry_270": {
+        "gmin": 0.05,
+        "inference_noise": 2.9
+    },
+    "entry_271": {
+        "gmin": 0.05,
+        "inference_noise": 3.0
+    },
+    "entry_272": {
+        "gmin": 0.05,
+        "inference_noise": 3.1
+    },
+    "entry_273": {
+        "gmin": 0.05,
+        "inference_noise": 3.2
+    },
+    "entry_274": {
+        "gmin": 0.05,
+        "inference_noise": 3.3
+    },
+    "entry_275": {
+        "gmin": 0.05,
+        "inference_noise": 3.4
+    },
+    "entry_276": {
+        "gmin": 0.05,
+        "inference_noise": 3.5
+    },
+    "entry_277": {
+        "gmin": 0.05,
+        "inference_noise": 3.6
+    },
+    "entry_278": {
+        "gmin": 0.05,
+        "inference_noise": 3.7
+    },
+    "entry_279": {
+        "gmin": 0.05,
+        "inference_noise": 3.8
+    },
+    "entry_280": {
+        "gmin": 0.5,
+        "inference_noise": 0.0
+    },
+    "entry_281": {
+        "gmin": 0.5,
+        "inference_noise": 0.1
+    },
+    "entry_282": {
+        "gmin": 0.5,
+        "inference_noise": 0.2
+    },
+    "entry_283": {
+        "gmin": 0.5,
+        "inference_noise": 0.3
+    },
+    "entry_284": {
+        "gmin": 0.5,
+        "inference_noise": 0.4
+    },
+    "entry_285": {
+        "gmin": 0.5,
+        "inference_noise": 0.5
+    },
+    "entry_286": {
+        "gmin": 0.5,
+        "inference_noise": 0.6
+    },
+    "entry_287": {
+        "gmin": 0.5,
+        "inference_noise": 0.7
+    },
+    "entry_288": {
+        "gmin": 0.5,
+        "inference_noise": 0.8
+    },
+    "entry_289": {
+        "gmin": 0.5,
+        "inference_noise": 0.9
+    },
+    "entry_290": {
+        "gmin": 0.5,
+        "inference_noise": 1.0
+    },
+    "entry_291": {
+        "gmin": 0.5,
+        "inference_noise": 1.1
+    },
+    "entry_292": {
+        "gmin": 0.5,
+        "inference_noise": 1.2
+    },
+    "entry_293": {
+        "gmin": 0.5,
+        "inference_noise": 1.3
+    },
+    "entry_294": {
+        "gmin": 0.5,
+        "inference_noise": 1.4
+    },
+    "entry_295": {
+        "gmin": 0.5,
+        "inference_noise": 1.5
+    },
+    "entry_296": {
+        "gmin": 0.5,
+        "inference_noise": 1.6
+    },
+    "entry_297": {
+        "gmin": 0.5,
+        "inference_noise": 1.7
+    },
+    "entry_298": {
+        "gmin": 0.5,
+        "inference_noise": 1.8
+    },
+    "entry_299": {
+        "gmin": 0.5,
+        "inference_noise": 1.9
+    },
+    "entry_300": {
+        "gmin": 0.5,
+        "inference_noise": 2.0
+    },
+    "entry_301": {
+        "gmin": 0.5,
+        "inference_noise": 2.1
+    },
+    "entry_302": {
+        "gmin": 0.5,
+        "inference_noise": 2.2
+    },
+    "entry_303": {
+        "gmin": 0.5,
+        "inference_noise": 2.3
+    },
+    "entry_304": {
+        "gmin": 0.5,
+        "inference_noise": 2.4
+    },
+    "entry_305": {
+        "gmin": 0.5,
+        "inference_noise": 2.5
+    },
+    "entry_306": {
+        "gmin": 0.5,
+        "inference_noise": 2.6
+    },
+    "entry_307": {
+        "gmin": 0.5,
+        "inference_noise": 2.7
+    },
+    "entry_308": {
+        "gmin": 0.5,
+        "inference_noise": 2.8
+    },
+    "entry_309": {
+        "gmin": 0.5,
+        "inference_noise": 2.9
+    },
+    "entry_310": {
+        "gmin": 0.5,
+        "inference_noise": 3.0
+    },
+    "entry_311": {
+        "gmin": 0.5,
+        "inference_noise": 3.1
+    },
+    "entry_312": {
+        "gmin": 0.5,
+        "inference_noise": 3.2
+    },
+    "entry_313": {
+        "gmin": 0.5,
+        "inference_noise": 3.3
+    },
+    "entry_314": {
+        "gmin": 0.5,
+        "inference_noise": 3.4
+    },
+    "entry_315": {
+        "gmin": 0.5,
+        "inference_noise": 3.5
+    },
+    "entry_316": {
+        "gmin": 0.5,
+        "inference_noise": 3.6
+    },
+    "entry_317": {
+        "gmin": 0.5,
+        "inference_noise": 3.7
+    },
+    "entry_318": {
+        "gmin": 0.5,
+        "inference_noise": 3.8
+    }
+}

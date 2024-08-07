@@ -48,18 +48,22 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model_type = None
 use_compensation = False
 date_type = None
+global_drift = 1.0
 def parse_args():
     global model_type
     global use_compensation
     global date_type
+    global global_drift
     parser = argparse.ArgumentParser(description='Model training script.')
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
     parser.add_argument('--model_type', type=str, help='Model Type (HWA or FP)')
     parser.add_argument('--date_type', type=str, help='Date Type')
+    parser.add_argument('--drift', type=float, help='Drift')
     args = parser.parse_args()
     task_id = args.task_id
     model_type = args.model_type
     date_type = args.date_type
+    global_drift = args.drift
     
     #Read Normal
     param_file = f'./param/parameter_{date_type}.json'
@@ -79,6 +83,7 @@ class Params:
         pass
 
 def set_param():
+    global global_drift
     param = parse_args()
     print()
     print('=' * 89)
@@ -95,7 +100,7 @@ def set_param():
     args.w_drop = 0.01
     
 
-    args.drift = 1.0
+    args.drift = global_drift
     
 
     args.inference_progm_noise = 1.0
@@ -231,7 +236,7 @@ elif(model_type == 'HWA'):
         )
     analog_model.rnn.flatten_parameters()
     encoder =torch.load('./model/encoder.pt').to(DEVICE)
-    group_name = f'HWA'
+    group_name = f'drift_{global_drift}'
 else:
     print(f'No such Model: {model_type}')
 #Since in the forward, it will perform log_softmax() on the output 
