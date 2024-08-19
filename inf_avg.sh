@@ -7,7 +7,7 @@
 #SBATCH -t 2880
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhw323@lehigh.edu
-#SBATCH --array=1-318
+#SBATCH --array=1-121
 #SBATCH --output=./output/std_log/myjob-%A-%a.out
 
 # UASGE: sbatch inf.sh
@@ -22,7 +22,7 @@ MODEL_TYPE=${MODEL_TYPES[1]}
 
 DATE_TYPES=("day" "week" "month" "quarter" "year")
 
-DATE_TYPE=${DATE_TYPES[0]}
+DATE_TYPE=${DATE_TYPES[4]}
 
 DRIFTS=("1.0" "0.5" "0.05" "0.005")
 
