@@ -66,9 +66,9 @@ def parse_args():
     global_drift = args.drift
     
     #Read Normal
-    param_file = f'./param/parameter_{date_type}.json'
+    #param_file = f'./param/parameter_{date_type}.json'
     #Read Over 1000
-    #param_file = './param/parameter_continue.json'
+    param_file = './param/parameter_continue.json'
     #task_id += 1000
     print(f"Task: {task_id}")
     print(f"JSON: {param_file}")

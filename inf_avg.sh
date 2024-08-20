@@ -7,7 +7,7 @@
 #SBATCH -t 2880
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhw323@lehigh.edu
-#SBATCH --array=1-121
+#SBATCH --array=1-441
 #SBATCH --output=./output/std_log/myjob-%A-%a.out
 
 # UASGE: sbatch inf.sh
@@ -26,7 +26,7 @@ DATE_TYPE=${DATE_TYPES[4]}
 
 DRIFTS=("1.0" "0.5" "0.05" "0.005")
 
-DRIFT=${DRIFTS[3]}
+DRIFT=${DRIFTS[0]}
 
 
 
