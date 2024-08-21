@@ -22,11 +22,11 @@ MODEL_TYPE=${MODEL_TYPES[1]}
 
 DATE_TYPES=("day" "week" "month" "quarter" "year")
 
-DATE_TYPE=${DATE_TYPES[4]}
+DATE_TYPE=${DATE_TYPES[3]}
 
 DRIFTS=("1.0" "0.5" "0.05" "0.005")
 
-DRIFT=${DRIFTS[0]}
+DRIFT=${DRIFTS[3]}
 
 
 
