@@ -1,0 +1,610 @@
+{
+    "entry_1": {
+        "gmin": 0.0,
+        "drift": 0.001
+    },
+    "entry_2": {
+        "gmin": 0.0,
+        "drift": 0.003
+    },
+    "entry_3": {
+        "gmin": 0.0,
+        "drift": 0.005
+    },
+    "entry_4": {
+        "gmin": 0.0,
+        "drift": 0.01
+    },
+    "entry_5": {
+        "gmin": 0.0,
+        "drift": 0.03
+    },
+    "entry_6": {
+        "gmin": 0.0,
+        "drift": 0.05
+    },
+    "entry_7": {
+        "gmin": 0.0,
+        "drift": 0.5
+    },
+    "entry_8": {
+        "gmin": 0.0,
+        "drift": 1.0
+    },
+    "entry_9": {
+        "gmin": 0.005,
+        "drift": 0.001
+    },
+    "entry_10": {
+        "gmin": 0.005,
+        "drift": 0.003
+    },
+    "entry_11": {
+        "gmin": 0.005,
+        "drift": 0.005
+    },
+    "entry_12": {
+        "gmin": 0.005,
+        "drift": 0.01
+    },
+    "entry_13": {
+        "gmin": 0.005,
+        "drift": 0.03
+    },
+    "entry_14": {
+        "gmin": 0.005,
+        "drift": 0.05
+    },
+    "entry_15": {
+        "gmin": 0.005,
+        "drift": 0.5
+    },
+    "entry_16": {
+        "gmin": 0.005,
+        "drift": 1.0
+    },
+    "entry_17": {
+        "gmin": 0.05,
+        "drift": 0.001
+    },
+    "entry_18": {
+        "gmin": 0.05,
+        "drift": 0.003
+    },
+    "entry_19": {
+        "gmin": 0.05,
+        "drift": 0.005
+    },
+    "entry_20": {
+        "gmin": 0.05,
+        "drift": 0.01
+    },
+    "entry_21": {
+        "gmin": 0.05,
+        "drift": 0.03
+    },
+    "entry_22": {
+        "gmin": 0.05,
+        "drift": 0.05
+    },
+    "entry_23": {
+        "gmin": 0.05,
+        "drift": 0.5
+    },
+    "entry_24": {
+        "gmin": 0.05,
+        "drift": 1.0
+    },
+    "entry_25": {
+        "gmin": 0.5,
+        "drift": 0.001
+    },
+    "entry_26": {
+        "gmin": 0.5,
+        "drift": 0.003
+    },
+    "entry_27": {
+        "gmin": 0.5,
+        "drift": 0.005
+    },
+    "entry_28": {
+        "gmin": 0.5,
+        "drift": 0.01
+    },
+    "entry_29": {
+        "gmin": 0.5,
+        "drift": 0.03
+    },
+    "entry_30": {
+        "gmin": 0.5,
+        "drift": 0.05
+    },
+    "entry_31": {
+        "gmin": 0.5,
+        "drift": 0.5
+    },
+    "entry_32": {
+        "gmin": 0.5,
+        "drift": 1.0
+    },
+    "entry_33": {
+        "gmin": 1.0,
+        "drift": 0.001
+    },
+    "entry_34": {
+        "gmin": 1.0,
+        "drift": 0.003
+    },
+    "entry_35": {
+        "gmin": 1.0,
+        "drift": 0.005
+    },
+    "entry_36": {
+        "gmin": 1.0,
+        "drift": 0.01
+    },
+    "entry_37": {
+        "gmin": 1.0,
+        "drift": 0.03
+    },
+    "entry_38": {
+        "gmin": 1.0,
+        "drift": 0.05
+    },
+    "entry_39": {
+        "gmin": 1.0,
+        "drift": 0.5
+    },
+    "entry_40": {
+        "gmin": 1.0,
+        "drift": 1.0
+    },
+    "entry_41": {
+        "gmin": 2.0,
+        "drift": 0.001
+    },
+    "entry_42": {
+        "gmin": 2.0,
+        "drift": 0.003
+    },
+    "entry_43": {
+        "gmin": 2.0,
+        "drift": 0.005
+    },
+    "entry_44": {
+        "gmin": 2.0,
+        "drift": 0.01
+    },
+    "entry_45": {
+        "gmin": 2.0,
+        "drift": 0.03
+    },
+    "entry_46": {
+        "gmin": 2.0,
+        "drift": 0.05
+    },
+    "entry_47": {
+        "gmin": 2.0,
+        "drift": 0.5
+    },
+    "entry_48": {
+        "gmin": 2.0,
+        "drift": 1.0
+    },
+    "entry_49": {
+        "gmin": 3.0,
+        "drift": 0.001
+    },
+    "entry_50": {
+        "gmin": 3.0,
+        "drift": 0.003
+    },
+    "entry_51": {
+        "gmin": 3.0,
+        "drift": 0.005
+    },
+    "entry_52": {
+        "gmin": 3.0,
+        "drift": 0.01
+    },
+    "entry_53": {
+        "gmin": 3.0,
+        "drift": 0.03
+    },
+    "entry_54": {
+        "gmin": 3.0,
+        "drift": 0.05
+    },
+    "entry_55": {
+        "gmin": 3.0,
+        "drift": 0.5
+    },
+    "entry_56": {
+        "gmin": 3.0,
+        "drift": 1.0
+    },
+    "entry_57": {
+        "gmin": 4.0,
+        "drift": 0.001
+    },
+    "entry_58": {
+        "gmin": 4.0,
+        "drift": 0.003
+    },
+    "entry_59": {
+        "gmin": 4.0,
+        "drift": 0.005
+    },
+    "entry_60": {
+        "gmin": 4.0,
+        "drift": 0.01
+    },
+    "entry_61": {
+        "gmin": 4.0,
+        "drift": 0.03
+    },
+    "entry_62": {
+        "gmin": 4.0,
+        "drift": 0.05
+    },
+    "entry_63": {
+        "gmin": 4.0,
+        "drift": 0.5
+    },
+    "entry_64": {
+        "gmin": 4.0,
+        "drift": 1.0
+    },
+    "entry_65": {
+        "gmin": 5.0,
+        "drift": 0.001
+    },
+    "entry_66": {
+        "gmin": 5.0,
+        "drift": 0.003
+    },
+    "entry_67": {
+        "gmin": 5.0,
+        "drift": 0.005
+    },
+    "entry_68": {
+        "gmin": 5.0,
+        "drift": 0.01
+    },
+    "entry_69": {
+        "gmin": 5.0,
+        "drift": 0.03
+    },
+    "entry_70": {
+        "gmin": 5.0,
+        "drift": 0.05
+    },
+    "entry_71": {
+        "gmin": 5.0,
+        "drift": 0.5
+    },
+    "entry_72": {
+        "gmin": 5.0,
+        "drift": 1.0
+    },
+    "entry_73": {
+        "gmin": 6.0,
+        "drift": 0.001
+    },
+    "entry_74": {
+        "gmin": 6.0,
+        "drift": 0.003
+    },
+    "entry_75": {
+        "gmin": 6.0,
+        "drift": 0.005
+    },
+    "entry_76": {
+        "gmin": 6.0,
+        "drift": 0.01
+    },
+    "entry_77": {
+        "gmin": 6.0,
+        "drift": 0.03
+    },
+    "entry_78": {
+        "gmin": 6.0,
+        "drift": 0.05
+    },
+    "entry_79": {
+        "gmin": 6.0,
+        "drift": 0.5
+    },
+    "entry_80": {
+        "gmin": 6.0,
+        "drift": 1.0
+    },
+    "entry_81": {
+        "gmin": 7.0,
+        "drift": 0.001
+    },
+    "entry_82": {
+        "gmin": 7.0,
+        "drift": 0.003
+    },
+    "entry_83": {
+        "gmin": 7.0,
+        "drift": 0.005
+    },
+    "entry_84": {
+        "gmin": 7.0,
+        "drift": 0.01
+    },
+    "entry_85": {
+        "gmin": 7.0,
+        "drift": 0.03
+    },
+    "entry_86": {
+        "gmin": 7.0,
+        "drift": 0.05
+    },
+    "entry_87": {
+        "gmin": 7.0,
+        "drift": 0.5
+    },
+    "entry_88": {
+        "gmin": 7.0,
+        "drift": 1.0
+    },
+    "entry_89": {
+        "gmin": 8.0,
+        "drift": 0.001
+    },
+    "entry_90": {
+        "gmin": 8.0,
+        "drift": 0.003
+    },
+    "entry_91": {
+        "gmin": 8.0,
+        "drift": 0.005
+    },
+    "entry_92": {
+        "gmin": 8.0,
+        "drift": 0.01
+    },
+    "entry_93": {
+        "gmin": 8.0,
+        "drift": 0.03
+    },
+    "entry_94": {
+        "gmin": 8.0,
+        "drift": 0.05
+    },
+    "entry_95": {
+        "gmin": 8.0,
+        "drift": 0.5
+    },
+    "entry_96": {
+        "gmin": 8.0,
+        "drift": 1.0
+    },
+    "entry_97": {
+        "gmin": 9.0,
+        "drift": 0.001
+    },
+    "entry_98": {
+        "gmin": 9.0,
+        "drift": 0.003
+    },
+    "entry_99": {
+        "gmin": 9.0,
+        "drift": 0.005
+    },
+    "entry_100": {
+        "gmin": 9.0,
+        "drift": 0.01
+    },
+    "entry_101": {
+        "gmin": 9.0,
+        "drift": 0.03
+    },
+    "entry_102": {
+        "gmin": 9.0,
+        "drift": 0.05
+    },
+    "entry_103": {
+        "gmin": 9.0,
+        "drift": 0.5
+    },
+    "entry_104": {
+        "gmin": 9.0,
+        "drift": 1.0
+    },
+    "entry_105": {
+        "gmin": 10.0,
+        "drift": 0.001
+    },
+    "entry_106": {
+        "gmin": 10.0,
+        "drift": 0.003
+    },
+    "entry_107": {
+        "gmin": 10.0,
+        "drift": 0.005
+    },
+    "entry_108": {
+        "gmin": 10.0,
+        "drift": 0.01
+    },
+    "entry_109": {
+        "gmin": 10.0,
+        "drift": 0.03
+    },
+    "entry_110": {
+        "gmin": 10.0,
+        "drift": 0.05
+    },
+    "entry_111": {
+        "gmin": 10.0,
+        "drift": 0.5
+    },
+    "entry_112": {
+        "gmin": 10.0,
+        "drift": 1.0
+    },
+    "entry_113": {
+        "gmin": 11.0,
+        "drift": 0.001
+    },
+    "entry_114": {
+        "gmin": 11.0,
+        "drift": 0.003
+    },
+    "entry_115": {
+        "gmin": 11.0,
+        "drift": 0.005
+    },
+    "entry_116": {
+        "gmin": 11.0,
+        "drift": 0.01
+    },
+    "entry_117": {
+        "gmin": 11.0,
+        "drift": 0.03
+    },
+    "entry_118": {
+        "gmin": 11.0,
+        "drift": 0.05
+    },
+    "entry_119": {
+        "gmin": 11.0,
+        "drift": 0.5
+    },
+    "entry_120": {
+        "gmin": 11.0,
+        "drift": 1.0
+    },
+    "entry_121": {
+        "gmin": 12.0,
+        "drift": 0.001
+    },
+    "entry_122": {
+        "gmin": 12.0,
+        "drift": 0.003
+    },
+    "entry_123": {
+        "gmin": 12.0,
+        "drift": 0.005
+    },
+    "entry_124": {
+        "gmin": 12.0,
+        "drift": 0.01
+    },
+    "entry_125": {
+        "gmin": 12.0,
+        "drift": 0.03
+    },
+    "entry_126": {
+        "gmin": 12.0,
+        "drift": 0.05
+    },
+    "entry_127": {
+        "gmin": 12.0,
+        "drift": 0.5
+    },
+    "entry_128": {
+        "gmin": 12.0,
+        "drift": 1.0
+    },
+    "entry_129": {
+        "gmin": 13.0,
+        "drift": 0.001
+    },
+    "entry_130": {
+        "gmin": 13.0,
+        "drift": 0.003
+    },
+    "entry_131": {
+        "gmin": 13.0,
+        "drift": 0.005
+    },
+    "entry_132": {
+        "gmin": 13.0,
+        "drift": 0.01
+    },
+    "entry_133": {
+        "gmin": 13.0,
+        "drift": 0.03
+    },
+    "entry_134": {
+        "gmin": 13.0,
+        "drift": 0.05
+    },
+    "entry_135": {
+        "gmin": 13.0,
+        "drift": 0.5
+    },
+    "entry_136": {
+        "gmin": 13.0,
+        "drift": 1.0
+    },
+    "entry_137": {
+        "gmin": 14.0,
+        "drift": 0.001
+    },
+    "entry_138": {
+        "gmin": 14.0,
+        "drift": 0.003
+    },
+    "entry_139": {
+        "gmin": 14.0,
+        "drift": 0.005
+    },
+    "entry_140": {
+        "gmin": 14.0,
+        "drift": 0.01
+    },
+    "entry_141": {
+        "gmin": 14.0,
+        "drift": 0.03
+    },
+    "entry_142": {
+        "gmin": 14.0,
+        "drift": 0.05
+    },
+    "entry_143": {
+        "gmin": 14.0,
+        "drift": 0.5
+    },
+    "entry_144": {
+        "gmin": 14.0,
+        "drift": 1.0
+    },
+    "entry_145": {
+        "gmin": 15.0,
+        "drift": 0.001
+    },
+    "entry_146": {
+        "gmin": 15.0,
+        "drift": 0.003
+    },
+    "entry_147": {
+        "gmin": 15.0,
+        "drift": 0.005
+    },
+    "entry_148": {
+        "gmin": 15.0,
+        "drift": 0.01
+    },
+    "entry_149": {
+        "gmin": 15.0,
+        "drift": 0.03
+    },
+    "entry_150": {
+        "gmin": 15.0,
+        "drift": 0.05
+    },
+    "entry_151": {
+        "gmin": 15.0,
+        "drift": 0.5
+    },
+    "entry_152": {
+        "gmin": 15.0,
+        "drift": 1.0
+    }
+}

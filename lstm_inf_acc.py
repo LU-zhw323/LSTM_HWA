@@ -58,16 +58,13 @@ def parse_args():
     parser.add_argument('--task_id', type=int, help='Task ID from SLURM array job')
     parser.add_argument('--model_type', type=str, help='Model Type (HWA or FP)')
     parser.add_argument('--date_type', type=str, help='Date Type')
-    parser.add_argument('--drift', type=float, help='Drift')
     args = parser.parse_args()
     task_id = args.task_id
     model_type = args.model_type
     date_type = args.date_type
-    global_drift = args.drift
     
     #Read Normal
-    param_file = f'./param/parameter_{date_type}.json'
-    #task_id += 1000
+    param_file = f'./param/parameter_acc.json'
     print(f"Task: {task_id}")
     print(f"JSON: {param_file}")
     with open(param_file, 'r') as f:
@@ -98,7 +95,7 @@ def set_param():
     args.w_drop = 0.01
     
 
-    args.drift = global_drift
+    args.drift = param['drift']
     
 
     args.inference_progm_noise = 1.0
@@ -116,9 +113,9 @@ def set_param():
     # Default = 25
     args.gmax = 25.0
 
-
-    args.inference_progm_noise = param['inference_noise']
-    args.inference_read_noise = param['inference_noise']
+    # Fix Noise = 1
+    args.inference_progm_noise = 1.0
+    args.inference_read_noise = 1.0
     args.gmin = param['gmin']
 
     print(f"Drift: {args.drift}")
@@ -244,7 +241,10 @@ criterion = nn.NLLLoss()
 def evaluate(data_source, encoder, model_type):
     # Turn on evaluation mode which disables dropout.
     analog_model.eval()
-    total_loss = 0.
+    total_loss = 0.0
+    correct_predictions = 0.0
+    total_mismatches = 0.0
+    total_predictions = 0.0
     ntokens = len(corpus.dictionary)
     if args.model != 'Transformer':
         hidden = analog_model.init_hidden(eval_batch_size)
@@ -259,7 +259,18 @@ def evaluate(data_source, encoder, model_type):
                 output, hidden = analog_model(data, hidden)
                 hidden = repackage_hidden(hidden)
             total_loss += len(data) * criterion(output, targets).item()
-    return total_loss / (len(data_source) - 1)
+
+            # Calculate Matches
+            predicted = output.argmax(dim=1)
+            correct_predictions += (predicted == targets).sum().item()
+            #total_predictions += targets.size(0)
+            
+            # Calculate test error (mismatch count)
+            total_mismatches += (predicted != targets).sum().item()
+        avg_loss = total_loss / (len(data_source) - 1)  # Total predictions are used for loss scaling
+        avg_correct_prediction = correct_predictions / (len(data_source) - 1)  # Accuracy
+        avg_error = total_mismatches /(len(data_source) - 1)  # Test error, or 1 - accuracy
+    return avg_loss, avg_correct_prediction, avg_error
 
 print()
 if analog_model != None:
@@ -269,19 +280,17 @@ if analog_model != None:
     h5_file = f'./result/avg/lstm_inf_gmin_noise_{date_type}_avg.h5'
     print(f"H5: {h5_file}")
     time = 0.0
-    if(date_type == 'day'):
-        time = 86400.0
-    elif(date_type == 'week'):
-        time = 604800.0
-    elif(date_type == 'month'):
-        time = 2678400.0
-    elif(date_type == 'quarter'):
-        time = 2678400.0 * 3.0
-    elif(date_type == 'year'):
-        time = 2678400.0 * 12.0
+    if(date_type == '1s'):
+        time = 1.0
+    elif(date_type == '1h'):
+        time = 60.0 * 60.0
+    elif(date_type == '1d'):
+        time = 60.0 * 60.0 * 24.0
+    elif(date_type == '1w'):
+        time = 60.0 * 60.0 * 24.0 * 7.0
     else:
         print("Not a valid date")
     print(f"Time: {time}")
     if time != 0.0:
         args.task_param = f"gmax{args.gmax}_gmin{args.gmin}_n{args.inference_progm_noise}_d{args.drift}"
-        utils.inference_time_avg(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)
+        utils.inference_acc_avg(analog_model, evaluate, test_data, args, h5_file, group_name, model_type, encoder, time)

@@ -387,3 +387,83 @@ def inference_base(analog_model, evaluate, test_data, args, file_name, group_nam
                 print('=' * 89)
                 print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
                 break
+
+def inference_acc_avg(analog_model, evaluate, test_data, args, file_name, group_name, model_type, encoder, t_inference):
+    print('=' * 89)
+    print("Inference")
+    print(f'File: {file_name}, Group: {group_name}, Data: {args.task_param}')
+    print('-' * 89)
+    dtype = np.dtype([
+        ('program_noise', np.float32),
+        ('read_noise', np.float32), 
+        ('drift', np.float32), 
+        ('gmin', np.float32), 
+        ('gmax', np.float32), 
+        ('time', np.float32),
+        ('loss', np.float32), 
+        ('accuracy', np.float32), 
+        ('test_error', np.float32)
+    ])
+    inference_data = np.empty(1, dtype=dtype)
+    analog_model.eval()
+    #t_inference in second
+    try:
+        total_inference_loss = 0.0
+        total_accuracy = 0.0
+        total_test_error = 0.0
+        num_iterations = 25
+        for i in range(num_iterations):
+            analog_model.drift_analog_weights(t_inference)
+            inference_loss, accuracy, test_error = evaluate(test_data, encoder, model_type)
+            print('| Inference | time {} | test loss {:5.2f} | accuracy {:8.2f}% | test error {:5.2f}%'.format(
+                t_inference, inference_loss, accuracy * 100, test_error * 100))
+            total_inference_loss += inference_loss
+            total_accuracy += accuracy
+            total_test_error += test_error
+
+        average_inference_loss = total_inference_loss / num_iterations
+        average_accuracy = total_accuracy / num_iterations
+        average_test_error = total_test_error / num_iterations
+
+        inference_data[0] = (
+            args.inference_progm_noise, 
+            args.inference_read_noise, 
+            args.drift,
+            args.gmin,
+            args.gmax, 
+            t_inference, 
+            average_inference_loss, 
+            average_accuracy, 
+            average_test_error)
+    except KeyboardInterrupt:
+            print('=' * 89)
+            print('Exiting from Inference early')
+            return
+
+    attempt = 0
+    release = 20
+    while attempt < release:
+        try:
+            with h5py.File(file_name, 'a') as f:
+                task_group = None
+                if not group_name in f:
+                    task_group = f.create_group(group_name)
+                else:
+                    task_group = f[group_name]
+                if args.task_param in task_group:
+                    del task_group[args.task_param]
+                task_group.create_dataset(args.task_param, data=inference_data)
+                print(task_group)
+                print('=' * 89)
+                print()
+                break
+        except OSError as e:
+            attempt += 1
+            if attempt < release:
+                print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
+                time.sleep(20)
+                continue
+            else:
+                print('=' * 89)
+                print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
+                break
