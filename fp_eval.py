@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CHECKPOINT_PATH = "checkpoints/model.pt"
+CHECKPOINT_PATH = "checkpoints/fp_model.pt"
 
 
 def main():

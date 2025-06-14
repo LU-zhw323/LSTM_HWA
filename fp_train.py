@@ -1,14 +1,15 @@
 import math
 from data import Dictionary, Corpus
-from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate_fp
+from utils import load_checkpoint, save_checkpoint, set_seed, setup_data, adjust_learning_rate, evaluate_fp
 import torch
 from lstm import LSTM_PTB
 from torch.nn import functional as F
 from tqdm import tqdm
+from config import LSTM_FP_Config
 
 DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CHECKPOINT_PATH = "checkpoints/model.pt"
+CHECKPOINT_PATH = "checkpoints/fp_model.pt"
 
 
 
@@ -20,18 +21,19 @@ def main():
     
 
     # hyper parameters
-    embedding_dim = 650
-    hidden_size = 650
-    num_layers = 2
-    dropout = 0.5
-    batch_size = 20
-    seq_length = 35
-    lr = 20.0
-    lr_decay_start = 20 
-    lr_decay_factor = 1.2
-    max_grad_norm = 0.25
-    epochs = 60
+    config = LSTM_FP_Config()
+    embedding_dim = config.embedding_dim
+    hidden_size = config.hidden_size
+    num_layers = config.num_layers
+    dropout = config.dropout
+    batch_size = config.batch_size
+    seq_length = config.seq_length
+    lr = config.lr
+    max_grad_norm = config.max_grad_norm
+    epochs = config.epochs
     
+    # set seed
+    set_seed()
 
     # setup data
     train_data, valid_data, test_data, corp = setup_data(DATA_PATH, batch_size, seq_length)
@@ -46,7 +48,7 @@ def main():
     model = LSTM_PTB(vocab_size, embedding_dim, hidden_size, num_layers, dropout).to(DEVICE)
 
     # optimizer
-    optimizer = torch.optim.SGD(model.parameters(), lr=lr)
+    optimizer = torch.optim.SGD(model.parameters(), lr=lr, weight_decay=config.weight_decay)
 
 
 
@@ -105,16 +107,18 @@ def main():
             print(f"Best loss: {valid_loss:.2f}")
         else:
             for param_group in optimizer.param_groups:
-                param_group['lr'] /= 4.0
+                param_group['lr'] /= config.lr_decay_factor
         
         # save checkpoint
         if (epoch + 1) % 10 == 0:
             save_checkpoint(model, optimizer, epoch, valid_loss, valid_perplexity,
-                          f"checkpoints/checkpoint_epoch_{epoch+1}.pt")
+                          f"checkpoints/fp_checkpoint_epoch_{epoch+1}.pt")
     print("-" * 80)
     print("Training complete")
     
     # evaluate on test set
+    # load best model
+    load_checkpoint(CHECKPOINT_PATH, model, None)
     test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_fp(model, test_data, vocab_size, DEVICE)
     print(f"Test Loss: {test_loss:.3f} | Test PPL: {test_perplexity:.2f}")
     print(f"Test Accuracy: {test_accuracy:.2f} | Test Error Rate: {test_error_rate:.2f}")

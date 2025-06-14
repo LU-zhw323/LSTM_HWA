@@ -5,7 +5,8 @@ import torch.nn.init as init
 import torchvision
 import numpy as np
 from lstm import LSTM_PTB
-from utils import direct_mapping_rpu_config, load_checkpoint, setup_data
+from utils import load_checkpoint, setup_data
+from hwa_rpu import direct_mapping_rpu_config
 from config import LSTM_HWA_Config
 from aihwkit.nn.conversion import convert_to_analog
 from aihwkit.optim import AnalogSGD
