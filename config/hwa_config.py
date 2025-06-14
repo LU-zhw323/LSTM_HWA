@@ -19,7 +19,7 @@ class LSTM_HWA_Config:
     hwa_noise_scale: float = 5.0
     pdrop: float = 0.01
     lr: float = 0.01
-    lr_decay_factor: float = 0.95 # applied after each epoch if valid loss not improved
+    lr_decay_factor: float = 0.9 # applied after each epoch if valid loss not improved
     momentum: float = 0.9
     max_grad_norm: float = 10.0
     weight_decay: float = 1e-5
@@ -31,7 +31,7 @@ class LSTM_HWA_Config:
     g_max: float = 25.0
 
     # hwa evaluation parameters
-    num_evals: int = 5
+    num_evals: int = 1
     t_inference: float = 365 * 24 * 60 * 60 # 1 year
 
 

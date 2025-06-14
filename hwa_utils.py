@@ -15,6 +15,10 @@ import math
 import numpy as np
 import torch
 import torch.nn.functional as F
+from aihwkit.nn.conversion import convert_to_analog
+import torch.nn as nn
+
+from lstm import LSTM_PTB, AnalogLSTM_PTB
 
 
 def train_step_hwa(model, encoder, train_data, vocab_size, optimizer, max_grad_norm, device)->Tuple[float, float]:
@@ -79,6 +83,7 @@ def evaluate_hwa(model, encoder, data_loader, vocab_size, t_inference, num_evals
         error_rate: the error rate
     """
     model.eval()
+    encoder.eval()
     all_losses = []
     all_accuracies = []
     num_batches = len(data_loader)
@@ -123,3 +128,64 @@ def evaluate_hwa(model, encoder, data_loader, vocab_size, t_inference, num_evals
     avg_error_rate = 1 - avg_accuracy
     avg_perplexity = math.exp(avg_loss)
     return avg_loss, avg_perplexity, avg_accuracy, avg_error_rate
+
+
+
+
+def covert_fp_to_hwa(fp_model: nn.Module, rpu_config: InferenceRPUConfig, device: torch.device):
+    """
+    Convert the fp model to a hwa model
+    Args:
+        fp_model: the fp model to convert
+        rpu_config: the rpu config to use
+    """
+    # get fp embedding layer
+    fp_embedding_layer = fp_model.get_embedding_component().to(device)
+    fp_embedding_layer.eval()
+    for param in fp_embedding_layer.parameters():
+        param.requires_grad = False  # freeze embedding layer
+    
+    # convert fp model to hwa model
+    fp_lstm_layer, fp_dropout = fp_model.get_lstm_component()
+    fp_fc_layer = fp_model.get_output_component()
+    hwa_model = AnalogLSTM_PTB(fp_lstm_layer, fp_dropout, fp_fc_layer)
+    analog_model = convert_to_analog(hwa_model, rpu_config).to(device)
+    return fp_embedding_layer, analog_model
+
+
+
+def save_hwa_model(analog_model, encoder, analog_model_path, encoder_path):
+    """
+    Save the hwa model
+    Args:
+        analog_model: the hwa model to save
+        encoder: the encoder to save
+        filepath: the path to save the model
+    """
+    torch.save(analog_model.state_dict(), analog_model_path)
+    torch.save(encoder.state_dict(), encoder_path)
+
+
+def load_hwa_model(config, vocab_size, analog_model_path, encoder_path, rpu_config, device, load_rpu=False):
+    """
+    Load the hwa model
+    Args:
+        analog_model_path: the path to load the hwa model
+        encoder_path: the path to load the encoder
+    """
+    fp_model = LSTM_PTB(vocab_size, config.embedding_dim, config.hidden_size, config.num_layers, config.dropout).to(device)
+    encoder = fp_model.get_embedding_component().to(device)
+    # convert fp model to hwa model
+    fp_lstm_layer, fp_dropout = fp_model.get_lstm_component()
+    fp_fc_layer = fp_model.get_output_component()
+    hwa_model = AnalogLSTM_PTB(fp_lstm_layer, fp_dropout, fp_fc_layer)
+    analog_model = convert_to_analog(hwa_model, rpu_config).to(device)
+
+    # load hwa model
+    analog_model.load_state_dict(torch.load(analog_model_path, map_location=device, load_rpu_config=load_rpu))
+    encoder.load_state_dict(torch.load(encoder_path, map_location=device))
+    analog_model.eval()
+    encoder.eval()
+    for param in encoder.parameters():
+        param.requires_grad = False  # freeze embedding layer
+    return analog_model, encoder

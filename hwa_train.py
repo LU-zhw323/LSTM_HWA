@@ -5,21 +5,26 @@ import torch.nn.init as init
 import torchvision
 import numpy as np
 from tqdm import tqdm
-from hwa_utils import evaluate_hwa, train_step_hwa
+from hwa_utils import covert_fp_to_hwa, evaluate_hwa, load_hwa_model, save_hwa_model, train_step_hwa
 from lstm import LSTM_PTB
 from utils import load_checkpoint, setup_data
 from hwa_rpu import hwa_rpu_config
 from config import LSTM_HWA_Config
 from aihwkit.nn.conversion import convert_to_analog
 from aihwkit.optim import AnalogSGD
+from utils import set_seed
 DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CHECKPOINT_PATH = "checkpoints/model.pt"
+FP_CHECKPOINT_PATH = "checkpoints/fp_model.pt"
+ENCODER_CHECKPOINT_PATH = "checkpoints/encoder.pt"
+HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.pt"
+
 
 
 
 def main():
-
+    # set seed
+    set_seed(42)
     # setup rpu config
     lstm_config = LSTM_HWA_Config()
     rpu_config = hwa_rpu_config(
@@ -42,30 +47,45 @@ def main():
 
     # load model
     model = LSTM_PTB(vocab_size, lstm_config.embedding_dim, lstm_config.hidden_size, lstm_config.num_layers, lstm_config.dropout).to(DEVICE)
-    load_checkpoint(CHECKPOINT_PATH, model, None)
-    model.eval()
+    load_checkpoint(FP_CHECKPOINT_PATH, model, None)
 
-    # get fp embedding layer
-    fp_embedding_layer = model.get_embedding_component().to(DEVICE)
-
-    # convert lstm to hwa
-    hwa_model = convert_to_analog(model, rpu_config).to(DEVICE)
+    # convert fp model to hwa model
+    fp_embedding_layer, hwa_model = covert_fp_to_hwa(model, rpu_config, DEVICE)
 
     # optimizer
     optimizer = AnalogSGD(hwa_model.parameters(), lr=lstm_config.lr, momentum=lstm_config.momentum, weight_decay=lstm_config.weight_decay)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=lstm_config.lr_decay_factor, patience=0)
+
 
     # train hwa model
     best_valid_error_rate = float('inf')
     for epoch in tqdm(range(lstm_config.epochs), desc="Training"):
+        current_lr = optimizer.param_groups[0]['lr']
         # train hwa model
         train_loss, train_perplexity = train_step_hwa(
             hwa_model, fp_embedding_layer, train_data, vocab_size, optimizer, lstm_config.max_grad_norm, DEVICE)
-
+        print("-" * 80)
+        print(f"Epoch {epoch+1:2d} | Lr: {current_lr:.3f} | Train Loss: {train_loss:.3f} | Train Perplexity: {train_perplexity:.3f}")
         # evaluate hwa model
-        test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_hwa(
+        valid_loss, valid_perplexity, valid_accuracy, valid_error_rate = evaluate_hwa(
             hwa_model, fp_embedding_layer, valid_data, vocab_size, lstm_config.t_inference, lstm_config.num_evals, DEVICE)
         
-        # 
+        print(f"Epoch {epoch+1:2d} | Lr: {current_lr:.3f} | Valid Loss: {valid_loss:.3f} | Valid Perplexity: {valid_perplexity:.3f} | Valid Accuracy: {valid_accuracy:.3f} | Valid Error Rate: {valid_error_rate:.3f}")
+        print("-" * 80)
+        scheduler.step(valid_error_rate)
+        if valid_error_rate < best_valid_error_rate:
+            best_valid_error_rate = valid_error_rate
+            save_hwa_model(hwa_model, fp_embedding_layer, HWA_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH)
+    
+    # load best hwa model
+    hwa_model, fp_embedding_layer = load_hwa_model(lstm_config, vocab_size, HWA_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH, rpu_config, DEVICE, True)
+
+    # evaluate hwa model
+    test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_hwa(
+        hwa_model, fp_embedding_layer, test_data, vocab_size, lstm_config.t_inference, lstm_config.num_evals, DEVICE)
+    print("-" * 80)
+    print(f"Test Loss: {test_loss:.3f} | Test Perplexity: {test_perplexity:.3f} | Test Accuracy: {test_accuracy:.3f} | Test Error Rate: {test_error_rate:.3f}")
+    print("-" * 80)
 
 
 if __name__ == "__main__":
