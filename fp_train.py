@@ -30,7 +30,7 @@ def main():
     lr_decay_start = 20 
     lr_decay_factor = 1.2
     max_grad_norm = 0.25
-    epochs = 40
+    epochs = 60
     
 
     # setup data

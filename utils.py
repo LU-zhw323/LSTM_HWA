@@ -22,8 +22,8 @@ def gen_rpu_config(
         hwa_pdrop: float=0.01,
         noise_scale: float=1.0, 
         drift_scale: float=1.0, 
-        g_min: float=0, 
-        g_max: float=25
+        g_min: float=0.0, 
+        g_max: float=25.0
     )->InferenceRPUConfig:
     """
     Generate a rpu config for hwa training
@@ -45,7 +45,10 @@ def gen_rpu_config(
     rpu_config.modifier.pdrop = hwa_pdrop
     rpu_config.modifier.pcm_t0 = 20
 
-    
+    # weight clipping
+    rpu_config.clip.type = WeightClipType.LAYER_GAUSSIAN
+    rpu_config.clip.sigma = 2.5 
+
     # forward
     rpu_config.forward.out_res = 8
     rpu_config.forward.inp_res = 8
@@ -69,19 +72,24 @@ def gen_rpu_config(
     # learn input range
     rpu_config.pre_post.input_range.enable = True
     rpu_config.pre_post.input_range.learn_input_range = True
+    rpu_config.pre_post.input_range.init_std_alpha = 1.0
     rpu_config.pre_post.input_range.decay = 0.001
     rpu_config.pre_post.input_range.gradient_relative = True
-    rpu_config.pre_post.input_range.init_from_data = 100
+    rpu_config.pre_post.input_range.gradient_scale = 1.0
+    rpu_config.pre_post.input_range.init_from_data = 1000
+    rpu_config.pre_post.input_range.input_min_percentage = 0.95
+    rpu_config.pre_post.input_range.manage_output_clipping = True  
+    rpu_config.pre_post.input_range.output_min_percentage = 0.95
     
     
 
     # noise model
     rpu_config.noise_model = PCMLikeNoiseModel(
-        g_converter=SinglePairConductanceConverter(g_min=g_min, g_max=g_max),
         g_max=g_max,
         prog_noise_scale=noise_scale,
         read_noise_scale=noise_scale,
         drift_scale=drift_scale,
+        g_converter=SinglePairConductanceConverter(g_max=g_max, g_min=g_min),
     )
     rpu_config.drift_compensation = GlobalDriftCompensation()
 

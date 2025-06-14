@@ -62,9 +62,9 @@ def direct_mapping_hwa(model, encoder, train_data, test_data, vocab_size, device
     num_batches = len(test_data)
     
     with torch.no_grad():
-        hidden = model.init_hidden(test_data.batch_size, device)
-        model.drift_analog_weights(t_inference)
         
+        model.drift_analog_weights(t_inference)
+        hidden = model.init_hidden(test_data.batch_size, device)
         for i in range(num_batches):
             inputs, targets = test_data.get_batch(i)
             inputs = inputs.to(device)
