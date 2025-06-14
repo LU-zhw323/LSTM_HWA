@@ -20,4 +20,9 @@ class LSTM_HWA_Config:
     fp_lr_decay_factor: float = 5 #lr/lr_decay_factor if valid loss not improved
     fp_error: float = 0.726 # best error rate on test set
 
+
+    # hwa training parameters
+    hwa_noise_scale: float = 5.0
+    hwa_pdrop: float = 0.01
+
     

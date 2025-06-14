@@ -1,6 +1,6 @@
 import math
 from data import Dictionary, Corpus
-from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate
+from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate_fp
 import torch
 from lstm_model import LSTM_PTB
 from torch.nn import functional as F
@@ -89,7 +89,7 @@ def main():
         train_perplexity = math.exp(avg_train_loss)
 
         # evaluate on validation set
-        valid_loss, valid_perplexity, valid_accuracy, valid_error_rate = evaluate(model, valid_data, vocab_size, DEVICE)
+        valid_loss, valid_perplexity, valid_accuracy, valid_error_rate = evaluate_fp(model, valid_data, vocab_size, DEVICE)
 
         print("-" * 80)
         print(f"Epoch {epoch+1:2d} | LR: {current_lr:.6f}")
@@ -115,7 +115,7 @@ def main():
     print("Training complete")
     
     # evaluate on test set
-    test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate(model, test_data, vocab_size, DEVICE)
+    test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_fp(model, test_data, vocab_size, DEVICE)
     print(f"Test Loss: {test_loss:.3f} | Test PPL: {test_perplexity:.2f}")
     print(f"Test Accuracy: {test_accuracy:.2f} | Test Error Rate: {test_error_rate:.2f}")
     print("-" * 80)
