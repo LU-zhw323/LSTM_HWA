@@ -1,8 +1,8 @@
 import math
 from data import Dictionary, Corpus
-from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate, load_checkpoint
+from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate_fp, load_checkpoint
 import torch
-from lstm_model import LSTM_PTB
+from lstm import LSTM_PTB
 from torch.nn import functional as F
 from tqdm import tqdm
 
@@ -42,7 +42,7 @@ def main():
     model.eval()
 
     # evaluate on test set
-    test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate(model, test_data, vocab_size, DEVICE)
+    test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_fp(model, test_data, vocab_size, DEVICE)
     print(f"Test Loss: {test_loss:.3f} | Test Perplexity: {test_perplexity:.3f}")
     print(f"Test Accuracy: {test_accuracy:.3f} | Test Error Rate: {test_error_rate:.3f}")
 

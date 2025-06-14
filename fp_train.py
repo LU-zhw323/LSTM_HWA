@@ -2,7 +2,7 @@ import math
 from data import Dictionary, Corpus
 from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate_fp
 import torch
-from lstm_model import LSTM_PTB
+from lstm import LSTM_PTB
 from torch.nn import functional as F
 from tqdm import tqdm
 

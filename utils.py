@@ -111,7 +111,7 @@ def adjust_learning_rate(optimizer, epoch, init_lr=1.0, lr_decay_start=6, lr_dec
     return lr
 
 
-
+@torch.no_grad()
 def evaluate_fp(model, data_loader, vocab_size, device):
     """
     Evaluate the model on the data loader for fp training
