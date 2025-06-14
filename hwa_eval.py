@@ -5,7 +5,7 @@ import torch.nn.init as init
 import torchvision
 import numpy as np
 from lstm import LSTM_PTB
-from utils import gen_rpu_config, load_checkpoint, setup_data
+from utils import direct_mapping_rpu_config, load_checkpoint, setup_data
 from config import LSTM_HWA_Config
 from aihwkit.nn.conversion import convert_to_analog
 from aihwkit.optim import AnalogSGD
@@ -35,6 +35,9 @@ def direct_mapping_hwa(model, encoder, train_data, test_data, vocab_size, device
     model.train()
     lr = 0.0
     optimizer = AnalogSGD(model.parameters(), lr=lr)
+    for name, param in model.named_parameters():
+        if 'weight' in name:
+            param.requires_grad = False
     hidden = model.init_hidden(train_data.batch_size, DEVICE)
     for i in range(1000):
         inputs, targets = train_data.get_batch(i)
@@ -100,7 +103,7 @@ def main():
 
     # setup rpu config
     lstm_config = LSTM_HWA_Config()
-    rpu_config = gen_rpu_config(
+    rpu_config = direct_mapping_rpu_config(
         hwa_noise_scale=0.0,
         hwa_pdrop=0.0,
     )

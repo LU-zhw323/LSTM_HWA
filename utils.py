@@ -17,7 +17,7 @@ from aihwkit.simulator.configs.utils import (
 from aihwkit.inference.converter.conductance import SinglePairConductanceConverter
 
 
-def gen_rpu_config(
+def direct_mapping_rpu_config(
         hwa_noise_scale: float=5.0,
         hwa_pdrop: float=0.01,
         noise_scale: float=1.0, 
@@ -26,7 +26,7 @@ def gen_rpu_config(
         g_max: float=25.0
     )->InferenceRPUConfig:
     """
-    Generate a rpu config for hwa training
+    Generate a rpu config for FP direct mapping
     Args:
         hwa_noise_scale: noise scale for hwa training
         hwa_pdrop: dropout rate for hwa training
@@ -40,10 +40,7 @@ def gen_rpu_config(
     rpu_config = InferenceRPUConfig()
 
     # modifier for hwa training
-    rpu_config.modifier.type = WeightModifierType.PCM_NOISE
-    rpu_config.modifier.std_dev = hwa_noise_scale
-    rpu_config.modifier.pdrop = hwa_pdrop
-    rpu_config.modifier.pcm_t0 = 20
+    rpu_config.modifier.type = WeightModifierType.NONE
 
     # weight clipping
     rpu_config.clip.type = WeightClipType.LAYER_GAUSSIAN
@@ -72,24 +69,20 @@ def gen_rpu_config(
     # learn input range
     rpu_config.pre_post.input_range.enable = True
     rpu_config.pre_post.input_range.learn_input_range = True
-    rpu_config.pre_post.input_range.init_std_alpha = 1.0
     rpu_config.pre_post.input_range.decay = 0.001
     rpu_config.pre_post.input_range.gradient_relative = True
     rpu_config.pre_post.input_range.gradient_scale = 1.0
-    rpu_config.pre_post.input_range.init_from_data = 1000
-    rpu_config.pre_post.input_range.input_min_percentage = 0.95
-    rpu_config.pre_post.input_range.manage_output_clipping = True  
-    rpu_config.pre_post.input_range.output_min_percentage = 0.95
+    rpu_config.pre_post.input_range.init_from_data = 100
     
     
 
     # noise model
     rpu_config.noise_model = PCMLikeNoiseModel(
-        g_max=g_max,
-        prog_noise_scale=noise_scale,
-        read_noise_scale=noise_scale,
-        drift_scale=drift_scale,
-        g_converter=SinglePairConductanceConverter(g_max=g_max, g_min=g_min),
+        g_max=25.0,
+        prog_noise_scale=1.0,
+        read_noise_scale=1.0,
+        drift_scale=1.0,
+        g_converter=SinglePairConductanceConverter(g_max=25.0, g_min=0.0),
     )
     rpu_config.drift_compensation = GlobalDriftCompensation()
 
