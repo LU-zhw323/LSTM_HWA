@@ -51,15 +51,16 @@ def main():
 
 
     # training loop
-    best_valid_perplexity = float('inf')
+    best_valid_loss = float('inf')
     for epoch in tqdm(range(epochs), desc="Training"):
         model.train()
         # adjust learning rate
-        current_lr = adjust_learning_rate(optimizer, epoch, lr, lr_decay_start, lr_decay_factor)
+        #current_lr = adjust_learning_rate(optimizer, epoch, lr, lr_decay_start, lr_decay_factor)
 
         hidden = model.init_hidden(batch_size, DEVICE)
 
         total_loss = 0
+        current_lr = optimizer.param_groups[0]['lr']
 
         for i in range(0, num_train_batches):
             inputs, targets = train_data.get_batch(i)
@@ -97,11 +98,14 @@ def main():
         print(f"  Valid Accuracy: {valid_accuracy:.2f} | Valid Error Rate: {valid_error_rate:.2f}")
         print("-" * 80)
         # save best model
-        if valid_perplexity < best_valid_perplexity:
-            best_valid_perplexity = valid_perplexity
+        if valid_loss < best_valid_loss:
+            best_valid_loss = valid_loss
             save_checkpoint(model, optimizer, epoch, valid_loss, valid_perplexity, 
                           CHECKPOINT_PATH)
-            print(f"Best perplexity: {valid_perplexity:.2f}")
+            print(f"Best loss: {valid_loss:.2f}")
+        else:
+            for param_group in optimizer.param_groups:
+                param_group['lr'] /= 4.0
         
         # save checkpoint
         if (epoch + 1) % 10 == 0:

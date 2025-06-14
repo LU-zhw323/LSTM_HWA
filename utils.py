@@ -89,5 +89,14 @@ def load_checkpoint(filepath, model, optimizer):
     # load checkpoint
     checkpoint = torch.load(filepath)
     model.load_state_dict(checkpoint['model_state_dict'])
-    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    if optimizer is not None:
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
     return checkpoint['epoch'], checkpoint['loss'], checkpoint['perplexity']
+
+
+def compute_norm_error(vocab_size: int, fp_error: float, hwa_error: float):
+    # compute chance error
+    error_chance = 1.0 - 1.0 / vocab_size
+
+    # compute norm error
+    return  1.0 - (hwa_error - fp_error) / (error_chance - fp_error)

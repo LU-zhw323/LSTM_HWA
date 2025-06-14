@@ -31,7 +31,7 @@ class LSTM_PTB(nn.Module):
         self._init_weights()
     
     def _init_weights(self):
-        init_range = 0.05  
+        init_range = 0.1  
         
         for name, param in self.named_parameters():
             if 'weight' in name:
