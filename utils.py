@@ -1,151 +1,93 @@
-import model
-import json
-from math import log10
-import math
-import os
-import argparse
-import time
-from aihwkit.inference.compensation.drift import GlobalDriftCompensation
-from aihwkit.inference.noise.pcm import PCMLikeNoiseModel
-from aihwkit.nn.conversion import convert_to_analog
-from aihwkit.simulator.parameters.enums import BoundManagementType, NoiseManagementType, WeightClipType, WeightModifierType, WeightNoiseType, WeightRemapType
-from numpy.core.function_base import logspace
-import torch
-from typing import Tuple
-from torch import tensor, device, FloatTensor, Tensor, transpose, save, load
-from torch import nn
-from torch.nn import CrossEntropyLoss
-from torch.nn.utils.clip_grad import clip_grad_norm_
-from torch.utils.data import Dataset, DataLoader
-from torch.utils.data.sampler import Sampler
-from torch.nn.functional import one_hot
-
 import numpy as np
-import h5py
-from aihwkit.nn import AnalogSequential, AnalogRNN, AnalogLinear, AnalogLSTMCellCombinedWeight
-from aihwkit.optim import AnalogSGD
-from aihwkit.simulator.configs import (
-    InferenceRPUConfig,
-    UnitCellRPUConfig,
-    SingleRPUConfig,
-    BufferedTransferCompound,
-    SoftBoundsDevice,
-    ConstantStepDevice,
-    MappingParameter,
-    IOParameters,
-    UpdateParameters,
-)
-from aihwkit.simulator.rpu_base import cuda
-
-import data
-import csv
+import torch
+from data import Dictionary, Corpus, SequentialBatcher
+from torch.nn import functional as F
+import math
 
 
-def inference(analog_model, evaluate, test_data, args, file_name, group_name):
-    print('=' * 89)
-    print("Inference")
-    print('-' * 89)
-    start_time = 60
-    max_inference_time = 31536000
-    n_times = 9
-    t_inference_list = [
-            0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
-    dtype = np.dtype([
-        ('noise', np.float32),
-        ('time', np.float32), 
-        ('loss', np.float32), 
-        ('ppl', np.float32)
-    ])
-    inference_data = np.empty(len(t_inference_list), dtype=dtype)
-    try:
-        analog_model.eval()
-        with h5py.File(file_name, 'a') as f:
-            task_group = f.require_group(group_name)
-            #t_inference in second
-            for i, t_inference in enumerate(t_inference_list):
-                analog_model.drift_analog_weights(t_inference)
-                inference_loss = evaluate(test_data)
-                print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
-                t_inference,inference_loss, math.exp(inference_loss)))
-                inference_data[i] = (args.noise, t_inference, inference_loss, math.exp(inference_loss))
-                
-            if 'inference_results' in task_group:
-                del task_group['inference_results']
-            task_group.create_dataset('inference_results', data=inference_data)
-            print('=' * 89)
-            print()
-    except KeyboardInterrupt:
-        print('=' * 89)
-        print('Exiting from Inference early')
 
 
-def inference_noise_model(analog_model, evaluate, test_data, args, file_name, group_name, model_type, encoder):
-    print('=' * 89)
-    print("Inference")
-    print(f'File: {file_name}, Group: {group_name}, Data: {args.task_param}')
-    print('-' * 89)
-    start_time = 60
-    max_inference_time = 31536000
-    n_times = 9
-    t_inference_list = [
-        0.0] + logspace(0, log10(float(max_inference_time)), n_times).tolist()
-    dtype = np.dtype([
-        ('program_noise', np.float32),
-        ('read_noise', np.float32), 
-        ('drift', np.float32), 
-        ('gmin', np.float32), 
-        ('gmax', np.float32), 
-        ('time', np.float32),
-        ('loss', np.float32), 
-        ('ppl', np.float32)
-    ])
-    inference_data = np.empty(len(t_inference_list), dtype=dtype)
-    analog_model.eval()
-    #t_inference in second
-    try:
-        for i, t_inference in enumerate(t_inference_list):
-                    analog_model.drift_analog_weights(t_inference)
-                    inference_loss = evaluate(analog_model, test_data, model_type, encoder)
-                    print('| Inference | time {} | test loss {:5.2f} | test ppl {:8.2f}'.format(
-                    t_inference,inference_loss, math.exp(inference_loss)))
-                    inference_data[i] = (
-                        args.inference_progm_noise, 
-                        args.inference_read_noise, 
-                        args.drift,
-                        args.gmin,
-                        args.gmax, 
-                        t_inference, 
-                        inference_loss, 
-                        math.exp(inference_loss))
-    except KeyboardInterrupt:
-            print('=' * 89)
-            print('Exiting from Inference early')
-            return
 
-    attempt = 0
-    release = 20
-    while attempt < release:
-        try:
-            with h5py.File(file_name, 'a') as f:
-                task_group = None
-                if not group_name in f:
-                    task_group = f.create_group(group_name)
-                else:
-                    task_group = f[group_name]
-                print(task_group)
-                if str(args.task_param) in task_group:
-                    del task_group[str(args.task_param)]
-                task_group.create_dataset(str(args.task_param), data=inference_data)
-                print('=' * 89)
-                print()
-                break
-        except OSError as e:
-            attempt += 1
-            if attempt < release:
-                print(f"Attempt {attempt}: File is locked, retrying in {10} seconds...")
-                time.sleep(20)
-                continue
-            else:
-                print('=' * 89)
-                print(f"Exceed Maximum Attempt at {attempt} attempts: {e}")
-                break
+
+def setup_data(data_path, batch_size, seq_length):
+    # create corpus
+    corp = Corpus(data_path)
+
+    # create sequential batcher
+    train_data = SequentialBatcher(corp.train, batch_size, seq_length)
+    valid_data = SequentialBatcher(corp.valid, batch_size, seq_length)
+    test_data = SequentialBatcher(corp.test, batch_size, seq_length)
+
+    return train_data, valid_data, test_data, corp
+
+
+
+def adjust_learning_rate(optimizer, epoch, init_lr=1.0, lr_decay_start=6, lr_decay_factor=1.2):
+    # decay learning rate
+    if epoch >= lr_decay_start:
+        lr = init_lr / (lr_decay_factor ** (epoch - lr_decay_start))
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = lr
+    else:
+        lr = init_lr
+    return lr
+
+
+
+def evaluate(model, data_loader, vocab_size, device):
+    
+    model.eval()
+    total_loss = 0
+    total_correct = 0
+    total_predictions = 0
+    num_batches = len(data_loader)
+    
+    with torch.no_grad():
+        hidden = model.init_hidden(data_loader.batch_size, device)
+        
+        for i in range(num_batches):
+            inputs, targets = data_loader.get_batch(i)
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+            
+            output, hidden = model(inputs, hidden)
+            hidden = (hidden[0].detach(), hidden[1].detach())
+            
+            loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
+            total_loss += loss.item()
+
+            predictions = torch.argmax(output, dim=-1)
+            predictions_flat = predictions.view(-1)
+            targets_flat = targets.view(-1)
+            
+            correct = (predictions_flat == targets_flat).sum().item()
+            total_correct += correct
+            total_predictions += targets_flat.size(0)
+    
+    avg_loss = total_loss / num_batches
+    perplexity = math.exp(avg_loss)
+    accuracy = total_correct / total_predictions
+    error_rate = 1 - accuracy
+    return avg_loss, perplexity, accuracy, error_rate
+
+
+
+def save_checkpoint(model, optimizer, epoch, loss, perplexity, filepath="checkpoints/model.pt"):
+    # save checkpoint
+    checkpoint = {
+        'epoch': epoch,
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+        'loss': loss,
+        'perplexity': perplexity,
+    }
+    torch.save(checkpoint, filepath)
+
+
+
+def load_checkpoint(filepath, model, optimizer):
+    # load checkpoint
+    checkpoint = torch.load(filepath)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+    return checkpoint['epoch'], checkpoint['loss'], checkpoint['perplexity']

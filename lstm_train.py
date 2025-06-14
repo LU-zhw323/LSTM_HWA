@@ -1,0 +1,121 @@
+import math
+from data import Dictionary, Corpus
+from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate
+import torch
+from lstm_model import LSTM_PTB
+from torch.nn import functional as F
+from tqdm import tqdm
+
+DATA_PATH = "data/ptb"
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+CHECKPOINT_PATH = "checkpoints/model.pt"
+
+
+
+
+
+
+
+def main():
+    
+
+    # hyper parameters
+    embedding_dim = 650
+    hidden_size = 650
+    num_layers = 2
+    dropout = 0.5
+    batch_size = 20
+    seq_length = 35
+    lr = 20.0
+    lr_decay_start = 20 
+    lr_decay_factor = 1.2
+    max_grad_norm = 0.25
+    epochs = 40
+    
+
+    # setup data
+    train_data, valid_data, test_data, corp = setup_data(DATA_PATH, batch_size, seq_length)
+    vocab_size = len(corp.dictionary)
+
+    # get number of batches
+    num_train_batches = len(train_data)
+    num_valid_batches = len(valid_data)
+    num_test_batches = len(test_data)
+
+    # model
+    model = LSTM_PTB(vocab_size, embedding_dim, hidden_size, num_layers, dropout).to(DEVICE)
+
+    # optimizer
+    optimizer = torch.optim.SGD(model.parameters(), lr=lr)
+
+
+
+    # training loop
+    best_valid_perplexity = float('inf')
+    for epoch in tqdm(range(epochs), desc="Training"):
+        model.train()
+        # adjust learning rate
+        current_lr = adjust_learning_rate(optimizer, epoch, lr, lr_decay_start, lr_decay_factor)
+
+        hidden = model.init_hidden(batch_size, DEVICE)
+
+        total_loss = 0
+
+        for i in range(0, num_train_batches):
+            inputs, targets = train_data.get_batch(i)
+            inputs = inputs.to(DEVICE)
+            targets = targets.to(DEVICE)
+            # zero gradients
+            optimizer.zero_grad()
+            # forward pass
+            output,hidden = model(inputs,hidden)
+            # detach hidden states
+            hidden = (hidden[0].detach(), hidden[1].detach())
+            loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+            # update weights
+            optimizer.step()
+
+            total_loss += loss.item()
+            if (i + 1) % 100 == 0:
+                avg_loss = total_loss / (i + 1)
+                perplexity = math.exp(avg_loss)
+                print(f"  Epoch {epoch+1:2d} | Batch {i+1:4d}/{len(train_data)} | "
+                      f"Loss: {avg_loss:.3f} | PPL: {perplexity:.2f} | LR: {current_lr:.6f}")
+
+        avg_train_loss = total_loss / len(train_data)
+        train_perplexity = math.exp(avg_train_loss)
+
+        # evaluate on validation set
+        valid_loss, valid_perplexity, valid_accuracy, valid_error_rate = evaluate(model, valid_data, vocab_size, DEVICE)
+
+        print("-" * 80)
+        print(f"Epoch {epoch+1:2d} | LR: {current_lr:.6f}")
+        print(f"  Train Loss: {avg_train_loss:.3f} | Train PPL: {train_perplexity:.2f}")
+        print(f"  Valid Loss: {valid_loss:.3f} | Valid PPL: {valid_perplexity:.2f}")
+        print(f"  Valid Accuracy: {valid_accuracy:.2f} | Valid Error Rate: {valid_error_rate:.2f}")
+        print("-" * 80)
+        # save best model
+        if valid_perplexity < best_valid_perplexity:
+            best_valid_perplexity = valid_perplexity
+            save_checkpoint(model, optimizer, epoch, valid_loss, valid_perplexity, 
+                          CHECKPOINT_PATH)
+            print(f"Best perplexity: {valid_perplexity:.2f}")
+        
+        # save checkpoint
+        if (epoch + 1) % 10 == 0:
+            save_checkpoint(model, optimizer, epoch, valid_loss, valid_perplexity,
+                          f"checkpoints/checkpoint_epoch_{epoch+1}.pt")
+    print("-" * 80)
+    print("Training complete")
+    
+    # evaluate on test set
+    test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate(model, test_data, vocab_size, DEVICE)
+    print(f"Test Loss: {test_loss:.3f} | Test PPL: {test_perplexity:.2f}")
+    print(f"Test Accuracy: {test_accuracy:.2f} | Test Error Rate: {test_error_rate:.2f}")
+    print("-" * 80)
+
+
+if __name__ == "__main__":
+    main()
