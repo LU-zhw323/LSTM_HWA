@@ -23,7 +23,7 @@ T_LABEL=${T_LABELS[0]}
 
 
 
-ml anaconda3 cuda/11.6.0 mvapich2/2.3.4 hdf5/1.10.7
+ml miniconda3/24.7.1 cuda/12.4.1 hdf5/1.14.5 intel-oneapi-mkl/2024.2.2
 
 conda activate /share/ceph/hawk/nil422_proj/shared/shared-aihwkitgpu/conda-env-aihwkit
 
