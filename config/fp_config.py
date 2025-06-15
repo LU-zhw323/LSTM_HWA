@@ -11,13 +11,12 @@ class LSTM_FP_Config:
     dropout: float = 0.5
     batch_size: int = 20
     seq_length: int = 35
-    epochs: int = 60
+    epochs: int = 40
 
 
     # fp training parameters
     lr: float = 20.0
     max_grad_norm: float = 0.25
-    epochs: int = 60
     lr_decay_factor: float = 5 #lr/lr_decay_factor if valid loss not improved
     weight_decay: float = 1e-5
 

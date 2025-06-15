@@ -37,6 +37,9 @@ def train_step_hwa(model, encoder, train_data, vocab_size, optimizer, max_grad_n
     train_loss = 0.0
     num_batches = len(train_data)
     hidden = model.init_hidden(train_data.batch_size, device)
+    encoder.eval()
+    for param in encoder.parameters():
+        param.requires_grad = False  # freeze embedding layer
 
     for i in range(num_batches):
         inputs, targets = train_data.get_batch(i)
@@ -182,7 +185,10 @@ def load_hwa_model(config, vocab_size, analog_model_path, encoder_path, rpu_conf
     analog_model = convert_to_analog(hwa_model, rpu_config).to(device)
 
     # load hwa model
-    analog_model.load_state_dict(torch.load(analog_model_path, map_location=device, load_rpu_config=load_rpu))
+    analog_model.load_state_dict(
+            torch.load(analog_model_path, map_location=device),
+            load_rpu_config=load_rpu
+        )
     encoder.load_state_dict(torch.load(encoder_path, map_location=device))
     analog_model.eval()
     encoder.eval()

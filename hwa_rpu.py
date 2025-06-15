@@ -42,8 +42,8 @@ def direct_mapping_rpu_config(
     rpu_config.clip.sigma = 2.5 
 
     # forward
-    rpu_config.forward.out_res = 8
-    rpu_config.forward.inp_res = 8
+    rpu_config.forward.out_res = 1.0 / (2**8 - 2)
+    rpu_config.forward.inp_res = 1.0 / (2**8 - 2)
     rpu_config.forward.out_noise = 0.04
     rpu_config.forward.out_bound = 10.0 #1.0 if rpu_config.mapping.learn_out_scaling = True
     rpu_config.forward.ir_drop_g_ratio = 571428.57
@@ -114,10 +114,13 @@ def hwa_rpu_config(
     rpu_config.modifier.pdrop = hwa_pdrop
     rpu_config.modifier.pcm_t0 = 20.0
 
+    # weight clipping
+    rpu_config.clip.type = WeightClipType.LAYER_GAUSSIAN
+    rpu_config.clip.sigma = 2.5
 
     # forward
-    '''rpu_config.forward.out_res = 8
-    rpu_config.forward.inp_res = 8
+    rpu_config.forward.out_res = 1.0 / (2**8 - 2)
+    rpu_config.forward.inp_res = 1.0 / (2**8 - 2)
     rpu_config.forward.out_noise = 0.04
     rpu_config.forward.out_bound = 10.0 #1.0 if rpu_config.mapping.learn_out_scaling = True
     #rpu_config.forward.ir_drop_g_ratio = 571428.57
@@ -142,7 +145,6 @@ def hwa_rpu_config(
     rpu_config.pre_post.input_range.gradient_relative = True
     rpu_config.pre_post.input_range.gradient_scale = 1.0
     rpu_config.pre_post.input_range.init_from_data = 100
-    '''
     
 
     # noise model
