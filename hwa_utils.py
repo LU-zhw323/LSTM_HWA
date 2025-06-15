@@ -20,6 +20,7 @@ import torch.nn as nn
 
 from lstm import LSTM_PTB, AnalogLSTM_PTB
 from torch.serialization import add_safe_globals
+from aihwkit.optim import AnalogSGD
 
 
 def train_step_hwa(model, encoder, train_data, vocab_size, optimizer, max_grad_norm, device)->Tuple[float, float]:
@@ -68,9 +69,71 @@ def train_step_hwa(model, encoder, train_data, vocab_size, optimizer, max_grad_n
 
 
 @torch.no_grad()
-def evaluate_hwa(model, encoder, data_loader, vocab_size, t_inference, num_evals, device):
+def evaluate_hwa(model, encoder, data_loader, vocab_size, num_evals, device):
     """
     Evaluate the model on the data loader for hwa training
+    Args:
+        model: the model to evaluate
+        encoder: the encoder to use
+        data_loader: the data loader to evaluate on
+        vocab_size: the size of the vocabulary
+        num_evals: the number of evaluations
+        device: the device to evaluate on
+    Returns:
+        avg_loss: the average loss
+        perplexity: the perplexity
+        accuracy: the accuracy
+        error_rate: the error rate
+    """
+    model.eval()
+    encoder.eval()
+    all_losses = []
+    all_accuracies = []
+    num_batches = len(data_loader)
+    
+    with torch.no_grad():
+        for _ in range(num_evals):
+            total_loss = 0.0
+            total_correct = 0.0
+            total_predictions = 0.0
+            hidden = model.init_hidden(data_loader.batch_size, device)
+            for i in range(num_batches):
+                inputs, targets = data_loader.get_batch(i)
+                inputs = inputs.to(device)
+                targets = targets.to(device)
+
+                # encode inputs
+                embedded_inputs = encoder(inputs)
+                output, hidden = model(embedded_inputs, hidden)
+                
+                hidden = (hidden[0].detach(), hidden[1].detach())
+                
+                loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
+                total_loss += loss.item()
+
+                predictions = torch.argmax(output, dim=-1)
+                predictions_flat = predictions.view(-1)
+                targets_flat = targets.view(-1)
+                
+                correct = (predictions_flat == targets_flat).sum().item()
+                total_correct += correct
+                total_predictions += targets_flat.size(0)
+            trial_loss = total_loss / num_batches
+            trial_accuracy = total_correct / total_predictions
+            all_losses.append(trial_loss)
+            all_accuracies.append(trial_accuracy)
+    
+    avg_loss = np.mean(all_losses)
+    avg_accuracy = np.mean(all_accuracies)
+    avg_error_rate = 1 - avg_accuracy
+    avg_perplexity = math.exp(avg_loss)
+    return avg_loss, avg_perplexity, avg_accuracy, avg_error_rate
+
+
+@torch.no_grad()
+def inference_hwa(model, encoder, data_loader, vocab_size, t_inference, num_evals, device):
+    """
+    Evaluate the model on the data loader for hwa inference
     Args:
         model: the model to evaluate
         encoder: the encoder to use
@@ -168,29 +231,73 @@ def save_hwa_model(analog_model, encoder, analog_model_path, encoder_path):
     torch.save(encoder.state_dict(), encoder_path)
 
 
-def load_hwa_model(config, vocab_size, analog_model_path, encoder_path, rpu_config, device, load_rpu=False):
+def load_hwa_model_and_encoder(analog_model_path, encoder_path, 
+                               vocab_size, lstm_config, rpu_config, device, load_rpu=False):
     """
-    Load the hwa model
+    Load the saved HWA model and encoder
+    
     Args:
-        analog_model_path: the path to load the hwa model
-        encoder_path: the path to load the encoder
+        analog_model_path: path to the saved analog model
+        encoder_path: path to the saved encoder
+        vocab_size: size of the vocabulary
+        lstm_config: configuration object with model parameters
+        rpu_config: RPU configuration for analog conversion
+        device: torch device to load models onto
+        
+    Returns:
+        hwa_model: loaded analog model
+        fp_embedding_layer: loaded encoder/embedding layer
     """
-    fp_model = LSTM_PTB(vocab_size, config.embedding_dim, config.hidden_size, config.num_layers, config.dropout).to(device)
-    encoder = fp_model.get_embedding_component().to(device)
-    # convert fp model to hwa model
-    fp_lstm_layer, fp_dropout = fp_model.get_lstm_component()
-    fp_fc_layer = fp_model.get_output_component()
+    # First, create the original FP model structure
+    model = LSTM_PTB(vocab_size, lstm_config.embedding_dim, 
+                     lstm_config.hidden_size, lstm_config.num_layers, 
+                     lstm_config.dropout).to(device)
+    
+    # Extract components and create HWA model structure
+    fp_embedding_layer = model.get_embedding_component().to(device)
+    fp_lstm_layer, fp_dropout = model.get_lstm_component()
+    fp_fc_layer = model.get_output_component()
+    
+    # Create HWA model structure
     hwa_model = AnalogLSTM_PTB(fp_lstm_layer, fp_dropout, fp_fc_layer)
     analog_model = convert_to_analog(hwa_model, rpu_config).to(device)
-
-    # load hwa model
-    analog_model.load_state_dict(
-            torch.load(analog_model_path, map_location=device, weights_only=False),
-            load_rpu_config=load_rpu
-        )
-    encoder.load_state_dict(torch.load(encoder_path, map_location=device))
+    
+    # Load the saved state dictionaries
+    analog_model.load_state_dict(torch.load(analog_model_path, map_location=device, weights_only=False), load_rpu_config=load_rpu)
+    fp_embedding_layer.load_state_dict(torch.load(encoder_path, map_location=device))
+    
+    # Set to eval mode and freeze embedding layer
     analog_model.eval()
-    encoder.eval()
-    for param in encoder.parameters():
-        param.requires_grad = False  # freeze embedding layer
-    return analog_model, encoder
+    fp_embedding_layer.eval()
+    for param in fp_embedding_layer.parameters():
+        param.requires_grad = False
+    
+    return analog_model, fp_embedding_layer
+
+
+
+def warmup_hwa(analog_model, encoder, train_data, vocab_size, optimizer, max_grad_norm, device):
+    analog_model.train()
+    lr = 0.0
+    optimizer = AnalogSGD(analog_model.parameters(), lr=lr)
+    for name, param in analog_model.named_parameters():
+        if 'weight' in name:
+            param.requires_grad = False
+    hidden = analog_model.init_hidden(train_data.batch_size, device)
+    for i in range(100):
+        inputs, targets = train_data.get_batch(i)
+        inputs = inputs.to(device)
+        targets = targets.to(device)
+        # zero gradients
+        optimizer.zero_grad()
+        # encode inputs
+        embedded_inputs = encoder(inputs)
+        # forward pass
+        output, hidden = analog_model(embedded_inputs, hidden)
+        # detach hidden states
+        hidden = (hidden[0].detach(), hidden[1].detach())
+        loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
+        loss.backward()
+        # update weights
+        optimizer.step()
+    return analog_model
