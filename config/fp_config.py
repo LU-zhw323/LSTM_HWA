@@ -21,8 +21,8 @@ class LSTM_FP_Config:
     weight_decay: float = 1e-5
 
     # fp evaluation results
-    error: float = 0.729 # best error rate on test set
-    ppl: float = 80.856 # best perplexity on test set
+    error: float = 0.72794 # best error rate on test set
+    ppl: float = 89.85257 # best perplexity on test set
 
 
     

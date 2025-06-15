@@ -43,8 +43,8 @@ def main():
 
     # evaluate on test set
     test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_fp(model, test_data, vocab_size, DEVICE)
-    print(f"Test Loss: {test_loss:.3f} | Test Perplexity: {test_perplexity:.3f}")
-    print(f"Test Accuracy: {test_accuracy:.3f} | Test Error Rate: {test_error_rate:.3f}")
+    print(f"Test Loss: {test_loss:.5f} | Test Perplexity: {test_perplexity:.5f}")
+    print(f"Test Accuracy: {test_accuracy:.5f} | Test Error Rate: {test_error_rate:.5f}")
 
 if __name__ == "__main__":
     main()

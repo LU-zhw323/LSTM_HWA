@@ -14,7 +14,8 @@ class LSTM_HWA_INFERENCE_Config:
     seq_length: int = 35
     epochs: int = 60
 
-
+    # fp baseline
+    fp_error: float = 0.72794
 
     # hwa training parameters
     hwa_noise_scale: float = 5.0
@@ -26,9 +27,9 @@ class LSTM_HWA_INFERENCE_Config:
     weight_decay: float = 1e-5
 
     # noise model parameters
-    noise_scale: float = 1.0
-    drift_scale: float = 1.0
-    g_min: float = 0.0
+    noise_scale: List[float] = dataclasses.field(default_factory=lambda: [0.005, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0])
+    drift_scale: List[float] = dataclasses.field(default_factory=lambda: [0.005, 0.05, 0.5, 1.0])
+    g_min: List[float] = dataclasses.field(default_factory=lambda: [0.0, 0.005, 0.05, 0.5, 1.0, 3.0, 5.0, 7.0, 9.0, 11.0, 13.0, 15.0])
     g_max: float = 25.0
 
     # hwa evaluation parameters

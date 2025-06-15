@@ -104,7 +104,7 @@ def load_checkpoint(filepath, model, optimizer):
     return checkpoint['epoch'], checkpoint['loss'], checkpoint['perplexity']
 
 
-def compute_norm_error(vocab_size: int, fp_error: float, hwa_error: float):
+def compute_norm_accuracy(vocab_size: int, fp_error: float, hwa_error: float):
     # compute chance error
     error_chance = 1.0 - 1.0 / vocab_size
 
