@@ -19,6 +19,7 @@ from aihwkit.nn.conversion import convert_to_analog
 import torch.nn as nn
 
 from lstm import LSTM_PTB, AnalogLSTM_PTB
+from torch.serialization import add_safe_globals
 
 
 def train_step_hwa(model, encoder, train_data, vocab_size, optimizer, max_grad_norm, device)->Tuple[float, float]:
@@ -50,8 +51,7 @@ def train_step_hwa(model, encoder, train_data, vocab_size, optimizer, max_grad_n
         # encode inputs
         embedded_inputs = encoder(inputs)
         # forward pass
-        lstm_out, hidden = model.forward_lstm_only(embedded_inputs, hidden)
-        output = model.forward_output_only(lstm_out)
+        output, hidden = model(embedded_inputs, hidden)
         # detach hidden states
         hidden = (hidden[0].detach(), hidden[1].detach())
         loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
@@ -106,9 +106,8 @@ def evaluate_hwa(model, encoder, data_loader, vocab_size, t_inference, num_evals
 
                 # encode inputs
                 embedded_inputs = encoder(inputs)
+                output, hidden = model(embedded_inputs, hidden)
                 
-                lstm_out, hidden = model.forward_lstm_only(embedded_inputs, hidden)
-                output = model.forward_output_only(lstm_out)
                 hidden = (hidden[0].detach(), hidden[1].detach())
                 
                 loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
@@ -186,7 +185,7 @@ def load_hwa_model(config, vocab_size, analog_model_path, encoder_path, rpu_conf
 
     # load hwa model
     analog_model.load_state_dict(
-            torch.load(analog_model_path, map_location=device),
+            torch.load(analog_model_path, map_location=device, weights_only=False),
             load_rpu_config=load_rpu
         )
     encoder.load_state_dict(torch.load(encoder_path, map_location=device))

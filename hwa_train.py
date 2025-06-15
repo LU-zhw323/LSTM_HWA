@@ -17,8 +17,8 @@ DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 FP_CHECKPOINT_PATH = "checkpoints/model.pt"
 ENCODER_CHECKPOINT_PATH = "checkpoints/encoder.pt"
-HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.pt"
-HWA_FINAL_CHECKPOINT_PATH = "checkpoints/hwa_model_final.pt"
+HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.th"
+HWA_FINAL_CHECKPOINT_PATH = "checkpoints/hwa_model_final.th"
 
 
 
@@ -88,8 +88,8 @@ def main():
 
     
     # load best hwa model
-    hwa_model, fp_embedding_layer = load_hwa_model(lstm_config, vocab_size, HWA_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH, rpu_config, DEVICE, True)
-
+    #hwa_model, fp_embedding_layer = load_hwa_model(lstm_config, vocab_size, HWA_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH, rpu_config, DEVICE, True)
+    hwa_model.load_state_dict(torch.load(HWA_CHECKPOINT_PATH, map_location=DEVICE, weights_only=False))
     # evaluate hwa model
     test_loss, test_perplexity, test_accuracy, test_error_rate = evaluate_hwa(
         hwa_model, fp_embedding_layer, test_data, vocab_size, lstm_config.t_inference, lstm_config.num_evals, DEVICE)

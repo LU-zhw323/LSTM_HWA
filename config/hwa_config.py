@@ -31,7 +31,7 @@ class LSTM_HWA_Config:
     g_max: float = 25.0
 
     # hwa evaluation parameters
-    num_evals: int = 1
+    num_evals: int = 3
     t_inference: float = 365 * 24 * 60 * 60 # 1 year
 
 

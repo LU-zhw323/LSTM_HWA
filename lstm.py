@@ -86,14 +86,13 @@ class AnalogLSTM_PTB(nn.Module):
             self.lstm = lstm
             self.dropout = dropout
             self.fc = fc
+
+        def forward(self, x, hidden=None):
+            x, new_hidden = self.lstm(x, hidden)
+            x = self.dropout(x)
+            x = self.fc(x)
+            return x, new_hidden
             
-        def forward_lstm_only(self, embedded_x, hidden=None):
-            lstm_out, new_hidden = self.lstm(embedded_x, hidden)
-            lstm_out = self.dropout(lstm_out)
-            return lstm_out, new_hidden
-            
-        def forward_output_only(self, lstm_out):
-            return self.fc(lstm_out)
             
         def init_hidden(self, batch_size, device):
             h0 = torch.zeros(self.lstm.num_layers, batch_size, self.lstm.hidden_size, device=device)
