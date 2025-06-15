@@ -15,7 +15,7 @@ from aihwkit.optim import AnalogSGD
 from utils import set_seed
 DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-FP_CHECKPOINT_PATH = "checkpoints/model.pt"
+FP_CHECKPOINT_PATH = "checkpoints/fp_model.pt"
 ENCODER_CHECKPOINT_PATH = "checkpoints/encoder.pt"
 HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.th"
 HWA_FINAL_CHECKPOINT_PATH = "checkpoints/hwa_model_final.th"
