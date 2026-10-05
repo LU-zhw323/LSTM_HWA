@@ -1,16 +1,11 @@
-import math
+import argparse
 import torch
-import torch.nn.functional as F
-import torch.nn.init as init
-import torchvision
-import numpy as np
 from tqdm import tqdm
-from hwa_utils import covert_fp_to_hwa, evaluate_hwa, inference_hwa, load_hwa_model_and_encoder, save_hwa_model, train_step_hwa, warmup_hwa
+from hwa_utils import covert_fp_to_hwa, evaluate_hwa, inference_hwa, load_hwa_model_and_encoder, save_hwa_model, train_step_hwa
 from lstm import LSTM_PTB
 from utils import load_checkpoint, setup_data
 from hwa_rpu import hwa_rpu_config
 from config import LSTM_HWA_Config
-from aihwkit.nn.conversion import convert_to_analog
 from aihwkit.optim import AnalogSGD
 from utils import set_seed
 DATA_PATH = "data/ptb"
@@ -21,11 +16,32 @@ HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.th"
 HWA_FINAL_CHECKPOINT_PATH = "checkpoints/hwa_model_final.th"
 
 
+def parse_args():
+    """Command-line options of one HWA training run."""
+    parser = argparse.ArgumentParser(description="HWA fine-tuning of the FP LSTM on PTB.")
+    parser.add_argument("--seed", type=int, default=42, help="Seed for Python, NumPy and PyTorch.")
+    parser.add_argument("--run_id", type=int, default=None,
+                        help="Save to checkpoints/hwa_model_<run_id>.th and hwa_model_final_<run_id>.th "
+                             "instead of hwa_model.th and hwa_model_final.th.")
+    return parser.parse_args()
 
 
 def main():
+    """Fine-tunes the analog LSTM and output layers of `FP_CHECKPOINT_PATH` with PCM weight noise.
+
+    Saves the lowest-validation-error model and the last-epoch model, and the frozen embedding to
+    `ENCODER_CHECKPOINT_PATH`. Then prints the test metrics of both models at
+    `LSTM_HWA_Config.t_inference`. Overwrites existing checkpoints at these paths.
+    """
+    args = parse_args()
+    if args.run_id is None:
+        best_checkpoint_path, final_checkpoint_path = HWA_CHECKPOINT_PATH, HWA_FINAL_CHECKPOINT_PATH
+    else:
+        best_checkpoint_path = f"checkpoints/hwa_model_{args.run_id}.th"
+        final_checkpoint_path = f"checkpoints/hwa_model_final_{args.run_id}.th"
+
     # set seed
-    set_seed(42)
+    set_seed(args.seed)
     # setup rpu config
     lstm_config = LSTM_HWA_Config()
     rpu_config = hwa_rpu_config(
@@ -75,10 +91,10 @@ def main():
         scheduler.step(valid_error_rate)
         if valid_error_rate < best_valid_error_rate:
             best_valid_error_rate = valid_error_rate
-            save_hwa_model(hwa_model, fp_embedding_layer, HWA_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH)
+            save_hwa_model(hwa_model, fp_embedding_layer, best_checkpoint_path, ENCODER_CHECKPOINT_PATH)
 
     # save final hwa model
-    save_hwa_model(hwa_model, fp_embedding_layer, HWA_FINAL_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH)
+    save_hwa_model(hwa_model, fp_embedding_layer, final_checkpoint_path, ENCODER_CHECKPOINT_PATH)
     test_loss, test_perplexity, test_accuracy, test_error_rate = inference_hwa(
         hwa_model, fp_embedding_layer, test_data, vocab_size, lstm_config.t_inference, lstm_config.num_evals, DEVICE)
     print("-" * 80)
@@ -87,8 +103,7 @@ def main():
 
     
     # load best hwa model
-    hwa_model, fp_embedding_layer = load_hwa_model_and_encoder(HWA_CHECKPOINT_PATH, ENCODER_CHECKPOINT_PATH, vocab_size, lstm_config, rpu_config, DEVICE, True)
-    #hwa_model.load_state_dict(torch.load(HWA_CHECKPOINT_PATH, map_location=DEVICE, weights_only=False))
+    hwa_model, fp_embedding_layer = load_hwa_model_and_encoder(best_checkpoint_path, ENCODER_CHECKPOINT_PATH, vocab_size, lstm_config, rpu_config, DEVICE, True)
     # evaluate hwa model
     test_loss, test_perplexity, test_accuracy, test_error_rate = inference_hwa(
         hwa_model, fp_embedding_layer, test_data, vocab_size, lstm_config.t_inference, lstm_config.num_evals, DEVICE)
