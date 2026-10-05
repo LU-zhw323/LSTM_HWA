@@ -99,7 +99,14 @@ echo 'export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6' > $CONDA_PREFI
 
 ## Checkpoints
 
-The checkpoints are on Hugging Face (link to be added). Download them into `checkpoints/`.
+The checkpoints and the inference results are on Hugging Face, in [MarvinZhw/AIMC under LSTM_HWA](https://huggingface.co/MarvinZhw/AIMC/tree/main/LSTM_HWA). Their folders mirror `checkpoints/` and `results/` here:
+
+```bash
+hf download MarvinZhw/AIMC --include "LSTM_HWA/*" --local-dir hf_aimc
+cp -r hf_aimc/LSTM_HWA/checkpoints hf_aimc/LSTM_HWA/results .
+```
+
+The Hugging Face README describes each result file.
 
 | File | Contents | Results |
 |---|---|---|
