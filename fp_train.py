@@ -1,6 +1,5 @@
 import math
-from data import Dictionary, Corpus
-from utils import load_checkpoint, save_checkpoint, set_seed, setup_data, adjust_learning_rate, evaluate_fp
+from utils import load_checkpoint, save_checkpoint, set_seed, setup_data, evaluate_fp
 import torch
 from lstm import LSTM_PTB
 from torch.nn import functional as F
@@ -18,7 +17,12 @@ CHECKPOINT_PATH = "checkpoints/fp_model.pt"
 
 
 def main():
-    
+    """Trains the FP LSTM on PTB and saves the lowest-validation-loss model to `CHECKPOINT_PATH`.
+
+    Also saves `checkpoints/fp_checkpoint_epoch_<n>.pt` every 10 epochs, then prints the test metrics
+    of the saved model. Divides the learning rate by `lr_decay_factor` after every epoch whose
+    validation loss does not improve.
+    """
 
     # hyper parameters
     config = LSTM_FP_Config()
@@ -56,8 +60,6 @@ def main():
     best_valid_loss = float('inf')
     for epoch in tqdm(range(epochs), desc="Training"):
         model.train()
-        # adjust learning rate
-        #current_lr = adjust_learning_rate(optimizer, epoch, lr, lr_decay_start, lr_decay_factor)
 
         hidden = model.init_hidden(batch_size, DEVICE)
 

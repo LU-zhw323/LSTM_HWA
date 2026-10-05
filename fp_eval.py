@@ -1,10 +1,7 @@
-import math
-from data import Dictionary, Corpus
-from utils import save_checkpoint, setup_data, adjust_learning_rate, evaluate_fp, load_checkpoint
+from utils import setup_data, evaluate_fp, load_checkpoint
 import torch
 from lstm import LSTM_PTB
-from torch.nn import functional as F
-from tqdm import tqdm
+from config import LSTM_FP_Config
 
 DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -12,32 +9,17 @@ CHECKPOINT_PATH = "checkpoints/fp_model.pt"
 
 
 def main():
-    
+    """Prints the test loss, perplexity, accuracy and error rate of the FP model at `CHECKPOINT_PATH`."""
 
     # hyper parameters
-    embedding_dim = 650
-    hidden_size = 650
-    num_layers = 2
-    dropout = 0.5
-    batch_size = 20
-    seq_length = 35
-    lr = 20.0
-    lr_decay_start = 20 
-    lr_decay_factor = 1.2
-    max_grad_norm = 0.25
-    epochs = 40
+    config = LSTM_FP_Config()
 
     # setup data
-    train_data, valid_data, test_data, corp = setup_data(DATA_PATH, batch_size, seq_length)
+    train_data, valid_data, test_data, corp = setup_data(DATA_PATH, config.batch_size, config.seq_length)
     vocab_size = len(corp.dictionary)
 
-    # get number of batches
-    num_train_batches = len(train_data)
-    num_valid_batches = len(valid_data)
-    num_test_batches = len(test_data)
-
     # load model
-    model = LSTM_PTB(vocab_size, embedding_dim, hidden_size, num_layers, dropout).to(DEVICE)
+    model = LSTM_PTB(vocab_size, config.embedding_dim, config.hidden_size, config.num_layers, config.dropout).to(DEVICE)
     load_checkpoint(CHECKPOINT_PATH, model, None)
     model.eval()
 

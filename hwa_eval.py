@@ -1,108 +1,20 @@
-import math
 import torch
-import torch.nn.functional as F
-import torch.nn.init as init
-import torchvision
-import numpy as np
 from hwa_utils import inference_hwa, load_hwa_model_and_encoder
-from lstm import LSTM_PTB
-from utils import compute_norm_accuracy, load_checkpoint, setup_data
-from hwa_rpu import direct_mapping_rpu_config, hwa_rpu_config
+from utils import compute_norm_accuracy, setup_data
+from hwa_rpu import hwa_rpu_config
 from config import LSTM_HWA_Config
-from aihwkit.nn.conversion import convert_to_analog
-from aihwkit.optim import AnalogSGD
 DATA_PATH = "data/ptb"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-FP_CHECKPOINT_PATH = "checkpoints/fp_model.pt"
 ENCODER_CHECKPOINT_PATH = "checkpoints/encoder.pt"
 HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.th"
 
 
 
-def direct_mapping_hwa(model, encoder, train_data, test_data, vocab_size, device, t_inference):
-    """
-    Evaluate the model on the data loader for fp training
-    Args:
-        model: the model to evaluate
-        data_loader: the data loader to evaluate on
-        vocab_size: the size of the vocabulary
-        device: the device to evaluate on
-        t_inference: the time of inference
-    Returns:
-        avg_loss: the average loss
-        perplexity: the perplexity
-        accuracy: the accuracy
-        error_rate: the error rate
-    """
-    # use hwa training flow to map the model to hwa
-    model.train()
-    lr = 0.0
-    optimizer = AnalogSGD(model.parameters(), lr=lr)
-    for name, param in model.named_parameters():
-        if 'weight' in name:
-            param.requires_grad = False
-    hidden = model.init_hidden(train_data.batch_size, DEVICE)
-    for i in range(1000):
-        inputs, targets = train_data.get_batch(i)
-        inputs = inputs.to(DEVICE)
-        targets = targets.to(DEVICE)
-        # zero gradients
-        optimizer.zero_grad()
-        # encode inputs
-        embedded_inputs = encoder(inputs)
-        # forward pass
-        lstm_out, hidden = model.forward_lstm_only(embedded_inputs, hidden)
-        output = model.forward_output_only(lstm_out)
-        # detach hidden states
-        hidden = (hidden[0].detach(), hidden[1].detach())
-        loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
-        loss.backward()
-        # update weights
-        optimizer.step()
-
-    
-    model.eval()
-    total_loss = 0
-    total_correct = 0
-    total_predictions = 0
-    num_batches = len(test_data)
-    
-    with torch.no_grad():
-        
-        model.drift_analog_weights(t_inference)
-        hidden = model.init_hidden(test_data.batch_size, device)
-        for i in range(num_batches):
-            inputs, targets = test_data.get_batch(i)
-            inputs = inputs.to(device)
-            targets = targets.to(device)
-
-            # encode inputs
-            embedded_inputs = encoder(inputs)
-            
-            lstm_out, hidden = model.forward_lstm_only(embedded_inputs, hidden)
-            output = model.forward_output_only(lstm_out)
-            hidden = (hidden[0].detach(), hidden[1].detach())
-            
-            loss = F.cross_entropy(output.view(-1, vocab_size), targets.view(-1))
-            total_loss += loss.item()
-
-            predictions = torch.argmax(output, dim=-1)
-            predictions_flat = predictions.view(-1)
-            targets_flat = targets.view(-1)
-            
-            correct = (predictions_flat == targets_flat).sum().item()
-            total_correct += correct
-            total_predictions += targets_flat.size(0)
-    
-    avg_loss = total_loss / num_batches
-    perplexity = math.exp(avg_loss)
-    accuracy = total_correct / total_predictions
-    error_rate = 1 - accuracy
-    return avg_loss, perplexity, accuracy, error_rate
-
-
-
 def main():
+    """Prints test metrics of `HWA_CHECKPOINT_PATH` at 1 s, 1 h, 1 day, 1 week and 1 year after programming.
+
+    Uses the RPU config stored in the checkpoint and averages `LSTM_HWA_Config.num_evals` noise draws per time.
+    """
 
     # setup rpu config
     lstm_config = LSTM_HWA_Config()
