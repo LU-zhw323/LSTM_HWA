@@ -13,7 +13,8 @@ HWA_CHECKPOINT_PATH = "checkpoints/hwa_model.th"
 def main():
     """Prints test metrics of `HWA_CHECKPOINT_PATH` at 1 s, 1 h, 1 day, 1 week and 1 year after programming.
 
-    Uses the RPU config stored in the checkpoint and averages `LSTM_HWA_Config.num_evals` noise draws per time.
+    Uses the RPU config stored in the checkpoint. Programs the weights once, at the first time point, and
+    averages `LSTM_HWA_Config.num_evals` evaluations per time.
     """
 
     # setup rpu config

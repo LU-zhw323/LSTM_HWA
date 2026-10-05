@@ -43,6 +43,6 @@ class LSTM_HWA_INFERENCE_Config:
 
     # hwa evaluation parameters
     num_evals: int = 25
-    """Independent programming-noise draws per configuration. Metrics are averaged over them."""
+    """Evaluations per configuration, averaged. All share one programming-noise draw; each draws new read noise."""
     inference_time: List[float] = dataclasses.field(default_factory=lambda: [1, 3600, 3600*24, 3600*24*7, 3600*24*365])
     """Times after programming at which the weights are drifted, s."""
